@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burak Erdemci | Portfolio</title>
+    <meta name="description"
+        content="Burak Erdemci - Game & Backend Developer Portfolio. C#, ASP.NET Core, Python, Unity, Unreal Engine.">
+    <meta name="author" content="Burak Erdemci">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Burak Erdemci | Portfolio">
+    <meta property="og:description" content="Game & Backend Developer — C#, ASP.NET Core, Python">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://burakerdemci.com">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Burak Erdemci | Portfolio">
+    <meta name="twitter:description" content="Game & Backend Developer — C#, ASP.NET Core, Python">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Noise Overlay -->
+    <div class="bg-noise"></div>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav class="nav" id="navbar">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">B<span>.</span>E</a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="nav-link" data-i18n="navAbout">Hakkımda</a></li>
+                <li><a href="#skills" class="nav-link" data-i18n="navSkills">Yetenekler</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="navProjects">Projeler</a></li>
+                <li><a href="#timeline" class="nav-link" data-i18n="navTimeline">Deneyim</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="navContact">İletişim</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <button id="lang-btn" class="nav-btn nav-lang" aria-label="Change Language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button id="theme-btn" class="nav-btn" aria-label="Toggle Theme">
+                    <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" style="display:none">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button class="nav-menu-btn" id="menu-btn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ═══ Hero ═══ -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge reveal">
+                        <span class="pulse"></span>
+                        <span id="hero-status">İş Tekliflerine Açık</span>
+                    </div>
+
+                    <h1 class="hero-name reveal reveal-delay-1">
+                        Burak <span class="last-name">Erdemci</span>
+                    </h1>
+
+                    <p class="hero-subtitle reveal reveal-delay-2" id="hero-subtitle">
+                        Game & Backend Developer | ASP.NET Core & Python
+                    </p>
+
+                    <div class="hero-actions reveal reveal-delay-3">
+                        <a href="#projects" class="btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                            <span id="btn-projects">Projeleri Gör</span>
+                        </a>
+                        <a href="Burak_Erdemci_CV.pdf" download class="btn-ghost">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span id="btn-cv">CV İndir</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-socials reveal reveal-delay-4">
+                        <a href="https://github.com/BurakErdemci" target="_blank" rel="noopener" class="social-link"
+                            aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/burak-erdemci-a3994833b/" target="_blank" rel="noopener"
+                            class="social-link" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="mailto:erdemciburakemre@gmail.com" class="social-link" aria-label="Email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ About ═══ -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label" id="about-label">Hakkımda</span>
+                </div>
+                <div class="bento-grid bento-grid-2">
+                    <div class="bento-card reveal">
+                        <div class="bento-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="bento-card-title" id="about-title">Merhaba, Ben Burak</h3>
+                        <p class="bento-card-text" id="about-text">
+                            Yazılım dünyasına Gemi Makineleri Mühendisliği'nden geçiş yaptım. C#, ASP.NET Core ve Python
+                            dillerini kullanarak projeler geliştiriyor, özellikle backend alanında kendimi
+                            geliştiriyorum. 2D ve 3D hikaye tabanlı oyunlar ve web tabanlı uygulamalar üzerine
+                            yoğunlaşıyorum.
+                        </p>
+                    </div>
+                    <div class="bento-card location-card reveal reveal-delay-1">
+                        <div class="location-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <h3 class="location-city">İstanbul, TR</h3>
+                        </div>
+                        <div>
+                            <div class="status-badge">
+                                <span class="status-dot"></span>
+                                <span class="status-label" id="status-text">İş Tekliflerine Açık</span>
+                            </div>
+                            <p class="status-role" id="role-text">Yazılım Geliştirici</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Skills ═══ -->
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label" id="skills-label">Teknik Yetenekler</span>
+                    <h2 class="section-title" id="skills-title">Yetenekler</h2>
+                </div>
+                <div class="bento-card reveal">
+                    <div id="skills-container">
+                        <!-- Skills rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Projects ═══ -->
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label" id="projects-label">Portfolyo</span>
+                    <h2 class="section-title" id="projects-title">Seçilmiş Projeler</h2>
+                </div>
+                <div class="projects-grid" id="projects-container">
+                    <!-- Projects rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Timeline ═══ -->
+        <section class="section" id="timeline">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label" id="timeline-label">Yolculuk</span>
+                    <h2 class="section-title" id="timeline-title">Deneyim & Eğitim</h2>
+                </div>
+                <div class="timeline reveal" id="timeline-container">
+                    <!-- Timeline rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Contact ═══ -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label" id="contact-label">İletişim</span>
+                    <h2 class="section-title" id="contact-title">Birlikte Çalışalım</h2>
+                </div>
+                <div class="contact-grid reveal">
+                    <div class="contact-info">
+                        <p class="contact-info-text" id="contact-text">
+                            Yeni projeler, iş birlikleri veya sadece merhaba demek için benimle iletişime
+                            geçebilirsiniz.
+                        </p>
+                        <div class="contact-channels">
+                            <a href="mailto:erdemciburakemre@gmail.com" class="contact-channel">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <span class="contact-channel-text">erdemciburakemre@gmail.com</span>
+                            </a>
+                            <a href="https://github.com/BurakErdemci" target="_blank" rel="noopener"
+                                class="contact-channel">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                    </path>
+                                </svg>
+                                <span class="contact-channel-text">github.com/BurakErdemci</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/burak-erdemci-a3994833b/" target="_blank"
+                                rel="noopener" class="contact-channel">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                    </path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                                <span class="contact-channel-text">LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contact-form">
+
+                        <input type="hidden" name="access_key" value="654e6ffd-9c6c-473b-9c88-8983ac592ee7">
+                        <div class="form-group">
+                            <label class="form-label" for="name" id="form-name-label">İsim</label>
+                            <input class="form-input" type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email" id="form-email-label">E-posta</label>
+                            <input class="form-input" type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message" id="form-message-label">Mesaj</label>
+                            <textarea class="form-textarea" id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary form-submit" id="form-submit-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                            <span id="form-submit-text">Gönder</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <p>&copy; <span id="year"></span> Burak Erdemci</p>
+                </div>
+                <div class="footer-right">
+                    <a href="Burak_Erdemci_CV.pdf" download class="footer-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span id="footer-cv-text">CV İndir</span>
+                    </a>
+                    <a href="#hero" class="footer-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="17 11 12 6 7 11"></polyline>
+                            <polyline points="17 18 12 13 7 18"></polyline>
+                        </svg>
+                        <span id="footer-top-text">Yukarı</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
