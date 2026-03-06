@@ -377,15 +377,23 @@ function renderContent() {
                             <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </div>
                         <div class="project-images-body" id="project-images-${i}">
-                            <div class="project-images-scroll">
-                                ${proj.images.map((img, j) => `
-                                    <div class="project-image-item">
-                                        ${img.includes('images/')
+                            <div class="carousel-wrapper">
+                                <button class="carousel-btn prev" onclick="scrollCarousel(event, ${i}, -1)" aria-label="Previous image">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <div class="project-images-scroll" id="carousel-scroll-${i}" onscroll="updateCarouselButtons(${i})">
+                                    ${proj.images.map((img, j) => `
+                                        <div class="project-image-item">
+                                            ${img.includes('images/')
                 ? `<img src="${img}" alt="${proj.title} Screenshot ${j + 1}" class="project-img-real" loading="lazy">`
                 : `<div class="project-image-placeholder">${img}</div>`
             }
-                                    </div>
-                                `).join('')}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <button class="carousel-btn next" onclick="scrollCarousel(event, ${i}, 1)" aria-label="Next image">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
                             </div>
                         </div>
 
@@ -464,7 +472,48 @@ function toggleProjectImages(event, index) {
         if (projectBody) {
             projectBody.style.maxHeight = projectBody.scrollHeight + 'px';
         }
+        updateCarouselButtons(index);
     }, 50);
+}
+
+// ─── Carousel Navigation ───
+function scrollCarousel(event, index, direction) {
+    event.stopPropagation();
+    const scrollContainer = document.getElementById(`carousel-scroll-${index}`);
+    if (scrollContainer) {
+        // Calculate the width of one item + gap
+        const item = scrollContainer.querySelector('.project-image-item');
+        const scrollAmount = item ? (item.clientWidth + 16) : (scrollContainer.clientWidth * 0.85);
+        scrollContainer.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    }
+}
+
+function updateCarouselButtons(index) {
+    const scrollContainer = document.getElementById(`carousel-scroll-${index}`);
+    if (!scrollContainer) return;
+
+    const wrapper = scrollContainer.closest('.carousel-wrapper');
+    if (!wrapper) return;
+
+    const prevBtn = wrapper.querySelector('.carousel-btn.prev');
+    const nextBtn = wrapper.querySelector('.carousel-btn.next');
+
+    // Threshold of 2px to account for decimal rounding
+    if (scrollContainer.scrollLeft <= 2) {
+        prevBtn.style.opacity = '0.3';
+        prevBtn.style.pointerEvents = 'none';
+    } else {
+        prevBtn.style.opacity = '1';
+        prevBtn.style.pointerEvents = 'auto';
+    }
+
+    if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 2) {
+        nextBtn.style.opacity = '0.3';
+        nextBtn.style.pointerEvents = 'none';
+    } else {
+        nextBtn.style.opacity = '1';
+        nextBtn.style.pointerEvents = 'auto';
+    }
 }
 
 // ─── Scroll Reveal ───
