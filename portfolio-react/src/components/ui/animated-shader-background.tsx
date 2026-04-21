@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-const AnoAI = () => {
+const AnoAI = ({ isPlaying }: { isPlaying: boolean }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const mouseRef = useRef(new THREE.Vector2(0, 0));
+  const intensityRef = useRef(0);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -10,15 +12,17 @@ const AnoAI = () => {
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
-    renderer.setPixelRatio(1); // Standard resolution (non-retina) for background is enough and very efficient
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "high-performance" });
+    renderer.setPixelRatio(1);
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
 
     const material = new THREE.ShaderMaterial({
       uniforms: {
         iTime: { value: 0 },
-        iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+        iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        iMouse: { value: new THREE.Vector2(0, 0) },
+        iIntensity: { value: 0 }
       },
       vertexShader: `
         void main() {
@@ -28,6 +32,8 @@ const AnoAI = () => {
       fragmentShader: `
         uniform float iTime;
         uniform vec2 iResolution;
+        uniform vec2 iMouse;
+        uniform float iIntensity;
 
         #define NUM_OCTAVES 3
 
@@ -39,11 +45,9 @@ const AnoAI = () => {
           vec2 ip = floor(p);
           vec2 u = fract(p);
           u = u*u*(3.0-2.0*u);
-
-          float res = mix(
+          return mix(
             mix(rand(ip), rand(ip + vec2(1.0, 0.0)), u.x),
             mix(rand(ip + vec2(0.0, 1.0)), rand(ip + vec2(1.0, 1.0)), u.x), u.y);
-          return res * res;
         }
 
         float fbm(vec2 x) {
@@ -60,32 +64,56 @@ const AnoAI = () => {
         }
 
         void main() {
-          vec2 shake = vec2(sin(iTime * 1.2) * 0.005, cos(iTime * 2.1) * 0.005);
-          vec2 p = ((gl_FragCoord.xy + shake * iResolution.xy) - iResolution.xy * 0.5) / iResolution.y * mat2(6.0, -4.0, 4.0, 6.0);
+          vec2 uv = gl_FragCoord.xy / iResolution.y;
+          vec2 p = (gl_FragCoord.xy - iResolution.xy * 0.5) / iResolution.y;
+          
+          // Normalized mouse position in shader space
+          vec2 m = (iMouse - iResolution.xy * 0.5) / iResolution.y;
+          
+          // Very subtle parallax - inverted to follow mouse correctly
+          p -= m * 0.05;
+          p *= mat2(6.0, -4.0, 4.0, 6.0);
+          
           vec2 v;
           vec4 o = vec4(0.0);
 
-          float f = 2.0 + fbm(p + vec2(iTime * 5.0, 0.0)) * 0.5;
+          // Speed up with intensity
+          float speedFactor = 5.0 + iIntensity * 8.0;
+          float f = 2.0 + fbm(p + vec2(iTime * speedFactor, 0.0)) * 0.5;
 
           #define ITERS 9.0
 
           for (float i = 0.0; i < ITERS; i++) {
-            v = p + cos(i * i + (iTime + p.x * 0.08) * 0.025 + i * vec2(13.0, 11.0)) * 3.5 + vec2(sin(iTime * 3.0 + i) * 0.003, cos(iTime * 3.5 - i) * 0.003);
+            v = p + cos(i * i + (iTime + p.x * 0.08) * 0.025 + i * vec2(13.0, 11.0)) * 3.5;
+            
+            // Distance to mouse for local glow effect
+            float distToMouse = length(v - m * 5.0); // Scaled for the shader space
+            float mouseGlow = exp(-distToMouse * 0.5) * 0.5;
+            
             float tailNoise = fbm(v + vec2(iTime * 0.5, i)) * 0.3 * (1.0 - (i / ITERS));
+            
+            // Adaptive colors - shift slightly with intensity
             vec4 auroraColors = vec4(
-              0.1 + 0.3 * sin(i * 0.2 + iTime * 0.4),
-              0.3 + 0.5 * cos(i * 0.3 + iTime * 0.5),
-              0.7 + 0.3 * sin(i * 0.4 + iTime * 0.3),
+              0.1 + 0.3 * sin(i * 0.2 + iTime * 0.4 + iIntensity),
+              0.2 + 0.5 * cos(i * 0.3 + iTime * 0.5 - iIntensity),
+              0.6 + 0.4 * sin(i * 0.4 + iTime * 0.3 + iIntensity * 0.5),
               1.0
             );
-            vec4 currentContribution = auroraColors * exp(sin(i * i + iTime * 0.8)) / length(max(v, vec2(v.x * f * 0.015, v.y * 1.5)));
-            float thinnessFactor = smoothstep(0.0, 1.0, i / ITERS) * 0.6;
-            // Multiply by 3.5 to compensate for much fewer iterations preventing it from being too dim
-            o += (currentContribution * (1.0 + tailNoise * 0.8) * thinnessFactor) * 3.5;
+
+            // Boost contribution near mouse - more subtle
+            float influence = 1.0 + mouseGlow * 1.25;
+            
+            vec4 currentContribution = auroraColors * exp(sin(i * i + iTime * 0.8)) / length(max(v, vec2(v.x * f * 0.02, v.y * (1.8 - iIntensity * 0.5))));
+            float thinnessFactor = smoothstep(0.0, 1.0, i / ITERS) * (0.5 + iIntensity * 0.3);
+            
+            o += (currentContribution * (1.0 + tailNoise * 0.8) * thinnessFactor * influence) * 2.8;
           }
 
           o = tanh(pow(o / 100.0, vec4(1.6)));
-          gl_FragColor = o * 1.5;
+          
+          // More subtle brightness boost
+          float finalBrightness = 1.2 + iIntensity * 0.8;
+          gl_FragColor = o * finalBrightness;
         }
       `
     });
@@ -96,20 +124,32 @@ const AnoAI = () => {
 
     let frameId: number;
     let lastTime = 0;
-    const fps = 24; // Cap to 24 FPS (Cinematic standard) for maximum efficiency on low-end devices
+    const fps = 60; // Up to 60 for smoother parallax
     const interval = 1000 / fps;
 
     const animate = (time: number) => {
       frameId = requestAnimationFrame(animate);
-      
       const delta = time - lastTime;
-      if (delta < interval) return; // Skip frames to maintain ~24 FPS
-
+      if (delta < interval) return;
       lastTime = time - (delta % interval);
-      material.uniforms.iTime.value += 0.016 * (delta / 16.67); // Adjust time increment by delta for consistent speed
+
+      // Smoothly transition intensity
+      const targetIntensity = isPlaying ? 1.0 : 0.0;
+      intensityRef.current = THREE.MathUtils.lerp(intensityRef.current, targetIntensity, 0.01);
+      material.uniforms.iIntensity.value = intensityRef.current;
+
+      // Update time and mouse
+      material.uniforms.iTime.value += 0.01 * (delta / 16.67);
+      material.uniforms.iMouse.value.lerp(mouseRef.current, 0.05);
+
       renderer.render(scene, camera);
     };
     frameId = requestAnimationFrame(animate);
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseRef.current.set(e.clientX, window.innerHeight - e.clientY);
+    };
+    window.addEventListener('mousemove', onMouseMove);
 
     const handleResize = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -119,13 +159,14 @@ const AnoAI = () => {
 
     return () => {
       cancelAnimationFrame(frameId);
+      window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('resize', handleResize);
       container.removeChild(renderer.domElement);
       geometry.dispose();
       material.dispose();
       renderer.dispose();
     };
-  }, []);
+  }, [isPlaying]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 w-full h-full pointer-events-none z-[-1]" />

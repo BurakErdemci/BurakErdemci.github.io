@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react'
+import { Music, Music2 } from 'lucide-react'
 
 interface LandingProps {
   onEnter: () => void
+  toggleMusic: () => void
+  isPlaying: boolean
 }
 
-export function Landing({ onEnter }: LandingProps) {
+export function Landing({ onEnter, toggleMusic, isPlaying }: LandingProps) {
   const [exiting, setExiting] = useState(false)
   const [visible, setVisible] = useState(false)
+  const [isHoveringMusic, setIsHoveringMusic] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 2000)
+    const timer = setTimeout(() => setVisible(true), 1200)
     return () => clearTimeout(timer)
   }, [])
 
@@ -20,19 +24,45 @@ export function Landing({ onEnter }: LandingProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 w-full h-full overflow-hidden bg-transparent cursor-pointer transition-opacity duration-700 ${
+      className={`fixed inset-0 z-50 w-full h-full overflow-hidden bg-transparent cursor-default transition-opacity duration-700 ${
         exiting ? 'opacity-0' : 'opacity-100'
       }`}
-      onClick={handleClick}
     >
-
-
       {/* Simple centered ENTER text */}
       <div
         className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center transition-all duration-1000 ease-out ${
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}
       >
+        {/* Music Button ABOVE the name */}
+        <div className="mb-8 flex flex-col items-center group/music">
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleMusic()
+            }}
+            onMouseEnter={() => setIsHoveringMusic(true)}
+            onMouseLeave={() => setIsHoveringMusic(false)}
+            className={`p-4 rounded-full border transition-all duration-500 flex items-center justify-center cursor-pointer ${
+              isPlaying 
+                ? 'bg-white/10 border-white/20 text-white shadow-[0_0_20px_rgba(255,255,255,0.1)]' 
+                : 'bg-transparent border-white/10 text-white/40 hover:border-white/30 hover:text-white/60'
+            }`}
+          >
+            {isPlaying ? (
+              <Music2 size={24} className="animate-pulse" />
+            ) : (
+              <Music size={24} />
+            )}
+          </button>
+          
+          <div className={`mt-4 overflow-hidden transition-all duration-500 flex flex-col items-center ${isHoveringMusic ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'}`}>
+            <p className="text-[10px] text-white/50 tracking-[0.2em] uppercase text-center max-w-[250px] leading-relaxed">
+              Arkanıza yaslanıp atmosferin tadını çıkarmak isterseniz bana basın
+            </p>
+          </div>
+        </div>
+
         <div className="flex flex-col items-center mb-12">
           <h1 className="text-white text-4xl sm:text-6xl font-black tracking-[0.15em] uppercase mb-4 drop-shadow-2xl">
             Burak Erdemci

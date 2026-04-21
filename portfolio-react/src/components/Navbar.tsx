@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Music, Music2 } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { useTheme } from '../context/ThemeContext'
 import { content } from '../data/content'
 
-export function Navbar() {
+interface NavbarProps {
+  toggleMusic: () => void
+  isPlaying: boolean
+}
+
+export function Navbar({ toggleMusic, isPlaying }: NavbarProps) {
   const { lang, toggleLang } = useTheme()
   const t = content[lang]
   const [scrolled, setScrolled] = useState(false)
@@ -48,6 +53,17 @@ export function Navbar() {
 
         {/* Desktop - Right Aligned Actions */}
         <div className="hidden md:flex items-center gap-4">
+          <button
+            onClick={toggleMusic}
+            className={`p-2 rounded-full transition-all duration-300 cursor-pointer ${
+              isPlaying ? 'text-white bg-white/10' : 'text-[#888] hover:text-white bg-transparent'
+            }`}
+          >
+            {isPlaying ? <Music2 size={16} className="animate-pulse" /> : <Music size={16} />}
+          </button>
+
+          <div className="w-px h-4 bg-[#333] mx-1" />
+
           <a href="https://github.com/BurakErdemci" target="_blank" rel="noopener noreferrer" className="text-[#888] hover:text-white transition-colors duration-200">
             <GithubIcon size={16} />
           </a>
@@ -63,13 +79,24 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile hamburger - right aligned */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-[#888] cursor-pointer"
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile Actions */}
+        <div className="flex md:hidden items-center gap-4">
+          <button
+            onClick={toggleMusic}
+            className={`p-2 rounded-full transition-all duration-300 cursor-pointer ${
+              isPlaying ? 'text-white bg-white/10' : 'text-[#888] bg-transparent'
+            }`}
+          >
+            {isPlaying ? <Music2 size={16} className="animate-pulse" /> : <Music size={16} />}
+          </button>
+
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-[#888] cursor-pointer"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
