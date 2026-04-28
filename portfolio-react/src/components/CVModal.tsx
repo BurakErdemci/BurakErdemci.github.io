@@ -2,12 +2,17 @@ import { X, Download, FileText } from 'lucide-react'
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { RainbowButton } from './ui/rainbow-borders-button'
+import { useTheme } from '../context/ThemeContext'
+import { content } from '../data/content'
 
 interface CVModalProps {
   onClose: () => void
 }
 
 export function CVModal({ onClose }: CVModalProps) {
+  const { lang } = useTheme()
+  const t = content[lang]
+
   // Lock scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -15,6 +20,11 @@ export function CVModal({ onClose }: CVModalProps) {
       document.body.style.overflow = 'unset'
     }
   }, [])
+
+  const downloadText = lang === 'tr' ? "İndir" : "Download"
+  const fallbackText = lang === 'tr' 
+    ? "PDF görüntülenemiyorsa lütfen indirme butonunu kullanın."
+    : "If the PDF cannot be displayed, please use the download button."
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 md:p-8 animate-in fade-in duration-300">
@@ -41,7 +51,7 @@ export function CVModal({ onClose }: CVModalProps) {
             {/* Download Button */}
             <RainbowButton href="Burak_Erdemci_CV.pdf" download>
               <Download size={14} />
-              İndir
+              {downloadText}
             </RainbowButton>
 
             {/* Close Button */}
@@ -64,7 +74,7 @@ export function CVModal({ onClose }: CVModalProps) {
           
           {/* Mobile Fallback Label if iframe is blocked or weird */}
           <div className="absolute inset-0 z-[-1] flex flex-col items-center justify-center text-center p-8">
-            <p className="text-white/40 text-sm mb-4">PDF görüntülenemiyorsa lütfen indirme butonunu kullanın.</p>
+            <p className="text-white/40 text-sm mb-4">{fallbackText}</p>
           </div>
         </div>
 

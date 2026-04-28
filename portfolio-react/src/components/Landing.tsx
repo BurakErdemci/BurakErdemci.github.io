@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Music, Music2 } from 'lucide-react'
+import { useTheme } from '../context/ThemeContext'
+import { content } from '../data/content'
 
 interface LandingProps {
   onEnter: () => void
@@ -8,6 +10,8 @@ interface LandingProps {
 }
 
 export function Landing({ onEnter, toggleMusic, isPlaying }: LandingProps) {
+  const { lang } = useTheme()
+  const t = content[lang]
   const [exiting, setExiting] = useState(false)
   const [visible, setVisible] = useState(false)
   const [isHoveringMusic, setIsHoveringMusic] = useState(false)
@@ -21,6 +25,12 @@ export function Landing({ onEnter, toggleMusic, isPlaying }: LandingProps) {
     setExiting(true)
     setTimeout(onEnter, 800)
   }
+
+  const musicHint = lang === 'tr' 
+    ? "Arkanıza yaslanıp atmosferin tadını çıkarmak isterseniz bana basın"
+    : "Click here if you want to sit back and enjoy the atmosphere"
+
+  const enterText = lang === 'tr' ? "DENEYİME GİRİŞ" : "ENTER EXPERIENCE"
 
   return (
     <div
@@ -58,7 +68,7 @@ export function Landing({ onEnter, toggleMusic, isPlaying }: LandingProps) {
           
           <div className={`mt-4 overflow-hidden transition-all duration-500 flex flex-col items-center ${isHoveringMusic ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'}`}>
             <p className="text-[10px] text-white/50 tracking-[0.2em] uppercase text-center max-w-[250px] leading-relaxed">
-              Arkanıza yaslanıp atmosferin tadını çıkarmak isterseniz bana basın
+              {musicHint}
             </p>
           </div>
         </div>
@@ -71,7 +81,7 @@ export function Landing({ onEnter, toggleMusic, isPlaying }: LandingProps) {
           <div className={`h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent transition-all duration-1000 delay-500 origin-center ${visible ? 'w-64 opacity-100' : 'w-0 opacity-0'}`} />
           
           <p className={`mt-4 text-white/50 text-[10px] sm:text-xs tracking-[0.4em] uppercase font-medium transition-all duration-1000 delay-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
-            Game & Full Stack Developer
+            {t.heroSubtitle}
           </p>
         </div>
         
@@ -83,7 +93,7 @@ export function Landing({ onEnter, toggleMusic, isPlaying }: LandingProps) {
           className="group relative flex flex-col items-center cursor-pointer"
         >
           <span className="text-white/30 text-[10px] tracking-[0.6em] uppercase font-light transition-all duration-500 group-hover:text-white group-hover:tracking-[0.8em]">
-            Enter Experience
+            {enterText}
           </span>
           <div className="mt-4 w-px h-12 bg-gradient-to-b from-white/20 to-transparent group-hover:h-16 transition-all duration-500" />
         </button>
