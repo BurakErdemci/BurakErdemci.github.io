@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { RainbowButton } from './ui/rainbow-borders-button'
 import { useTheme } from '../context/ThemeContext'
-import { content } from '../data/content'
 
 interface CVModalProps {
   onClose: () => void
@@ -11,7 +10,6 @@ interface CVModalProps {
 
 export function CVModal({ onClose }: CVModalProps) {
   const { lang } = useTheme()
-  const t = content[lang]
 
   // Lock scroll when modal is open
   useEffect(() => {
