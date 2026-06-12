@@ -72,16 +72,14 @@ export function cutinTo(target: HTMLElement, href: string) {
   });
   subEl.textContent = label.sub;
 
-  const k1 = ci.querySelector('.k1');
-  const k2 = ci.querySelector('.k2');
   const band = ci.querySelector('.band');
   const cls = bigEl.querySelectorAll('.cl');
   const sp1 = ci.querySelector('.sp1');
   const sp2 = ci.querySelector('.sp2');
-
+ 
+  (window as unknown as { __cutinActive?: boolean }).__cutinActive = true;
   ci.style.display = 'block';
-  gsap.set([k1, k2], { xPercent: -135 });
-  gsap.set(band, { scaleX: 0, transformOrigin: 'left center' });
+  gsap.set(band, { scaleX: 0, xPercent: 0, transformOrigin: 'left center' });
   gsap.set(cls, { xPercent: 140, skewX: -24, opacity: 0 });
   gsap.set(subEl, { opacity: 0, x: 20 });
   gsap.set([sp1, sp2], { opacity: 0, scale: 0.3, rotate: -40 });
@@ -90,11 +88,10 @@ export function cutinTo(target: HTMLElement, href: string) {
   tl.eventCallback('onComplete', () => {
     ci.style.display = 'none';
     cutBusy = false;
+    (window as unknown as { __cutinActive?: boolean }).__cutinActive = false;
   });
 
-  tl.to(k1, { xPercent: 0, duration: 0.34, ease: 'power4.in' })
-    .to(k2, { xPercent: 0, duration: 0.34, ease: 'power4.in' }, '-=.26')
-    .to(band, { scaleX: 1, duration: 0.3, ease: 'power4.out' }, '-=.08')
+  tl.to(band, { scaleX: 1, duration: 0.3, ease: 'power4.out' })
     .add(() => jumpTo(target)) // warp/scroll immediately while curtain is closed
     .to(cls, {
       xPercent: 0,
@@ -113,19 +110,9 @@ export function cutinTo(target: HTMLElement, href: string) {
       stagger: 0.06,
       ease: 'back.out(3)'
     }, '-=.3')
-    .to({}, { duration: 0.42 }) // hold state so details can be read
-    .to(cls, {
-      xPercent: -130,
-      skewX: 18,
-      opacity: 0,
-      duration: 0.26,
-      stagger: { each: 0.018 },
-      ease: 'power3.in'
-    })
-    .to([sp1, sp2], { opacity: 0, scale: 0.4, duration: 0.2 }, '<')
-    .to(band, { scaleX: 0, transformOrigin: 'right center', duration: 0.26, ease: 'power4.in' }, '-=.1')
-    .to(k2, { xPercent: 135, duration: 0.4, ease: 'power4.inOut' }, '-=.15')
-    .to(k1, { xPercent: 135, duration: 0.4, ease: 'power4.inOut' }, '-=.3');
+    .to({}, { duration: 0.4 }) // hold state briefly so details can be read
+    .to([sp1, sp2], { opacity: 0, duration: 0.15 })
+    .to(band, { xPercent: 135, duration: 0.35, ease: 'power3.inOut' }, '<');
 }
 
 export function initCutIn(): () => void {

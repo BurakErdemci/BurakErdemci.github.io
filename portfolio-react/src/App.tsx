@@ -90,8 +90,6 @@ function Portfolio() {
 
       {/* Cut-in Transition Screen */}
       <div id="cutin" aria-hidden="true">
-        <div className="slash k1"></div>
-        <div className="slash k2"></div>
         <div className="band">
           <div className="lines"></div>
           <div className="ct"><span className="big"></span><span className="sub"></span></div>

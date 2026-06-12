@@ -15,9 +15,10 @@ export function initReveals(): () => void {
       start: 'top 88%',
       once: true,
       onEnter: () => {
+        const isInstant = !!(window as unknown as { __cutinActive?: boolean }).__cutinActive;
         gsap.fromTo(el,
           { opacity: 0, y: 34, rotate: 0.4 },
-          { opacity: 1, y: 0, rotate: 0, duration: 0.85, ease: 'power3.out' }
+          { opacity: 1, y: 0, rotate: 0, duration: isInstant ? 0 : 0.85, ease: 'power3.out' }
         );
       }
     });
@@ -32,9 +33,10 @@ export function initReveals(): () => void {
       start: 'top 86%',
       once: true,
       onEnter: () => {
+        const isInstant = !!(window as unknown as { __cutinActive?: boolean }).__cutinActive;
         gsap.fromTo(m,
           { x: i % 2 ? 60 : -60, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.9, ease: 'power4.out' }
+          { x: 0, opacity: 1, duration: isInstant ? 0 : 0.9, ease: 'power4.out' }
         );
       }
     });

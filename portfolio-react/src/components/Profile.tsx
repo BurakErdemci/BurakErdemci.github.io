@@ -1,5 +1,14 @@
 import { useTheme } from '../context/ThemeContext';
 
+const InlinePointer = () => (
+  <span className="inline-pointer" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+      <polygon points="12,3 21,12 12,21 3,12" stroke="var(--red)" strokeWidth="2" fill="var(--wht)" />
+      <path d="M10,8 L10,16 L12.5,13.5 L15,18.5 L16.5,17.7 L14,12.7 L17,12.7 Z" fill="var(--wht)" stroke="var(--red)" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  </span>
+);
+
 export function Profile() {
   const { lang } = useTheme();
 
@@ -8,12 +17,12 @@ export function Profile() {
       num: '01',
       title: <>PRO<em>FİL</em></>,
       sub: '// SİSTEM MİMARİSİNİN ARKASINDAKİ İSİM',
-      p1: <>Ben Burak — Eskişehir'de yaşayan bir yazılım geliştiriciyim. Çalışmalarım yapay zeka araçları geliştirme, arka uç mimarileri ve oyun sistemlerinin kesişim noktasında yer alıyor. Özellikle geliştirici araçları ve yapay zeka destekli üretken sistemler (Python/FastAPI) oluşturma, güçlü arka uç mimarileri (C#/ASP.NET Core) tasarlama ve Unity/Unreal ile oynanış mekanikleri geliştirme konularına odaklanıyorum.</>,
-      p2: <>Yazılım geliştirmeye sistem odaklı ve verimlilik odaklı bir düşünce yapısıyla yaklaşıyorum: mimariyi ve sınırları çizer, geliştirme süreçlerini hızlandırmak için yapay zeka araçlarından yararlanır ve otomatize ederim; sonrasında ise her satırı milyonlarca kullanıcıya hizmet veriyormuş gibi denetleyip optimize ederim.</>,
+      p1: <>Ben Burak — Eskişehir'de yaşayan bir geliştiriciyim; önce oyunlara, ardından onların arkasındaki yapay zeka ve sistem mekanizmalarına merak sardım. Ağırlıklı olarak oyun ve yapay zeka (AI) geliştirme alanlarında çalışıyorum: <b>Unity ve Unreal ile oynanış</b>, <b>Python ve FastAPI ile yapay zeka araçları</b>, ve <b>web ön yüzleri <InlinePointer /> ve TypeScript ile Next.js</b>.</>,
+      p2: <>Çalışma tarzım basit: mimariyi tasarlar, sınırları belirler ve uygulamanın hızlanması için yapay zeka araçlarını yönetirim — sonrasında ise her şeyi sanki bir milyon oyuncuya sunulmuş gibi gözden geçiririm. Daha az kod yazımı, daha çok <b>sistem düşüncesi</b>.</>,
       calloutQ: '"Sınırları çiz. Sistemi optimize et. Çözümleri teslim et."',
       calloutA: '// ANA METODOLOJİM',
       stats: [
-        { n: '10+', l: 'Yayında ve devam eden proje' },
+        { n: '5+', l: 'Yayında ve devam eden proje' },
         { n: '5', l: 'Aktif kullanılan programlama dili' },
         { n: '48s', l: 'Game Jam — oynanabilir sürüm teslimi' },
         { n: '100+', l: 'Ana projede commit sayısı' }
@@ -23,12 +32,12 @@ export function Profile() {
       num: '01',
       title: <>PRO<em>FILE</em></>,
       sub: '// BEHIND THE SYSTEM ARCHITECTURE',
-      p1: <>I'm Burak — a software engineer based in Eskişehir, TR. My focus lies at the intersection of AI tool development, backend architectures, and gameplay systems. I specialize in building developer tools, AI-powered systems (Python/FastAPI), designing robust backends (C#/ASP.NET Core), and crafting gameplay systems in Unity and Unreal.</>,
-      p2: <>I approach software development with a systems-thinking and efficiency-driven mindset: defining architecture and constraints, leveraging AI tools to automate and accelerate workflows, and auditing and optimizing every line as if it were serving millions.</>,
+      p1: <>I'm Burak — a developer from Eskişehir who fell for games first and the AI and system mechanics behind them second. I focus primarily on game development and artificial intelligence (AI) systems: <b>gameplay in Unity and Unreal</b>, <b>AI tools in Python and FastAPI</b>, and <b>web frontends <InlinePointer /> in TypeScript and Next.js</b>.</>,
+      p2: <>My working style is simple: I design the architecture, set the constraints, and orchestrate AI agents to move fast on implementation — then review everything like it shipped to a million players. Less typing, more <b>system thinking</b>.</>,
       calloutQ: '"Architect the boundaries. Optimize the code. Ship the systems."',
       calloutA: '// MY CORE METHODOLOGY',
       stats: [
-        { n: '10+', l: 'Shipped & ongoing projects' },
+        { n: '5+', l: 'Shipped & ongoing projects' },
         { n: '5', l: 'Languages in production use' },
         { n: '48h', l: 'Game jam — playable build shipped' },
         { n: '100+', l: 'Commits on flagship project' }

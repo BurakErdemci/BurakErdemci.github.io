@@ -50,13 +50,13 @@ export function Hero() {
 
   const localizedData = {
     tr: {
-      codename: '// OYUN & ARKA UÇ GELİŞTİRİCİ',
+      codename: '// OYUN & FULL-STACK GELİŞTİRİCİ',
       roleChipRed: 'dünyalar inşa ederim',
       roleChipWht: '& arkalarındaki sistemleri',
       loc: <>KONUM // <b>ESKİŞEHİR, TR</b> — UZAKTAN ÇALIŞMAYA &amp; RELOKASYONA AÇIK</>
     },
     en: {
-      codename: '// GAME & BACKEND DEVELOPER',
+      codename: '// GAME & FULL-STACK DEVELOPER',
       roleChipRed: 'I build worlds',
       roleChipWht: '& the systems behind them',
       loc: <>LOC // <b>ESKİŞEHİR, TR</b> — OPEN TO REMOTE &amp; RELOCATION</>

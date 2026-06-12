@@ -733,6 +733,31 @@ header.hidden {
   box-shadow: 14px 14px 0 rgba(10,10,10,.45);
 }
 
+.timeline-item {
+  grid-template-columns: 180px 1fr !important;
+  align-items: start !important;
+}
+
+.t-date {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(22px, 2.5vw, 34px);
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--red);
+  text-transform: uppercase;
+  display: inline-block;
+  transform: rotate(-3deg);
+  margin-top: 4px;
+}
+
+.inline-pointer {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 6px;
+  width: clamp(20px, 1.8vw, 24px);
+  height: clamp(20px, 1.8vw, 24px);
+  transform: translateY(-2px);
+}
+
 .m-num {
   font-family: 'Anton', sans-serif;
   font-size: clamp(40px, 5vw, 72px);
@@ -1043,6 +1068,14 @@ html.has-js:not(.reduced) .rv {
   }
   .mission {
     grid-template-columns: 1fr;
+  }
+  .timeline-item {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .t-date {
+    transform: rotate(-2deg);
+    margin-bottom: 8px;
   }
   .m-num {
     position: absolute;

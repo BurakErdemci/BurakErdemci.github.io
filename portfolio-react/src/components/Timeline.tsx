@@ -29,22 +29,12 @@ export function Timeline() {
         {t.timeline.map((item, idx) => (
           <div
             key={idx}
-            className="mission rv"
+            className="mission timeline-item rv"
             style={{
-              gridTemplateColumns: 'auto 1fr',
               cursor: 'default'
             }}
           >
-            <span
-              className="m-num"
-              style={{
-                fontSize: 'clamp(20px, 2.5vw, 32px)',
-                minWidth: '150px',
-                display: 'inline-block',
-                alignSelf: 'start',
-                marginTop: '4px'
-              }}
-            >
+            <span className="t-date">
               {item.date}
             </span>
             <div className="m-body">
