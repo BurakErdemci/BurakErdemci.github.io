@@ -1,65 +1,75 @@
-import { ExternalLink } from 'lucide-react'
-import { useTheme } from '../context/ThemeContext'
-import { content, type Project } from '../data/content'
-import { useState } from 'react'
-import { ProjectModal } from './ProjectModal'
-
-function ProjectItem({ project, onClick }: { project: Project; onClick: () => void }) {
-  return (
-    <button 
-      onClick={onClick}
-      className="reveal flex items-start gap-4 p-4 rounded-xl hover:bg-white/[0.03] transition-all duration-300 group w-full text-left"
-    >
-      <div className="w-10 h-10 rounded-lg bg-white/[0.05] flex items-center justify-center flex-shrink-0 group-hover:bg-white/[0.08] transition-colors">
-        <ExternalLink size={18} className="text-[#666] group-hover:text-white transition-colors" />
-      </div>
-      <div>
-        <h3 className="text-base font-medium text-white group-hover:text-[#ccc] transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-sm text-[#666] mt-1 leading-relaxed line-clamp-2">
-          {project.brief}
-        </p>
-      </div>
-    </button>
-  )
-}
+import { useTheme } from '../context/ThemeContext';
+import { content } from '../data/content';
 
 export function Projects() {
-  const { lang } = useTheme()
-  const t = content[lang]
+  const { lang } = useTheme();
+  const t = content[lang];
 
-  const [selectedProjectTitle, setSelectedProjectTitle] = useState<string | null>(null)
+  const localizedData = {
+    tr: {
+      sub: '// SEÇİLMİŞ ÇALIŞMALAR',
+      title: <>MİS<em>YONLAR</em></>,
+      ctaPlay: 'Oyna →',
+      ctaLive: 'Canlı Gör →',
+      ctaCode: 'Kodu Gör →',
+      ctaCase: 'Projeyi Gör →'
+    },
+    en: {
+      sub: '// SELECTED WORKS',
+      title: <>MISS<em>IONS</em></>,
+      ctaPlay: 'Play It →',
+      ctaLive: 'View Live →',
+      ctaCode: 'View Code →',
+      ctaCase: 'View Case →'
+    }
+  };
 
-  // Dynamically find the project in the current language's content
-  const selectedProject = selectedProjectTitle 
-    ? t.projects.find(p => p.title === selectedProjectTitle) 
-    : null
+  const labels = localizedData[lang];
+
+  // Helper to determine custom CTA button label
+  const getCtaLabel = (title: string) => {
+    const key = title.toLowerCase();
+    if (key.includes('workday')) return labels.ctaPlay;
+    if (key.includes('ristorante')) return labels.ctaLive;
+    if (key.includes('architect')) return labels.ctaCase;
+    return labels.ctaCode;
+  };
 
   return (
-    <section id="projects" className="py-32 bg-transparent">
-      <div className="section-container">
-        <h2 className="reveal text-5xl font-bold text-white mb-4 tracking-tighter">{t.projectsTitle}</h2>
-        <p className="reveal text-base italic text-[#777] mb-20 tracking-widest">{t.projectsLabel} 🏗️</p>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full">
-          {t.projects.map((project) => (
-            <div key={project.title} className="flex justify-center">
-              <ProjectItem 
-                project={project} 
-                onClick={() => setSelectedProjectTitle(project.title)} 
-              />
-            </div>
-          ))}
-        </div>
+    <section className="sec missions halftone" id="missions">
+      <div className="sec-head">
+        <span className="sec-num rv">03</span>
+        <h2 className="sec-title rv">{labels.title}</h2>
+        <span className="sec-sub rv">{labels.sub}</span>
       </div>
-
-      {selectedProject && (
-        <ProjectModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProjectTitle(null)} 
-        />
-      )}
+      <div className="mission-list">
+        {t.projects.map((project, idx) => {
+          const paddedNum = String(idx + 1).padStart(2, '0');
+          return (
+            <a
+              key={project.title}
+              className="mission rv"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-hover
+            >
+              <span className="m-num">{paddedNum}</span>
+              <div className="m-body">
+                <div className="m-kind">{project.tag}</div>
+                <h3>{project.title}</h3>
+                <p>{project.brief}</p>
+                <div className="m-tags">
+                  {project.tech.map((tech) => (
+                    <span key={tech}>{tech}</span>
+                  ))}
+                </div>
+              </div>
+              <span className="m-cta">{getCtaLabel(project.title)}</span>
+            </a>
+          );
+        })}
+      </div>
     </section>
-  )
+  );
 }

@@ -1,90 +1,126 @@
-import { useState, useRef, useEffect } from 'react'
-import { ThemeProvider } from './context/ThemeContext'
-import { useReveal } from './hooks/useReveal'
-import { Landing } from './components/Landing'
-import { Navbar } from './components/Navbar'
-import { Hero } from './components/Hero'
-import { Projects } from './components/Projects'
-import { Timeline } from './components/Timeline'
-import { Contact } from './components/Contact'
-import { Footer } from './components/Footer'
-import { CVModal } from './components/CVModal'
-import AnoAI from './components/ui/animated-shader-background'
+import { useEffect, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { Profile } from './components/Profile';
+import { Arsenal } from './components/Arsenal';
+import { Projects } from './components/Projects';
+import { Timeline } from './components/Timeline';
+import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
+import { AdminPanel } from './components/AdminPanel';
 
-function Portfolio({ toggleMusic, isPlaying, onOpenCV, showCV, setShowCV }: { 
-  toggleMusic: () => void, 
-  isPlaying: boolean, 
-  onOpenCV: () => void,
-  showCV: boolean,
-  setShowCV: (show: boolean) => void
-}) {
-  useReveal()
+import { initLenis } from './modules/lenis';
+import { initCursor } from './modules/cursor';
+import { initCutIn } from './modules/cutin';
+import { initReveals } from './modules/reveals';
+import { initPreloader } from './modules/preloader';
+
+// Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+function Portfolio() {
+  const { lang } = useTheme();
+
+  useEffect(() => {
+    // 1. Add js class to root
+    document.documentElement.classList.add('has-js');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      document.documentElement.classList.add('reduced');
+    }
+
+    // 2. Initialize modules
+    const destroyLenis = initLenis();
+    const destroyCursor = initCursor();
+    const destroyCutIn = initCutIn();
+    const destroyReveals = initReveals();
+
+    // 3. Preloader GSAP animation on mount
+    initPreloader();
+
+    // Cleanup on unmount
+    return () => {
+      if (destroyLenis) destroyLenis.destroy();
+      destroyCursor();
+      destroyCutIn();
+      destroyReveals();
+    };
+  }, []);
+
+  // Refresh ScrollTrigger when language changes to recalculate height positions
+  useEffect(() => {
+    // Small timeout to allow React render to complete first
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [lang]);
 
   return (
-    <div className="relative min-h-screen">
-      <div className="bg-noise" />
-      
-      <Navbar toggleMusic={toggleMusic} isPlaying={isPlaying} />
-      <main className="relative z-10">
-        <Hero onOpenCV={onOpenCV} />
+    <>
+      {/* Preloader */}
+      <div id="loader" aria-hidden="true">
+        <div className="wipe"></div>
+        <div className="stamp">BURAK <i>ERDEMCI</i></div>
+        <div className="tag">// INITIALIZING</div>
+      </div>
+
+      {/* Custom Cursor */}
+      <div className="cursor" aria-hidden="true"></div>
+      <div className="cursor-tail" aria-hidden="true"></div>
+
+      {/* Navigation Header */}
+      <Navbar />
+
+      {/* Sections */}
+      <main>
+        <Hero />
+        <Profile />
+        <Arsenal />
         <Projects />
         <Timeline />
         <Contact />
       </main>
-      <Footer onOpenCV={onOpenCV} />
 
-      {showCV && <CVModal onClose={() => setShowCV(false)} />}
-    </div>
-  )
+      {/* Footer */}
+      <Footer />
+
+      {/* Cut-in Transition Screen */}
+      <div id="cutin" aria-hidden="true">
+        <div className="slash k1"></div>
+        <div className="slash k2"></div>
+        <div className="band">
+          <div className="lines"></div>
+          <div className="ct"><span className="big"></span><span className="sub"></span></div>
+        </div>
+        <div className="spark sp1"></div>
+        <div className="spark sp2"></div>
+      </div>
+    </>
+  );
 }
 
 export default function App() {
-  const [entered, setEntered] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [showCV, setShowCV] = useState(false)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const [isAdmin, setIsAdmin] = useState(() => window.location.hash === '#burak-admin');
 
   useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play().catch(err => console.error("Audio play failed:", err))
-      } else {
-        audioRef.current.pause()
-      }
-    }
-  }, [isPlaying])
-
-  const toggleMusic = () => {
-    setIsPlaying(!isPlaying)
-  }
+    const handleHash = () => {
+      setIsAdmin(window.location.hash === '#burak-admin');
+    };
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
 
   return (
     <ThemeProvider>
-      <div className="fixed inset-0 bg-black z-[-2]" />
-      <AnoAI isPlaying={isPlaying} />
-      
-      <audio
-        ref={audioRef}
-        src="/audio/clair-de-lune.mp3"
-        loop
-      />
-
-      {!entered && (
-        <Landing 
-          onEnter={() => setEntered(true)} 
-          toggleMusic={toggleMusic}
-          isPlaying={isPlaying}
-        />
-      )}
-      {entered && (
-        <Portfolio 
-          toggleMusic={toggleMusic} 
-          isPlaying={isPlaying} 
-          onOpenCV={() => setShowCV(true)}
-          showCV={showCV}
-          setShowCV={setShowCV}
-        />
+      {isAdmin ? (
+        <AdminPanel onBack={() => { window.location.hash = ''; }} />
+      ) : (
+        <Portfolio />
       )}
     </ThemeProvider>
-  )
+  );
 }

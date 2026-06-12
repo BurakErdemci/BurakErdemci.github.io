@@ -1,30 +1,23 @@
-import { FileText, ChevronsUp } from 'lucide-react'
-import { useTheme } from '../context/ThemeContext'
-import { content } from '../data/content'
+import { useTheme } from '../context/ThemeContext';
 
-export function Footer({ onOpenCV }: { onOpenCV: () => void }) {
-  const { lang } = useTheme()
-  const t = content[lang]
+export function Footer() {
+  const { lang } = useTheme();
+
+  const localizedData = {
+    tr: {
+      desc: 'Stille tasarlandı. Hiçbir soygun gerçekleştirilmedi.'
+    },
+    en: {
+      desc: 'Designed with style. No heists were committed.'
+    }
+  };
+
+  const data = localizedData[lang];
 
   return (
-    <footer className="py-8 border-t border-[#1a1a1a]">
-      <div className="max-w-[800px] mx-auto px-6 flex items-center justify-between">
-        <p className="text-xs text-[#555]">
-          &copy; {new Date().getFullYear()} Burak Erdemci
-        </p>
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={onOpenCV}
-            className="flex items-center gap-2 text-xs text-[#555] hover:text-white transition-colors cursor-pointer"
-          >
-            <FileText size={12} /> {t.footerCv}
-          </button>
-          <a href="#hero"
-            className="flex items-center gap-2 text-xs text-[#555] hover:text-white transition-colors">
-            <ChevronsUp size={12} /> {t.footerTop}
-          </a>
-        </div>
-      </div>
+    <footer>
+      <span className="f1">© 2026 Burak Erdemci</span>
+      <span className="f2">{data.desc}</span>
     </footer>
-  )
+  );
 }

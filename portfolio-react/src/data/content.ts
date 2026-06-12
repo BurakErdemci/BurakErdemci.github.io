@@ -86,9 +86,9 @@ export const content: Record<'tr' | 'en', LangContent> = {
       {
         title: "Unity Architect AI",
         brief: "Yapay zeka destekli Unity C# kod analiz ve geliştirme platformu.",
-        tag: "AI / Desktop App",
+        tag: "AI DEV TOOL — FLAGSHIP",
         link: "https://github.com/BurakErdemci/Unity-Architect-AI",
-        detail: `### 🧠 Yapay Zeka Destekli Mimari\n**Unity Architect AI**, Unity geliştiricileri için Multi-Agent AI mimarisini kullanan profesyonel bir kod denetimi ve geliştirme platformudur.\n\n#### ✨ Öne Çıkan Özellikler\n- **LLM Tabanlı Niyet Algılama:** Claude, ChatGPT ve Gemini gibi modellerle kullanıcı taleplerini analiz eden akıllı yönlendirme sistemi.\n- **Oyun Hissiyatı (Game Feel) Analizi:** Kodun sadece kalitesini değil, oyuncunun hissedeceği "akıcılığı" (%30 Hareket, %25 Combat, %10 Juice) puanlayan benzersiz bir ajan sistemi.\n- **Multi-Agent Pipeline:** Orchestrator, Unity Expert, Critic ve Game Feel ajanlarının paralel çalışarak kodu optimize ettiği ileri düzey mimari.\n- **IDE Benzeri Arayüz:** Electron tabanlı, syntax highlighting destekli, Dosya Gezgini ve AI Chat panelli profesyonel çalışma alanı.\n\n#### 🤖 Çoklu AI Desteği\nAnthropic Claude, OpenAI, OpenRouter, Groq ve yerel Ollama modelleriyle tam entegrasyon sunar.`,
+        detail: `### 🧠 Yapay Zeka Destekli Mimari\n**Unity Architect AI**, Unity geliştiricileri için çok ajanlı (multi-agent) yapay zeka mimarisini kullanan profesyonel bir kod denetimi ve geliştirme platformudur.\n\n#### ✨ Öne Çıkan Özellikler\n- **LLM Tabanlı Niyet Algılama:** Claude, ChatGPT ve Gemini gibi büyük dil modelleriyle kullanıcı taleplerini analiz eden akıllı yönlendirme sistemi.\n- **Oyun Hissiyatı (Game Feel) Analizi:** Kodun sadece kalitesini değil, oyuncunun hissedeceği akıcılık ve dinamizmi (%30 Hareket, %25 Combat, %10 Juice) puanlayan özgün bir ajan yapısı.\n- **Çok Ajanlı İş Hattı (Multi-Agent Pipeline):** Yönetici, Unity Uzmanı, Eleştirmen ve Oyun Hissiyatı ajanlarının koordineli çalışarak kodu optimize ettiği ileri düzey mimari.\n- **IDE Esintili Arayüz:** Electron tabanlı, kod renklendirme destekli dosya gezgini ve yapay zeka sohbet paneli içeren çalışma alanı.\n\n#### 🤖 Kapsamlı Model Desteği\nAnthropic Claude, OpenAI, OpenRouter, Groq ve yerel Ollama modelleriyle tam entegrasyon.`,
         tech: ["Electron", "Next.js", "Python", "FastAPI", "SQLite", "AI/LLM"],
         images: [
           "images/unity-architect-ai-1.png",
@@ -104,30 +104,19 @@ export const content: Record<'tr' | 'en', LangContent> = {
         ]
       },
       {
-        title: "Ristorante Stellato",
-        brief: "Next.js 16 ve MongoDB ile geliştirilmiş full-stack lüks restoran ve rezervasyon sistemi.",
-        tag: "Full Stack",
-        link: "https://github.com/BurakErdemci/ristorante-stellato",
-        detail: `### 🍝 Modern Rezervasyon Deneyimi\n**Ristorante Stellato**, Next.js 16 ve Server Actions mimarisiyle inşa edilmiş, Michelin yıldızlı bir restoranın tüm ihtiyaçlarını karşılayan profesyonel bir rezervasyon platformudur.\n\n#### 🎯 Teknik Üstünlükler\n- **İnteraktif Masa Seçimi:** Kroki üzerinde görsel masa seçimi ve gerçek zamanlı doluluk kontrolü.\n- **Multi-Step UX:** Zod validasyonlu, akıcı ve hata payını sıfıra indiren rezervasyon süreci.\n- **Güvenli Admin Paneli:** NextAuth v5 ile korunan, dashboard istatistikleri ve canlı arama içeren yönetim merkezi.\n- **PWA & Tasarım:** Responsive yapı, Dark/Light tema desteği ve offline erişim imkanı sağlayan PWA mimarisi.\n- **Rate Limiting:** IP tabanlı spam koruması ile yüksek güvenlik standartları.`,
-        tech: ["Next.js 16", "React 18", "Tailwind CSS v4", "MongoDB", "Mongoose", "Framer Motion", "Zod", "Nodemailer"],
-        images: [
-          "images/Mainpage1.png",
-          "images/Mainpage2.png",
-          "images/MainpageMenu.png",
-          "images/MainpageExperience.png",
-          "images/ReservationPage1.png",
-          "images/ResarvationPage2.png",
-          "images/Resarvationpage3.png",
-          "images/ReservationPage4.png",
-          "images/ResarvationPage5.png",
-          "images/Adminpage.png"
-        ]
+        title: "Jarvan",
+        brief: "Çok ajanlı kişisel asistan ve işletim köprüsü.",
+        tag: "AI ASSISTANT — PERSONAL OS",
+        link: "https://github.com/BurakErdemci/JARVAN",
+        detail: `### 🤖 Çok Ajanlı Kişisel Asistan\n**Jarvan**, günlük işlerinizi ve yazılım geliştirme süreçlerinizi organize eden gelişmiş bir çok ajanlı (multi-agent) asistan sistemidir.\n\n#### ✨ Öne Çıkan Özellikler\n- **Görev Dağılımlı Ajanlar:** Bir model genel mimariyi planlarken, diğeri kodu yazar, üçüncüsü ise standartlara ve güvenliğe uygunluğu denetler.\n- **Markdown Tabanlı Bağlam Hattı:** Ajanlar arası iletişim, veri paylaşımı ve hafıza yönetimi markdown dosyaları üzerinden organize edilir.\n- **Proaktif Yetenekler:** Kişiselleştirilmiş sabah brifingleri, otomatik not tutma sistemleri ve cihazlar arası veri köprüleri.`,
+        tech: ["Multi-Agent", "Python", "FastAPI", "LLM Orchestration"],
+        images: []
       },
       {
         title: "Workday-Loop",
         brief: "Unity ile geliştirilmiş 2D psikolojik gerilim / anlatı deneyimi oyunu.",
-        tag: "Game Dev",
-        link: "https://github.com/BurakErdemci/Workday-Loop",
+        tag: "GAME — PSYCHOLOGICAL THRILLER",
+        link: "https://burakerdemci.itch.io/workdayloop",
         detail: "Modern iş hayatının tekdüzeliğini ve bireyin bu sistem içindeki sessiz çürüyüşünü anlatan bir psikolojik gerilim deneyimi. Klasik bir ofis simülatörü gibi başlayıp, giderek tuhaflaşan bir anlatıya dönüşür. Mad Men'den ilham alan 1960'lar minimalist estetiği ve Nier: Automata'dan esinlenen varoluşsal melankoli müzikleri ile desteklenir. Oyuncunun seçimlerine göre iki farklı son sunar: Kurtuluş (Salvation) ve Sonsuz Döngü (Loop). Mini oyunlar, değişen çevre detayları ve sistem mesajları ile psikolojik derinlik katar.",
         tech: ["Unity", "C#", "2D Game Design", "Narrative Design"],
         images: [
@@ -143,13 +132,24 @@ export const content: Record<'tr' | 'en', LangContent> = {
         ]
       },
       {
-        title: "OyunBlog",
-        brief: "ASP.NET Core ile geliştirilmiş çok katmanlı oyun blog ve forum platformu.",
-        tag: "ASP.NET Core",
-        link: "https://github.com/BurakErdemci/OyunBlog",
-        detail: "Oyun tutkunları için geliştirilmiş, çok katmanlı (multi-layered) mimariye sahip bir web uygulaması. Core, Data, BusinessLogic, MainPage ve Utilities olmak üzere 5 katmanlı clean architecture yapısı kullanır. Entity Framework Core ile SQLite veritabanı, Repository ve Unit of Work pattern'ları, ASP.NET Core Identity ile kimlik doğrulama ve rol yönetimi, DTO ve AutoMapper ile veri transferi, Razor Pages ve MVC Controller yapısı, forum CRUD işlemleri, arama, sayfalama ve admin yetkili içerik yönetimi içerir.",
-        tech: ["C#", "ASP.NET Core", "Entity Framework Core", "Identity", "AutoMapper", "SQLite", "Razor Pages"],
-        images: ["images/OyunblogResim-1.png", "images/OyunblogResim-2.png", "images/OyunblogResim-3.png", "images/OyunblogResim-4.png", "images/OyunblogResim-5.png", "images/OyunblogResim-6.png"]
+        title: "Ristorante Stellato",
+        brief: "Next.js 16 ve MongoDB ile geliştirilmiş full-stack lüks restoran ve rezervasyon sistemi.",
+        tag: "WEB — FULL-STACK SHOWCASE",
+        link: "https://ristorante-stellato-puum.vercel.app",
+        detail: `### 🍝 Modern Rezervasyon Deneyimi\n**Ristorante Stellato**, Next.js 16 ve Server Actions mimarisiyle inşa edilmiş, Michelin yıldızlı bir restoranın tüm rezervasyon süreçlerini yöneten profesyonel bir platformdur.\n\n#### 🎯 Teknik Detaylar\n- **İnteraktif Masa Seçimi:** Kat planı üzerinden görsel masa seçimi ve gerçek zamanlı doluluk kontrolü.\n- **Çok Adımlı Kullanıcı Deneyimi:** Zod doğrulamalı (validation), akıcı ve hata payını sıfıra indiren rezervasyon adımları.\n- **Güvenli Yönetici Paneli:** NextAuth v5 ile korunan, kontrol paneli istatistikleri ve canlı arama içeren yönetim merkezi.\n- **Mobil Uyumlu & PWA:** Duyarlı (responsive) tasarım, koyu/açık tema desteği ve offline erişim imkanı sağlayan PWA yapısı.\n- **Spam Koruması:** IP tabanlı istek sınırlama (rate limiting) ile yüksek güvenlik standartları.`,
+        tech: ["Next.js 16", "React 18", "Tailwind CSS v4", "MongoDB", "Mongoose", "Framer Motion", "Zod", "Nodemailer"],
+        images: [
+          "images/Mainpage1.png",
+          "images/Mainpage2.png",
+          "images/MainpageMenu.png",
+          "images/MainpageExperience.png",
+          "images/ReservationPage1.png",
+          "images/ResarvationPage2.png",
+          "images/Resarvationpage3.png",
+          "images/ReservationPage4.png",
+          "images/ResarvationPage5.png",
+          "images/Adminpage.png"
+        ]
       }
     ],
     timelineLabel: "Yolculuk",
@@ -222,7 +222,7 @@ export const content: Record<'tr' | 'en', LangContent> = {
       {
         title: "Unity Architect AI",
         brief: "AI-powered Unity C# code analysis and development platform.",
-        tag: "AI / Desktop App",
+        tag: "AI DEV TOOL — FLAGSHIP",
         link: "https://github.com/BurakErdemci/Unity-Architect-AI",
         detail: `### 🧠 AI-Powered Architectural Intelligence\n**Unity Architect AI** is a professional code auditing and development platform for Unity developers, leveraging a sophisticated Multi-Agent AI architecture.\n\n#### ✨ Core Features\n- **Intent Classification:** Intelligent routing that analyzes user requests using models like Claude, ChatGPT, and Gemini.\n- **Game Feel Analysis:** A unique agent system that scores not just code quality, but the \"feel\" of the gameplay (30% Movement, 25% Combat, 10% Juice).\n- **Multi-Agent Pipeline:** Advanced orchestration where Unity Expert, Critic, and Game Feel agents work in parallel to optimize code.\n- **IDE-Inspired UI:** Electron-based professional workspace with syntax highlighting, File Explorer, and AI Chat panels.\n\n#### 🤖 Comprehensive AI Support\nSeamless integration with Anthropic Claude, OpenAI, OpenRouter, Groq, and local Ollama models.`,
         tech: ["Electron", "Next.js", "Python", "FastAPI", "SQLite", "AI/LLM"],
@@ -240,30 +240,19 @@ export const content: Record<'tr' | 'en', LangContent> = {
         ]
       },
       {
-        title: "Ristorante Stellato",
-        brief: "Full-stack luxury restaurant and reservation system with Next.js 16 & MongoDB.",
-        tag: "Full Stack",
-        link: "https://github.com/BurakErdemci/ristorante-stellato",
-        detail: `### 🍝 Modern Reservation Experience\n**Ristorante Stellato** is a professional reservation platform built with Next.js 16 and Server Actions, tailored for the needs of high-end dining establishments.\n\n#### 🎯 Technical Excellence\n- **Interactive Table Selection:** Visual table choice on a layout with real-time occupancy tracking.\n- **Multi-Step UX:** Seamless reservation flow with Zod validation to eliminate errors.\n- **Secure Admin Dashboard:** Management hub protected by NextAuth v5, featuring real-time statistics and live search.\n- **PWA & Design:** Fully responsive with Dark/Light mode and PWA capabilities for offline access.\n- **Rate Limiting:** High-security standards with IP-based spam protection.`,
-        tech: ["Next.js 16", "React 18", "Tailwind CSS v4", "MongoDB", "Mongoose", "Framer Motion", "Zod", "Nodemailer"],
-        images: [
-          "images/Mainpage1.png",
-          "images/Mainpage2.png",
-          "images/MainpageMenu.png",
-          "images/MainpageExperience.png",
-          "images/ReservationPage1.png",
-          "images/ResarvationPage2.png",
-          "images/Resarvationpage3.png",
-          "images/ReservationPage4.png",
-          "images/ResarvationPage5.png",
-          "images/Adminpage.png"
-        ]
+        title: "Jarvan",
+        brief: "Multi-agent personal assistant and system bridge.",
+        tag: "AI ASSISTANT — PERSONAL OS",
+        link: "https://github.com/BurakErdemci/JARVAN",
+        detail: `### 🤖 Multi-Agent Personal Assistant\n**Jarvan** is an advanced Multi-Agent personal assistant system that organizes your daily workflows and development pipelines.\n\n#### ✨ Key Features\n- **Role-Based Agents:** One model plans the architecture, another writes the code, and a third reviews for compliance and safety.\n- **Markdown Context Bus:** Inter-agent communication and state management are orchestrated via markdown files.\n- **Proactive Functionality:** Automatic morning briefings, note-taking, and secure cross-device bridging.`,
+        tech: ["Multi-Agent", "Python", "FastAPI", "LLM Orchestration"],
+        images: []
       },
       {
         title: "Workday-Loop",
         brief: "A 2D psychological thriller / narrative experience game built with Unity.",
-        tag: "Game Dev",
-        link: "https://github.com/BurakErdemci/Workday-Loop",
+        tag: "GAME — PSYCHOLOGICAL THRILLER",
+        link: "https://burakerdemci.itch.io/workdayloop",
         detail: "A psychological thriller experience exploring the monotony of modern work life and the silent decay of the individual within this system. Starts as a classic office simulator but evolves into an increasingly unsettling narrative. Inspired by Mad Men's 1960s minimalist aesthetic and Nier: Automata's existential melancholy soundtrack. Offers two endings based on player choices: Salvation and Eternal Loop. Adds psychological depth through mini-games, changing environmental details, and cryptic system messages.",
         tech: ["Unity", "C#", "2D Game Design", "Narrative Design"],
         images: [
@@ -279,13 +268,24 @@ export const content: Record<'tr' | 'en', LangContent> = {
         ]
       },
       {
-        title: "OyunBlog",
-        brief: "Multi-layered game blog and forum platform built with ASP.NET Core.",
-        tag: "ASP.NET Core",
-        link: "https://github.com/BurakErdemci/OyunBlog",
-        detail: "A web application for gaming enthusiasts with a multi-layered (clean) architecture. Uses a 5-layer structure: Core, Data, BusinessLogic, MainPage, and Utilities. Features Entity Framework Core with SQLite, Repository and Unit of Work patterns, ASP.NET Core Identity for authentication and role management, DTO mapping with AutoMapper, Razor Pages with MVC Controllers, forum CRUD operations, search, pagination, and admin-privileged content management.",
-        tech: ["C#", "ASP.NET Core", "Entity Framework Core", "Identity", "AutoMapper", "SQLite", "Razor Pages"],
-        images: ["images/OyunblogResim-1.png", "images/OyunblogResim-2.png", "images/OyunblogResim-3.png", "images/OyunblogResim-4.png", "images/OyunblogResim-5.png", "images/OyunblogResim-6.png"]
+        title: "Ristorante Stellato",
+        brief: "Full-stack luxury restaurant and reservation system with Next.js 16 & MongoDB.",
+        tag: "WEB — FULL-STACK SHOWCASE",
+        link: "https://ristorante-stellato-puum.vercel.app",
+        detail: `### 🍝 Modern Reservation Experience\n**Ristorante Stellato** is a professional reservation platform built with Next.js 16 and Server Actions, tailored for the needs of high-end dining establishments.\n\n#### 🎯 Technical Excellence\n- **Interactive Table Selection:** Visual table choice on a layout with real-time occupancy tracking.\n- **Multi-Step UX:** Seamless reservation flow with Zod validation to eliminate errors.\n- **Secure Admin Dashboard:** Management hub protected by NextAuth v5, featuring real-time statistics and live search.\n- **PWA & Design:** Fully responsive with Dark/Light mode and PWA capabilities for offline access.\n- **Rate Limiting:** High-security standards with IP-based spam protection.`,
+        tech: ["Next.js 16", "React 18", "Tailwind CSS v4", "MongoDB", "Mongoose", "Framer Motion", "Zod", "Nodemailer"],
+        images: [
+          "images/Mainpage1.png",
+          "images/Mainpage2.png",
+          "images/MainpageMenu.png",
+          "images/MainpageExperience.png",
+          "images/ReservationPage1.png",
+          "images/ResarvationPage2.png",
+          "images/Resarvationpage3.png",
+          "images/ReservationPage4.png",
+          "images/ResarvationPage5.png",
+          "images/Adminpage.png"
+        ]
       }
     ],
     timelineLabel: "Journey",

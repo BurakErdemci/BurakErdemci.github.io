@@ -1,120 +1,71 @@
-import { useState, useEffect } from 'react'
-import { Menu, X, Music, Music2 } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from './icons'
-import { useTheme } from '../context/ThemeContext'
-import { content } from '../data/content'
+import { useEffect, useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
+import { content } from '../data/content';
 
-interface NavbarProps {
-  toggleMusic: () => void
-  isPlaying: boolean
-}
-
-export function Navbar({ toggleMusic, isPlaying }: NavbarProps) {
-  const { lang, toggleLang } = useTheme()
-  const t = content[lang]
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
+export function Navbar() {
+  const { lang, toggleLang } = useTheme();
+  const t = content[lang];
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const headerEl = document.getElementById('header');
+    if (!headerEl) return;
 
-  const navLinks = [
-    { href: '#projects', label: t.navProjects },
-    { href: '#timeline', label: t.navTimeline },
-    { href: '#contact', label: t.navContact },
-  ]
+    let lastY = 0;
+    const handleScroll = () => {
+      const y = window.scrollY;
+      if (mobileMenuOpen) return; // do not hide header if mobile overlay is open
+      headerEl.classList.toggle('hidden', y > 400 && y > lastY);
+      lastY = y;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [mobileMenuOpen]);
+
+  const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'py-3 backdrop-blur-2xl border-b border-white/5 shadow-2xl bg-black/40' : 'py-6 bg-transparent'
-      }`}
-    >
-      <div className="max-w-[1000px] w-full mx-auto px-6 h-12 flex items-center justify-between">
-        <a href="#hero" className="text-base font-semibold text-white tracking-tight">
-          B.E
-        </a>
-
-        {/* Desktop - Text Links Centered */}
-        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-          {navLinks.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-[#888] hover:text-white transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        {/* Desktop - Right Aligned Actions */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={toggleMusic}
-            className={`p-2 rounded-full transition-all duration-300 cursor-pointer ${
-              isPlaying ? 'text-white bg-white/10' : 'text-[#888] hover:text-white bg-transparent'
-            }`}
-          >
-            {isPlaying ? <Music2 size={16} className="animate-pulse" /> : <Music size={16} />}
-          </button>
-
-          <div className="w-px h-4 bg-[#333] mx-1" />
-
-          <a href="https://github.com/BurakErdemci" target="_blank" rel="noopener noreferrer" className="text-[#888] hover:text-white transition-colors duration-200">
-            <GithubIcon size={16} />
-          </a>
-          <a href="https://www.linkedin.com/in/burak-erdemci-a3994833b/" target="_blank" rel="noopener noreferrer" className="text-[#888] hover:text-white transition-colors duration-200">
-            <LinkedinIcon size={16} />
-          </a>
-
-          <div className="w-px h-4 bg-[#333] mx-1" />
-
-          <button onClick={toggleLang}
-            className="text-xs font-medium text-[#888] hover:text-white transition-colors duration-200 cursor-pointer">
-            {t.btnLang}
-          </button>
-        </div>
-
-        {/* Mobile Actions */}
-        <div className="flex md:hidden items-center gap-4">
-          <button
-            onClick={toggleMusic}
-            className={`p-2 rounded-full transition-all duration-300 cursor-pointer ${
-              isPlaying ? 'text-white bg-white/10' : 'text-[#888] bg-transparent'
-            }`}
-          >
-            {isPlaying ? <Music2 size={16} className="animate-pulse" /> : <Music size={16} />}
-          </button>
-
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-[#888] cursor-pointer"
-          >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </div>
-
-      {mobileOpen && (
-        <div className="md:hidden border-t border-[#1a1a1a] bg-[rgba(10,10,10,0.95)] backdrop-blur-md py-4">
-          <div className="flex flex-col items-center gap-4">
-            {navLinks.map(link => (
-              <a key={link.href} href={link.href}
-                className="text-sm text-[#888] hover:text-white"
-                onClick={() => setMobileOpen(false)}>
-                {link.label}
-              </a>
-            ))}
-            <button onClick={toggleLang} className="text-xs text-[#888] hover:text-white cursor-pointer">
+    <>
+      <header id="header">
+        <nav className="nav">
+          <a className="logo" href="#hero">BE.</a>
+          <div className="nav-links">
+            <a href="#profile" data-hover>{t.navAbout}</a>
+            <a href="#arsenal" data-hover>{t.navSkills}</a>
+            <a href="#missions" data-hover>{t.navProjects}</a>
+            <a href="#contact" data-hover>{t.navContact}</a>
+            <button onClick={toggleLang} className="lang-btn mono" data-hover>
               {t.btnLang}
             </button>
           </div>
+          <button className="mobile-menu-btn mono" onClick={toggleMenu}>
+            MENU
+          </button>
+        </nav>
+      </header>
+
+      {/* Fullscreen Mobile Menu Overlay */}
+      <div className={`mobile-menu-overlay ${mobileMenuOpen ? 'open' : ''}`}>
+        <button className="close-btn mono" onClick={toggleMenu}>
+          {lang === 'tr' ? 'KAPAT' : 'CLOSE'}
+        </button>
+        <div className="mobile-links">
+          <a href="#profile" onClick={toggleMenu}>{t.navAbout}</a>
+          <a href="#arsenal" onClick={toggleMenu}>{t.navSkills}</a>
+          <a href="#missions" onClick={toggleMenu}>{t.navProjects}</a>
+          <a href="#contact" onClick={toggleMenu}>{t.navContact}</a>
+          <button
+            onClick={() => {
+              toggleLang();
+            }}
+            className="lang-btn mono"
+            style={{ marginTop: '12px' }}
+          >
+            {t.btnLang}
+          </button>
         </div>
-      )}
-    </nav>
-  )
+      </div>
+    </>
+  );
 }
