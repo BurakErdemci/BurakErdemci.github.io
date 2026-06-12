@@ -867,13 +867,14 @@ header.hidden {
 .mail-btn {
   display: inline-block;
   margin-top: 6vh;
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(18px, 2.4vw, 28px);
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: clamp(14px, 1.8vw, 20px);
+  letter-spacing: .02em;
+  text-transform: none;
   background: var(--red);
   color: var(--wht);
-  padding: 22px 46px;
+  padding: 18px 36px;
   transform: rotate(-1.6deg);
   box-shadow: 8px 8px 0 var(--wht);
   transition: transform .3s var(--snap), box-shadow .3s var(--snap), background .3s;
