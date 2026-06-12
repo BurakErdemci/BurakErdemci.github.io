@@ -1021,20 +1021,40 @@ export const content: Record<'tr' | 'en', LangContent> = ${JSON.stringify(data, 
                   <input 
                     type="file" 
                     accept=".pdf" 
+                    id="cv-file-input"
                     onChange={e => {
                       const file = e.target.files?.[0];
                       if (file) setCvFile(file);
                     }}
+                    style={{ display: 'none' }}
                   />
                   
-                  <button 
-                    onClick={handleCvUpload}
-                    disabled={!cvFile || isUploadingCv}
-                    className="btn-primary-admin mt-4"
-                  >
-                    {isUploadingCv ? <RefreshCw className="animate-spin mr-2" size={16}/> : <Upload size={16} className="mr-2"/>}
-                    CV'yi Yükle
-                  </button>
+                  <div className="flex flex-col gap-3" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <button 
+                      onClick={() => document.getElementById('cv-file-input')?.click()}
+                      className="btn-secondary-admin w-full"
+                      style={{ width: '100%' }}
+                    >
+                      <FileText size={16} className="mr-2" style={{ marginRight: '8px' }}/> 
+                      {cvFile ? 'FARKLI DOSYA SEÇ...' : 'PDF DOSYASI SEÇ'}
+                    </button>
+
+                    {cvFile && (
+                      <div style={{ fontSize: '12px', color: '#aaa', fontFamily: 'monospace', textAlign: 'left', marginTop: '4px' }}>
+                        Seçilen Dosya: <span style={{ color: '#2ecc71', fontWeight: 'bold' }}>{cvFile.name}</span> ({(cvFile.size / 1024).toFixed(1)} KB)
+                      </div>
+                    )}
+                    
+                    <button 
+                      onClick={handleCvUpload}
+                      disabled={!cvFile || isUploadingCv}
+                      className="btn-primary-admin w-full"
+                      style={{ width: '100%', marginTop: '8px' }}
+                    >
+                      {isUploadingCv ? <RefreshCw className="animate-spin mr-2" size={16} style={{ marginRight: '8px' }}/> : <Upload size={16} className="mr-2" style={{ marginRight: '8px' }}/>}
+                      CV'yi Yükle
+                    </button>
+                  </div>
                 </div>
 
                 {cvStatus && (
