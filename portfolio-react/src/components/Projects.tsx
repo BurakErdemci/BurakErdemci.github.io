@@ -31,7 +31,7 @@ export function Projects() {
     const key = title.toLowerCase();
     if (key.includes('workday')) return labels.ctaPlay;
     if (key.includes('ristorante')) return labels.ctaLive;
-    if (key.includes('architect')) return labels.ctaCase;
+    if (key.includes('gamachine')) return labels.ctaCase;
     return labels.ctaCode;
   };
 

@@ -84,12 +84,12 @@ export const content: Record<'tr' | 'en', LangContent> = {
     projectViewGithub: "GitHub'da Görüntüle",
     projects: [
       {
-        title: "Unity Architect AI",
-        brief: "Yapay zeka destekli Unity C# kod analiz ve geliştirme platformu.",
+        title: "Gamachine",
+        brief: "Unity geliştiricileri için AI ajanlarını yöneten masaüstü uygulaması.",
         tag: "AI DEV TOOL — FLAGSHIP",
-        link: "https://github.com/BurakErdemci/Unity-Architect-AI",
-        detail: `### 🧠 Yapay Zeka Destekli Mimari\n**Unity Architect AI**, Unity geliştiricileri için çok ajanlı (multi-agent) yapay zeka mimarisini kullanan profesyonel bir kod denetimi ve geliştirme platformudur.\n\n#### ✨ Öne Çıkan Özellikler\n- **LLM Tabanlı Niyet Algılama:** Claude, ChatGPT ve Gemini gibi büyük dil modelleriyle kullanıcı taleplerini analiz eden akıllı yönlendirme sistemi.\n- **Oyun Hissiyatı (Game Feel) Analizi:** Kodun sadece kalitesini değil, oyuncunun hissedeceği akıcılık ve dinamizmi (%30 Hareket, %25 Combat, %10 Juice) puanlayan özgün bir ajan yapısı.\n- **Çok Ajanlı İş Hattı (Multi-Agent Pipeline):** Yönetici, Unity Uzmanı, Eleştirmen ve Oyun Hissiyatı ajanlarının koordineli çalışarak kodu optimize ettiği ileri düzey mimari.\n- **IDE Esintili Arayüz:** Electron tabanlı, kod renklendirme destekli dosya gezgini ve yapay zeka sohbet paneli içeren çalışma alanı.\n\n#### 🤖 Kapsamlı Model Desteği\nAnthropic Claude, OpenAI, OpenRouter, Groq ve yerel Ollama modelleriyle tam entegrasyon.`,
-        tech: ["Electron", "Next.js", "Python", "FastAPI", "SQLite", "AI/LLM"],
+        link: "https://github.com/BurakErdemci/gamachine",
+        detail: `### 🎮 Unity için AI Ajan Merkezi\n**Gamachine** (v3.0.0), Unity geliştiricileri için AI ajanlarını yöneten bir masaüstü uygulamasıdır; Electron, Next.js ve Python FastAPI üzerine kuruludur.\n\n#### ✨ Öne Çıkan Özellikler\n- **Tek Sohbet Penceresi:** Claude Code, Codex, Antigravity, GitHub Copilot, Cursor, OpenCode ve Kimi CLI ajanları; Anthropic, OpenAI, Google, NVIDIA NIM, Groq, DeepSeek, Moonshot ve Z.ai bulut API'leri; ve yerel Ollama tek arayüzde birleşir.\n- **Ortak Onay Kapısı:** Hangi ajan isterse istesin, dosya yazma/silme ve tehlikeli terminal komutları bir onay kartı açar.\n- **Canlı Unity Kontrolü (MCP):** GameObject ekleme, bileşen bağlama, konsol okuma, play mode, ekran görüntüsü ve manage_input ile çalışan oyuna girdi gönderme.\n- **C# Kod Zekası:** OmniSharp-Roslyn sidecar ile canlı hata gösterimi, IntelliSense ve tanıma git.\n\n#### 💻 Platform ve Lisans\nWindows ve macOS (Apple Silicon) için ücretsiz. MIT + Commons Clause: uygulamayla yapılan oyunlar satılabilir, uygulamanın kendisi satılamaz.`,
+        tech: ["Electron", "Next.js", "Python", "FastAPI", "MCP", "SQLite", "AI/LLM"],
         images: [
           "images/unity-architect-ai-1.png",
           "images/unity-architect-ai-2.png",
@@ -220,12 +220,12 @@ export const content: Record<'tr' | 'en', LangContent> = {
     projectViewGithub: "View on GitHub",
     projects: [
       {
-        title: "Unity Architect AI",
-        brief: "AI-powered Unity C# code analysis and development platform.",
+        title: "Gamachine",
+        brief: "Desktop app that orchestrates AI agents for Unity developers.",
         tag: "AI DEV TOOL — FLAGSHIP",
-        link: "https://github.com/BurakErdemci/Unity-Architect-AI",
-        detail: `### 🧠 AI-Powered Architectural Intelligence\n**Unity Architect AI** is a professional code auditing and development platform for Unity developers, leveraging a sophisticated Multi-Agent AI architecture.\n\n#### ✨ Core Features\n- **Intent Classification:** Intelligent routing that analyzes user requests using models like Claude, ChatGPT, and Gemini.\n- **Game Feel Analysis:** A unique agent system that scores not just code quality, but the "feel" of the gameplay (30% Movement, 25% Combat, 10% Juice).\n- **Multi-Agent Pipeline:** Advanced orchestration where Unity Expert, Critic, and Game Feel agents work in parallel to optimize code.\n- **IDE-Inspired UI:** Electron-based professional workspace with syntax highlighting, File Explorer, and AI Chat panels.\n\n#### 🤖 Comprehensive AI Support\nSeamless integration with Anthropic Claude, OpenAI, OpenRouter, Groq, and local Ollama models.`,
-        tech: ["Electron", "Next.js", "Python", "FastAPI", "SQLite", "AI/LLM"],
+        link: "https://github.com/BurakErdemci/gamachine",
+        detail: `### 🎮 An AI Agent Hub for Unity\n**Gamachine** (v3.0.0) is a desktop application that orchestrates AI agents for Unity developers, built on Electron, Next.js, and Python FastAPI.\n\n#### ✨ Core Features\n- **One Chat Window:** Claude Code, Codex, Antigravity, GitHub Copilot, Cursor, OpenCode, and Kimi CLI agents; the Anthropic, OpenAI, Google, NVIDIA NIM, Groq, DeepSeek, Moonshot, and Z.ai cloud APIs; and local Ollama, all in a single interface.\n- **Shared Approval Gate:** No matter which agent asks, file writes/deletes and dangerous terminal commands raise an approval card.\n- **Live Unity Control (MCP):** Add GameObjects, wire up components, read the console, drive play mode, capture screenshots, and send input to the running game via manage_input.\n- **C# Code Intelligence:** Live diagnostics, IntelliSense, and go-to-definition through an OmniSharp-Roslyn sidecar.\n\n#### 💻 Platform and License\nFree on Windows and macOS (Apple Silicon). MIT + Commons Clause: games made with the app can be sold, the app itself cannot.`,
+        tech: ["Electron", "Next.js", "Python", "FastAPI", "MCP", "SQLite", "AI/LLM"],
         images: [
           "images/unity-architect-ai-1.png",
           "images/unity-architect-ai-2.png",
