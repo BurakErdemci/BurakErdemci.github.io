@@ -414,56 +414,6 @@ header.hidden {
   background: linear-gradient(var(--red), transparent);
 }
 
-/* ---------- marquee ---------- */
-.belt {
-  position: relative;
-  z-index: 4;
-  background: var(--red);
-  transform: rotate(-1.6deg) scale(1.03);
-  padding: 16px 0;
-  overflow: hidden;
-  margin: -3vh 0 0;
-  box-shadow: 0 10px 0 var(--blk), 0 -10px 0 var(--blk);
-}
-
-.belt-track {
-  display: flex;
-  width: max-content;
-  animation: beltx 26s linear infinite;
-  will-change: transform;
-}
-
-.belt-item {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(18px, 2.6vw, 30px);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--wht);
-  white-space: nowrap;
-  padding: 0 22px;
-  display: flex;
-  align-items: center;
-  gap: 44px;
-}
-
-.belt-item .x {
-  color: var(--blk);
-  transform: rotate(14deg);
-  display: inline-block;
-}
-
-@keyframes beltx {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion:reduce) {
-  .belt-track {
-    animation: none;
-  }
-}
-
 /* ---------- bölüm başlığı kalıbı ---------- */
 .sec {
   padding: 130px clamp(18px, 5vw, 70px) 110px;
@@ -946,20 +896,6 @@ footer .f2 {
   display: none;
   overflow: hidden;
   pointer-events: none;
-}
-
-#cutin .slash {
-  position: absolute;
-  inset: -25%;
-  transform: translateX(-135%) skewX(-16deg);
-}
-
-#cutin .slash.k1 {
-  background: var(--blk);
-}
-
-#cutin .slash.k2 {
-  background: var(--red);
 }
 
 #cutin .band {
