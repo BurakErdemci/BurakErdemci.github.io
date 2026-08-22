@@ -21,7 +21,7 @@ export function Arsenal() {
         {
           title: 'Arka Uç',
           tags: [
-            { name: 'ASP.NET Core', hot: true },
+            { name: 'ASP.NET Core', hot: false },
             { name: 'Python', hot: true },
             { name: 'FastAPI', hot: false },
             { name: 'REST APIs', hot: false },
@@ -72,7 +72,7 @@ export function Arsenal() {
         {
           title: 'Backend',
           tags: [
-            { name: 'ASP.NET Core', hot: true },
+            { name: 'ASP.NET Core', hot: false },
             { name: 'Python', hot: true },
             { name: 'FastAPI', hot: false },
             { name: 'REST APIs', hot: false },
