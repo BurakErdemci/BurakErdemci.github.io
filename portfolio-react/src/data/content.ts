@@ -75,7 +75,7 @@ export const content: Record<'tr' | 'en', LangContent> = {
     skills: {
       "Backend": ["C#", "ASP.NET Core", "Entity Framework", "Python"],
       "Frontend & Web": ["HTML/CSS/JS", "TypeScript", "Next.js", "React", "Tailwind CSS"],
-      "Game Dev": ["Unity (2D/3D)", "Unreal Engine 5"],
+      "Game Dev": ["Unity (2D/3D)", "URP / 2D"],
       "Veritabanı": ["MySQL", "SQLite", "MongoDB"]
     },
     projectsLabel: "Portfolyo",
@@ -229,7 +229,7 @@ export const content: Record<'tr' | 'en', LangContent> = {
     skills: {
       "Backend": ["C#", "ASP.NET Core", "Entity Framework", "Python"],
       "Frontend & Web": ["HTML/CSS/JS", "TypeScript", "Next.js", "React", "Tailwind CSS"],
-      "Game Dev": ["Unity (2D/3D)", "Unreal Engine 5"],
+      "Game Dev": ["Unity (2D/3D)", "URP / 2D"],
       "Database": ["MySQL", "SQLite", "MongoDB"]
     },
     projectsLabel: "Portfolio",

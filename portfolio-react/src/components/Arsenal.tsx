@@ -13,7 +13,6 @@ export function Arsenal() {
           tags: [
             { name: 'Unity 6', hot: true },
             { name: 'C#', hot: true },
-            { name: 'Unreal Engine 5', hot: false },
             { name: 'URP / 2D', hot: false },
             { name: 'Oynanış Sistemleri', hot: false },
             { name: 'Game Jams', hot: false }
@@ -65,7 +64,6 @@ export function Arsenal() {
           tags: [
             { name: 'Unity 6', hot: true },
             { name: 'C#', hot: true },
-            { name: 'Unreal Engine 5', hot: false },
             { name: 'URP / 2D', hot: false },
             { name: 'Gameplay Systems', hot: false },
             { name: 'Game Jams', hot: false }
