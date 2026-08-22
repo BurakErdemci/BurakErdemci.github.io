@@ -17,30 +17,30 @@ export function Profile() {
       num: '01',
       title: <>PRO<em>FİL</em></>,
       sub: '// SİSTEM MİMARİSİNİN ARKASINDAKİ İSİM',
-      p1: <>Ben Burak — Eskişehir'de yaşayan bir geliştiriciyim; önce oyunlara, ardından onların arkasındaki yapay zeka ve sistem mekanizmalarına merak sardım. Ağırlıklı olarak oyun ve yapay zeka (AI) geliştirme alanlarında çalışıyorum: <b>Unity ve Unreal ile oynanış</b>, <b>Python ve FastAPI ile yapay zeka araçları</b>, ve <b>web ön yüzleri <InlinePointer /> ve TypeScript ile Next.js</b>.</>,
-      p2: <>Çalışma tarzım basit: mimariyi tasarlar, sınırları belirler ve uygulamanın hızlanması için yapay zeka araçlarını yönetirim — sonrasında ise her şeyi sanki bir milyon oyuncuya sunulmuş gibi gözden geçiririm. Daha az kod yazımı, daha çok <b>sistem düşüncesi</b>.</>,
-      calloutQ: '"Sınırları çiz. Sistemi optimize et. Çözümleri teslim et."',
-      calloutA: '// ANA METODOLOJİM',
+      p1: <>Ben Burak. Eskişehir'de yaşıyorum. Oyunlarla başladım, arkalarındaki sistemler beni daha çok tuttu. Bugün iki alanda çalışıyorum: <b>Unity ve C# ile oyun</b>, <b>Python ve TypeScript <InlinePointer /> ile yapay zeka ajanlarını çalıştıran araçlar</b>.</>,
+      p2: <>Mimariyi ben kurarım, sınırları ben çizerim, kodun büyük kısmını ajanlara yazdırırım. Çıkan işi aracın raporuna göre değil, dışarıda bıraktığı ize göre doğrularım: testi koştururum, dosyayı açarım, git geçmişini okurum. <b>Gamachine</b> yedi kodlama ajanını tek arayüzde topluyor; <b>Context Police</b> o ajanların hafızasını denetleyip bayatlamış notları buluyor.</>,
+      calloutQ: '"Doğrulamayı rapordan değil, izden yap."',
+      calloutA: '// ÇALIŞMA İLKEM',
       stats: [
-        { n: '5+', l: 'Yayında ve devam eden proje' },
-        { n: '5', l: 'Aktif kullanılan programlama dili' },
-        { n: '48s', l: 'Game Jam — oynanabilir sürüm teslimi' },
-        { n: '100+', l: 'Ana projede commit sayısı' }
+        { n: '330+', l: "Gamachine'de commit" },
+        { n: '7', l: 'Tek arayüzde birleşen AI kodlama ajanı' },
+        { n: '3', l: 'Yayında açık kaynak geliştirici aracı' },
+        { n: '2', l: 'Masaüstü uygulaması — Electron ve Tauri' }
       ]
     },
     en: {
       num: '01',
       title: <>PRO<em>FILE</em></>,
       sub: '// BEHIND THE SYSTEM ARCHITECTURE',
-      p1: <>I'm Burak — a developer from Eskişehir who fell for games first and the AI and system mechanics behind them second. I focus primarily on game development and artificial intelligence (AI) systems: <b>gameplay in Unity and Unreal</b>, <b>AI tools in Python and FastAPI</b>, and <b>web frontends <InlinePointer /> in TypeScript and Next.js</b>.</>,
-      p2: <>My working style is simple: I design the architecture, set the constraints, and orchestrate AI agents to move fast on implementation — then review everything like it shipped to a million players. Less typing, more <b>system thinking</b>.</>,
-      calloutQ: '"Architect the boundaries. Optimize the code. Ship the systems."',
-      calloutA: '// MY CORE METHODOLOGY',
+      p1: <>I'm Burak, a developer based in Eskişehir. Games came first; the systems behind them held me longer. I work in two areas today: <b>games in Unity and C#</b>, and <b>tooling that keeps AI agents <InlinePointer /> dependable, in Python and TypeScript</b>.</>,
+      p2: <>I set the architecture and the constraints, then hand most of the typing to agents. I judge the result by the trace it leaves rather than the report it writes: I run the tests, open the files, read the git log. <b>Gamachine</b> brings seven coding agents into one interface; <b>Context Police</b> audits what those agents remember and finds the notes that went stale.</>,
+      calloutQ: '"Verify from the trace, not the report."',
+      calloutA: '// HOW I WORK',
       stats: [
-        { n: '5+', l: 'Shipped & ongoing projects' },
-        { n: '5', l: 'Languages in production use' },
-        { n: '48h', l: 'Game jam — playable build shipped' },
-        { n: '100+', l: 'Commits on flagship project' }
+        { n: '330+', l: 'Commits on Gamachine' },
+        { n: '7', l: 'AI coding agents in one interface' },
+        { n: '3', l: 'Open-source developer tools shipped' },
+        { n: '2', l: 'Desktop apps — Electron and Tauri' }
       ]
     }
   };

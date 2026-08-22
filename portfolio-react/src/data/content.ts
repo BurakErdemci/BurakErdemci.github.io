@@ -62,7 +62,7 @@ export const content: Record<'tr' | 'en', LangContent> = {
     navContact: "İletişim",
     btnLang: "EN",
     heroStatus: "İş Tekliflerine Açık",
-    heroSubtitle: "Game & Full Stack Developer",
+    heroSubtitle: "Game & AI Tooling Developer",
     btnProjects: "Projeleri Gör",
     btnCv: "CV İndir",
     aboutLabel: "Hakkımda",
@@ -104,21 +104,30 @@ export const content: Record<'tr' | 'en', LangContent> = {
         ]
       },
       {
-        title: "Jarvan",
-        brief: "Çok ajanlı kişisel asistan ve işletim köprüsü.",
-        tag: "AI ASSISTANT — PERSONAL OS",
-        link: "https://github.com/BurakErdemci/JARVAN",
-        detail: `### 🤖 Çok Ajanlı Kişisel Asistan\n**Jarvan**, günlük işlerinizi ve yazılım geliştirme süreçlerinizi organize eden gelişmiş bir çok ajanlı (multi-agent) asistan sistemidir.\n\n#### ✨ Öne Çıkan Özellikler\n- **Görev Dağılımlı Ajanlar:** Bir model genel mimariyi planlarken, diğeri kodu yazar, üçüncüsü ise standartlara ve güvenliğe uygunluğu denetler.\n- **Markdown Tabanlı Bağlam Hattı:** Ajanlar arası iletişim, veri paylaşımı ve hafıza yönetimi markdown dosyaları üzerinden organize edilir.\n- **Proaktif Yetenekler:** Kişiselleştirilmiş sabah brifingleri, otomatik not tutma sistemleri ve cihazlar arası veri köprüleri.`,
-        tech: ["Multi-Agent", "Python", "FastAPI", "LLM Orchestration"],
+        title: "Context Police",
+        brief: "AI kod ajanlarının hafızasını denetleyen, bayatlamış notları yakalayan masaüstü aracı.",
+        tag: "AI TOOLING — MEMORY AUDITOR",
+        link: "https://github.com/BurakErdemci/Context-Police",
+        detail: `### 🔎 Ajan hafızası sessizce çürüyor\n**Context Police**, AI kod ajanlarının hafıza notlarını denetleyen bir arka plan aracıdır. Kod ilerler, not olduğu yerde kalır, ajan onu doğru sanmaya devam eder.\n\n#### ✨ Nasıl çalışıyor\n- **Çelişki tespiti:** iki not birbirini yalanlıyorsa en az biri yanlıştır. Ucuz ve tamamen yerel bir sinyal.\n- **Çapa kayması:** notun bağlandığı dosya, sembol veya commit hareket ettiyse not şüpheli olur. Hakem git geçmişidir, ajanın kendisi değil.\n- **Hiçbir şey silinmez:** çürüyen not superseded işaretlenir. Yanlış alarmın maliyeti sıfır, geri alma tek tık, aracın kendi hata oranı ölçülebilir kalır.\n- **Canlı oturuma yazmaz:** denetim temiz bir bağlamda, ölçüm görevi olarak koşar.\n\n#### 🖥️ Arayüz\nTauri masaüstü uygulaması, "vaka defteri" tasarım diliyle: kağıt zemin, el yazısı not, damga ve grafit kalem.`,
+        tech: ["Tauri", "TypeScript", "Python", "SQLite", "Git", "LLM"],
+        images: []
+      },
+      {
+        title: "codex-delegate",
+        brief: "Codex işçi hatlarına iş dağıtan, her bulguyu koşulabilir bir kanıta bağlayan Claude Code eklentisi.",
+        tag: "DEV TOOLING — AGENT ORCHESTRATION",
+        link: "https://github.com/BurakErdemci/codex-delegate",
+        detail: `### ⚙️ İşi Codex yapar, kararı Claude verir\nİki yarımlı bir Claude Code eklentisi, tek fikir üzerine kurulu.\n\n#### 🧵 codex-delegate — paralel işçi hatları\nHer Codex işçisi, bilinen bir commit'e sabitlenmiş kendi git worktree'sinde çalışır ve altı satırla rapor verir. Claude spec'i yazar, "doğru"nun ne olduğuna karar verir, hattın bıraktığı izi spec'e karşı doğrular ve yamayı ana ağaca kendisi uygular.\n\n#### 🔴 codex-audit — dış göz\nAynı makine tersine çevrilir: Codex bir red team olarak koda saldırır, her bulgu koşulabilir bir kanıt getirmek zorundadır, Claude yeniden üretmediği hiçbir bulguya göre hareket etmez.\n\n#### 📓 Her kural bir arızadan geldi\nEklentideki her kuralın arkasında gerçek kullanımda kırılan bir şey var. Ölçümüyle birlikte hepsi FIELD-LOG.md'de duruyor.`,
+        tech: ["Python", "Claude Code Plugin", "Codex CLI", "Git Worktree"],
         images: []
       },
       {
         title: "Workday-Loop",
-        brief: "Unity ile geliştirilmiş 2D psikolojik gerilim / anlatı deneyimi oyunu.",
+        brief: "Unity 2D psikolojik gerilim oyunu. Ekip işi; rolüm level design ve anlatı tasarımı.",
         tag: "GAME — PSYCHOLOGICAL THRILLER",
         link: "https://burakerdemci.itch.io/workdayloop",
         detail: "Modern iş hayatının tekdüzeliğini ve bireyin bu sistem içindeki sessiz çürüyüşünü anlatan bir psikolojik gerilim deneyimi. Klasik bir ofis simülatörü gibi başlayıp, giderek tuhaflaşan bir anlatıya dönüşür. Mad Men'den ilham alan 1960'lar minimalist estetiği ve Nier: Automata'dan esinlenen varoluşsal melankoli müzikleri ile desteklenir. Oyuncunun seçimlerine göre iki farklı son sunar: Kurtuluş (Salvation) ve Sonsuz Döngü (Loop). Mini oyunlar, değişen çevre detayları ve sistem mesajları ile psikolojik derinlik katar.",
-        tech: ["Unity", "C#", "2D Game Design", "Narrative Design"],
+        tech: ["Unity", "Level Design", "Narrative Design", "2D Game Design"],
         images: [
           "images/workday-1.png",
           "images/workday-2.png",
@@ -150,6 +159,15 @@ export const content: Record<'tr' | 'en', LangContent> = {
           "images/ResarvationPage5.png",
           "images/Adminpage.png"
         ]
+      },
+      {
+        title: "Jarvan",
+        brief: "Çok ajanlı kişisel asistan ve işletim köprüsü.",
+        tag: "ARŞİV — ERKEN DENEME",
+        link: "https://github.com/BurakErdemci/JARVAN",
+        detail: `### 🤖 Çok Ajanlı Kişisel Asistan\n**Jarvan**, günlük işlerinizi ve yazılım geliştirme süreçlerinizi organize eden gelişmiş bir çok ajanlı (multi-agent) asistan sistemidir.\n\n#### ✨ Öne Çıkan Özellikler\n- **Görev Dağılımlı Ajanlar:** Bir model genel mimariyi planlarken, diğeri kodu yazar, üçüncüsü ise standartlara ve güvenliğe uygunluğu denetler.\n- **Markdown Tabanlı Bağlam Hattı:** Ajanlar arası iletişim, veri paylaşımı ve hafıza yönetimi markdown dosyaları üzerinden organize edilir.\n- **Proaktif Yetenekler:** Kişiselleştirilmiş sabah brifingleri, otomatik not tutma sistemleri ve cihazlar arası veri köprüleri.`,
+        tech: ["Multi-Agent", "Python", "FastAPI", "LLM Orchestration"],
+        images: []
       }
     ],
     timelineLabel: "Yolculuk",
@@ -198,7 +216,7 @@ export const content: Record<'tr' | 'en', LangContent> = {
     navContact: "Contact",
     btnLang: "TR",
     heroStatus: "Open to Work",
-    heroSubtitle: "Game & Full Stack Developer",
+    heroSubtitle: "Game & AI Tooling Developer",
     btnProjects: "View Projects",
     btnCv: "Download CV",
     aboutLabel: "About Me",
@@ -240,21 +258,30 @@ export const content: Record<'tr' | 'en', LangContent> = {
         ]
       },
       {
-        title: "Jarvan",
-        brief: "Multi-agent personal assistant and system bridge.",
-        tag: "AI ASSISTANT — PERSONAL OS",
-        link: "https://github.com/BurakErdemci/JARVAN",
-        detail: `### 🤖 Multi-Agent Personal Assistant\n**Jarvan** is an advanced Multi-Agent personal assistant system that organizes your daily workflows and development pipelines.\n\n#### ✨ Key Features\n- **Role-Based Agents:** One model plans the architecture, another writes the code, and a third reviews for compliance and safety.\n- **Markdown Context Bus:** Inter-agent communication and state management are orchestrated via markdown files.\n- **Proactive Functionality:** Automatic morning briefings, note-taking, and secure cross-device bridging.`,
-        tech: ["Multi-Agent", "Python", "FastAPI", "LLM Orchestration"],
+        title: "Context Police",
+        brief: "A desktop auditor for AI coding-agent memory: it catches the notes that went stale.",
+        tag: "AI TOOLING — MEMORY AUDITOR",
+        link: "https://github.com/BurakErdemci/Context-Police",
+        detail: `### 🔎 Agent memory rots without anyone noticing\n**Context Police** audits the memory files AI coding agents rely on. Code moves, the note stays put, and the agent keeps treating it as true.\n\n#### ✨ How it works\n- **Contradiction detection:** if two notes disagree, at least one is wrong. Cheap, entirely local.\n- **Anchor drift:** when the file, symbol or commit a note is pinned to moves, the note becomes suspect. The git history is the arbiter, never the agent.\n- **Nothing is ever deleted:** a decayed note is marked superseded. A wrong flag costs nothing, recovery is one click, and the tool's own error rate stays measurable.\n- **Never writes into a live session:** the audit runs in a clean context, framed as a measurement task.\n\n#### 🖥️ Interface\nA Tauri desktop app built around a "case notebook" design language: paper ground, handwritten notes, stamps and graphite pencil.`,
+        tech: ["Tauri", "TypeScript", "Python", "SQLite", "Git", "LLM"],
+        images: []
+      },
+      {
+        title: "codex-delegate",
+        brief: "A Claude Code plugin that hands implementation to Codex worker lanes and makes every finding carry a runnable proof.",
+        tag: "DEV TOOLING — AGENT ORCHESTRATION",
+        link: "https://github.com/BurakErdemci/codex-delegate",
+        detail: `### ⚙️ Codex does the labour, Claude keeps the judgement\nA Claude Code plugin with two halves built on one idea.\n\n#### 🧵 codex-delegate — parallel worker lanes\nEach Codex worker gets a disposable git worktree pinned to a known commit and reports back in six lines. Claude writes the spec, decides what "correct" means, verifies the lane's footprint against that spec, and applies the diff to the main tree itself.\n\n#### 🔴 codex-audit — outside eyes\nThe same machinery, reversed: a Codex red team attacks the code, every finding must ship a runnable proof, and Claude acts on nothing it has not reproduced.\n\n#### 📓 Every rule came from a failure\nEach rule traces back to something that broke in real use. The measurement behind each one is recorded in FIELD-LOG.md.`,
+        tech: ["Python", "Claude Code Plugin", "Codex CLI", "Git Worktree"],
         images: []
       },
       {
         title: "Workday-Loop",
-        brief: "A 2D psychological thriller / narrative experience game built with Unity.",
+        brief: "A Unity 2D psychological thriller. Team project; my role was level design and narrative.",
         tag: "GAME — PSYCHOLOGICAL THRILLER",
         link: "https://burakerdemci.itch.io/workdayloop",
         detail: "A psychological thriller experience exploring the monotony of modern work life and the silent decay of the individual within this system. Starts as a classic office simulator but evolves into an increasingly unsettling narrative. Inspired by Mad Men's 1960s minimalist aesthetic and Nier: Automata's existential melancholy soundtrack. Offers two endings based on player choices: Salvation and Eternal Loop. Adds psychological depth through mini-games, changing environmental details, and cryptic system messages.",
-        tech: ["Unity", "C#", "2D Game Design", "Narrative Design"],
+        tech: ["Unity", "Level Design", "Narrative Design", "2D Game Design"],
         images: [
           "images/workday-1.png",
           "images/workday-2.png",
@@ -286,6 +313,15 @@ export const content: Record<'tr' | 'en', LangContent> = {
           "images/ResarvationPage5.png",
           "images/Adminpage.png"
         ]
+      },
+      {
+        title: "Jarvan",
+        brief: "Multi-agent personal assistant and system bridge.",
+        tag: "ARCHIVED — EARLY EXPERIMENT",
+        link: "https://github.com/BurakErdemci/JARVAN",
+        detail: `### 🤖 Multi-Agent Personal Assistant\n**Jarvan** is an advanced Multi-Agent personal assistant system that organizes your daily workflows and development pipelines.\n\n#### ✨ Key Features\n- **Role-Based Agents:** One model plans the architecture, another writes the code, and a third reviews for compliance and safety.\n- **Markdown Context Bus:** Inter-agent communication and state management are orchestrated via markdown files.\n- **Proactive Functionality:** Automatic morning briefings, note-taking, and secure cross-device bridging.`,
+        tech: ["Multi-Agent", "Python", "FastAPI", "LLM Orchestration"],
+        images: []
       }
     ],
     timelineLabel: "Journey",
