@@ -1,4 +1,5 @@
 import { useTheme } from '../context/ThemeContext';
+import { CV_VERSION } from '../data/cv-version';
 
 export function Contact() {
   const { lang } = useTheme();
@@ -8,13 +9,13 @@ export function Contact() {
       pitch: '// SON CANAVAR BOŞ BİR GELEN KUTUSUDUR',
       h2: <><span className="a">BİR GÖREVİN</span> <span className="b">Mİ VAR?</span></>,
       cv: 'CV / Özgeçmiş',
-      cvHref: '/Burak_Erdemci_CV.pdf'
+      cvHref: `/Burak_Erdemci_CV.pdf?v=${CV_VERSION}`
     },
     en: {
       pitch: '// THE FINAL BOSS IS AN EMPTY INBOX',
       h2: <><span className="a">GOT A</span> <span className="b">MISSION?</span></>,
       cv: 'CV / Resume',
-      cvHref: '/Burak_Erdemci_CV_EN.pdf'
+      cvHref: `/Burak_Erdemci_CV_EN.pdf?v=${CV_VERSION}`
     }
   };
 
