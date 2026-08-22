@@ -26,6 +26,19 @@ const CUT_LABELS: Record<string, Record<'tr' | 'en', { big: string; sub: string 
 
 let cutBusy = false;
 
+// Plain navigation, used when the cut-in cannot run: reduced motion, or the
+// curtain markup being absent. The click handler has already called
+// preventDefault, so every path out of cutinTo must still move the page —
+// returning without scrolling swallows the navigation entirely.
+function scrollDirect(target: HTMLElement) {
+  const lenis = getLenis();
+  if (lenis) {
+    lenis.scrollTo(target, { offset: -10, duration: 1.2 });
+  } else {
+    target.scrollIntoView({ behavior: 'auto' });
+  }
+}
+
 function jumpTo(target: HTMLElement) {
   const lenis = getLenis();
   const y = target.getBoundingClientRect().top + window.scrollY - 10;
@@ -38,29 +51,29 @@ function jumpTo(target: HTMLElement) {
 
 export function cutinTo(target: HTMLElement, href: string) {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const lenis = getLenis();
 
   if (reduced) {
-    if (lenis) {
-      lenis.scrollTo(target, { offset: -10, duration: 1.2 });
-    } else {
-      target.scrollIntoView({ behavior: 'auto' });
-    }
+    scrollDirect(target);
     return;
   }
 
   if (cutBusy) return;
-  cutBusy = true;
 
+  // Every guard below runs BEFORE cutBusy is raised. Setting the flag first and
+  // then returning early left it stuck at true, and navigation locked up for the
+  // rest of the page's life.
   const ci = document.getElementById('cutin');
-  if (!ci) return;
+  const bigEl = ci?.querySelector('.ct .big');
+  const subEl = ci?.querySelector('.ct .sub');
+  if (!ci || !bigEl || !subEl) {
+    scrollDirect(target);
+    return;
+  }
+
+  cutBusy = true;
 
   const currentLang = (document.documentElement.lang || 'tr') as 'tr' | 'en';
   const label = (CUT_LABELS[href] && CUT_LABELS[href][currentLang]) || { big: 'GO', sub: '//' };
-  const bigEl = ci.querySelector('.ct .big');
-  const subEl = ci.querySelector('.ct .sub');
-
-  if (!bigEl || !subEl) return;
 
   // Split and format letters: alternating styles
   bigEl.innerHTML = '';
