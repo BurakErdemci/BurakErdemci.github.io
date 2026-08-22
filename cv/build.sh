@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Render the CV sources to PDF and drop them where the site serves them.
+#
+# Chromium comes from Playwright's cache; the version number moves, so the path
+# is globbed rather than pinned. The Playwright MCP server is NOT usable here: it
+# looks for a system Google Chrome and fails when that is absent (measured
+# 2026-08-21, gorsel-uretim skill).
+set -uo pipefail
+cd "$(dirname "$0")"
+
+CHR=$(ls -d "$HOME/Library/Caches/ms-playwright"/chromium-*/chrome-mac*/"Google Chrome for Testing.app"/Contents/MacOS/"Google Chrome for Testing" 2>/dev/null | head -1)
+[ -x "$CHR" ] || { echo "Chromium bulunamadi (Playwright onbellegi)"; exit 1; }
+
+OUT_DIR="../portfolio-react/public"
+render() {                       # $1 = kaynak html, $2 = cikti pdf
+  "$CHR" --headless --disable-gpu --no-pdf-header-footer \
+         --print-to-pdf="$OUT_DIR/$2" "file://$PWD/$1" >/dev/null 2>&1
+  # The exit code is not the check: Chromium has returned 0 with no file written.
+  [ -s "$OUT_DIR/$2" ] || { echo "YAZILMADI: $2"; return 1; }
+  printf '%s  %s bayt\n' "$2" "$(wc -c < "$OUT_DIR/$2" | tr -d ' ')"
+}
+
+rc=0
+render cv-tr.html Burak_Erdemci_CV.pdf    || rc=1
+render cv-en.html Burak_Erdemci_CV_EN.pdf || rc=1
+exit $rc

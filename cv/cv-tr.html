@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Burak Erdemci — CV</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>BURAK ERDEMCİ</h1>
+<div class="role">AI Tooling &amp; Game Developer</div>
+<div class="contact">
+  Eskişehir, Türkiye · Taşınmaya açık (relocation) ·
+  <a href="mailto:erdemciburakemre@gmail.com">erdemciburakemre@gmail.com</a> ·
+  <a href="https://github.com/BurakErdemci">github.com/BurakErdemci</a> ·
+  <a href="https://www.linkedin.com/in/burak-erdemci-a3994833b/">linkedin.com/in/burak-erdemci</a> ·
+  <a href="https://burakerdemci.com">burakerdemci.com</a>
+</div>
+
+<p class="summary">
+Yapay zeka ajanlarını üretimde çalıştıran araçlar geliştiriyorum: çoklu ajan
+orkestrasyonu, MCP sunucuları ve çapraz platform masaüstü uygulamaları. Mimariyi
+kurar, sınırları belirler, uygulamanın büyük kısmını ajanlara yaptırır ve sonucu
+aracın raporuna değil bıraktığı ize göre doğrularım. Unity ve C# ile oyun
+tarafında da üretim yapıyorum.
+</p>
+
+<h2>Projeler</h2>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Gamachine — Unity için agentic geliştirme stüdyosu</span>
+    <span class="item-when">Nis 2026 – devam</span>
+  </div>
+  <div class="item-stack">Python, FastAPI, Electron, React, TypeScript, MCP</div>
+  <ul>
+    <li>7 CLI kodlama ajanını (Claude Code, Codex, Copilot, Cursor, OpenCode, Kimi, agy), 8 bulut sağlayıcıyı ve yerel Ollama'yı tek arayüzde birleştirdim; CLI seçilince MCP yapılandırması otomatik yazılıyor.</li>
+    <li>MCP üzerinden canlı Unity Editor kontrolü kurdum: GameObject işlemleri, konsol okuma, play mode ve çalışan oyuna girdi gönderme.</li>
+    <li>Onay kapısını riske göre tasarladım; dosya silme ve güvenli listede olmayan terminal komutları her zaman onay ister, düşük riskli yollar refleks-onaylamayı önlemek için muaf tutuldu.</li>
+    <li>Windows ve macOS (arm64) için paketlenmiş sürümler yayınladım. 337 commit, ~1.550 test (Backend 1.161 pytest + Frontend 407 Vitest).</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Context Police — AI ajan hafızası denetçisi</span>
+    <span class="item-when">Ağu 2026 – devam</span>
+  </div>
+  <div class="item-stack">Tauri, TypeScript, Python, SQLite, Git</div>
+  <ul>
+    <li>Ajan hafıza notlarının sessizce bayatlamasını yakalayan denetçi geliştirdim: notlar arası çelişki tespiti ve git geçmişine karşı çapa kayması ölçümü.</li>
+    <li>Silme işlemi olmayan bir tasarım seçtim; çürüyen not superseded işaretlenir, böylece yanlış alarmın maliyeti sıfıra iner ve aracın kendi hata oranı ölçülebilir kalır.</li>
+    <li>Denetimi canlı oturuma değil temiz bağlama taşıdım ve hatırlama görevi yerine ölçüm görevi olarak kurguladım. 211 commit.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">codex-delegate — Claude Code eklentisi</span>
+    <span class="item-when">Tem 2026 – devam</span>
+  </div>
+  <div class="item-stack">Python, Codex CLI, Git worktree</div>
+  <ul>
+    <li>Paralel Codex işçi hatları kurdum; her işçi bilinen bir commit'e sabitlenmiş kendi worktree'sinde çalışır, mimar spec'i yazar ve sonucu spec'e karşı doğrular.</li>
+    <li>Her bulguya koşulabilir kanıt zorunluluğu getirdim; yeniden üretilemeyen bulgu uygulanmıyor.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Ristorante Stellato — full-stack rezervasyon sistemi</span>
+    <span class="item-when">Kas 2025 – Ağu 2026</span>
+  </div>
+  <div class="item-stack">Next.js, React, TypeScript, MongoDB</div>
+  <ul>
+    <li>Three.js ile etkileşimli salon planı ve gerçek zamanlı doluluk kontrolü geliştirdim.</li>
+    <li>NextAuth v5 yönetici paneli, TR/EN/IT çoklu dil, PWA ve IP tabanlı rate limiting ekledim; 53 test. Vercel'de yayında.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Workday Loop — Unity 2D anlatı oyunu</span>
+    <span class="item-when">Oca – Nis 2026</span>
+  </div>
+  <div class="item-stack">Unity, C# · <span class="item-note">ekip projesi; rolüm: level design ve anlatı tasarımı</span></div>
+  <ul>
+    <li>Oyuncu seçimine bağlı iki sonlu anlatı yapısını ve seviye akışını tasarladım; itch.io'da yayında.</li>
+  </ul>
+</div>
+
+<h2>Açık Kaynak Katkısı</h2>
+<ul>
+  <li><b>CoplayDev/unity-mcp</b> — token ekonomisi iyileştirmesi, <b>match_mode</b> araması, <b>wait_for_compile</b> ve <b>batch_execute</b> zincirleme katkıları.</li>
+</ul>
+
+<h2>Teknik Yetenekler</h2>
+<div class="skills two">
+  <div>
+    <div><b>Diller:</b> Python, TypeScript, C#</div>
+    <div><b>AI / Ajan:</b> Çoklu ajan orkestrasyonu, MCP sunucu geliştirme, LLM API entegrasyonu</div>
+    <div><b>Backend:</b> FastAPI, ASP.NET Core, REST API</div>
+  </div>
+  <div>
+    <div><b>Frontend:</b> React, Next.js, Tailwind CSS</div>
+    <div><b>Masaüstü:</b> Electron, Tauri</div>
+    <div><b>Veritabanı ve araçlar:</b> SQLite, MongoDB, PostgreSQL, Git, Docker, Unity</div>
+  </div>
+</div>
+
+<h2>Eğitim</h2>
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Eskişehir Teknik Üniversitesi — Bilgisayar Programcılığı (ön lisans)</span>
+    <span class="item-when">beklenen mezuniyet: Haz 2027</span>
+  </div>
+</div>
+
+<h2>Diller</h2>
+<div>Türkçe (ana dil) · İngilizce (orta-ileri)</div>
+
+</body>
+</html>

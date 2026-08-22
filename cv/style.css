@@ -1,0 +1,66 @@
+/* One-page A4 CV, print-first.
+
+   ATS parsers read the PDF's text layer, so the layout stays single-column with
+   ordinary headings and no text inside images or table cells. The personality
+   lives on burakerdemci.com; this document's job is to survive a parser and a
+   six-second human scan. */
+
+@page { size: A4; margin: 11mm 13mm; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 9.2pt;
+  line-height: 1.29;
+  color: #111;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+h1 {
+  font-size: 20pt;
+  letter-spacing: .02em;
+  line-height: 1.05;
+}
+
+.role { font-size: 10.4pt; color: #333; margin-top: 1.5mm; }
+
+.contact {
+  font-size: 8.6pt;
+  color: #222;
+  margin-top: 2mm;
+  padding-bottom: 2.4mm;
+  border-bottom: .7pt solid #999;
+}
+/* Links stay black: a coloured link is the one thing a greyscale print loses. */
+.contact a { color: #111; text-decoration: none; }
+
+h2 {
+  font-size: 9.2pt;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  margin: 2.9mm 0 1.2mm;
+  padding-bottom: .7mm;
+  border-bottom: .5pt solid #bbb;
+}
+
+.summary { margin-top: 2mm; }
+
+.item { margin-bottom: 1.9mm; }
+/* Title line and dates on one row: the scan reads left for what, right for when. */
+.item-head { display: flex; justify-content: space-between; gap: 6mm; }
+.item-title { font-weight: bold; }
+.item-when { font-size: 8.4pt; color: #444; white-space: nowrap; }
+.item-stack { font-size: 8.4pt; color: #444; margin-bottom: .6mm; }
+.item-note { font-size: 8.4pt; color: #444; font-style: italic; }
+
+ul { list-style: none; }
+li { padding-left: 3.2mm; text-indent: -3.2mm; margin-bottom: .5mm; }
+li::before { content: "\2013\00a0"; }
+
+.skills div { margin-bottom: .7mm; }
+.skills b { font-weight: bold; }
+
+.two { display: flex; gap: 8mm; }
+.two > div { flex: 1; }

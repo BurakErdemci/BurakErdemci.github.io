@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Burak Erdemci — Resume</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>BURAK ERDEMCİ</h1>
+<div class="role">AI Tooling &amp; Game Developer</div>
+<div class="contact">
+  Eskişehir, Türkiye · Open to relocation ·
+  <a href="mailto:erdemciburakemre@gmail.com">erdemciburakemre@gmail.com</a> ·
+  <a href="https://github.com/BurakErdemci">github.com/BurakErdemci</a> ·
+  <a href="https://www.linkedin.com/in/burak-erdemci-a3994833b/">linkedin.com/in/burak-erdemci</a> ·
+  <a href="https://burakerdemci.com">burakerdemci.com</a>
+</div>
+
+<p class="summary">
+I build the tooling that makes AI agents usable in production: multi-agent
+orchestration, MCP servers and cross-platform desktop apps. I set the
+architecture and the constraints, hand most of the implementation to agents, and
+judge the result by the trace it leaves rather than the report it writes. I also
+ship game work in Unity and C#.
+</p>
+
+<h2>Projects</h2>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Gamachine — agentic development studio for Unity</span>
+    <span class="item-when">Apr 2026 – present</span>
+  </div>
+  <div class="item-stack">Python, FastAPI, Electron, React, TypeScript, MCP</div>
+  <ul>
+    <li>Brought seven CLI coding agents (Claude Code, Codex, Copilot, Cursor, OpenCode, Kimi, agy), eight cloud providers and local Ollama into one interface; selecting a CLI writes its MCP configuration automatically.</li>
+    <li>Built live Unity Editor control over MCP: GameObject operations, console reads, play mode, and sending input into the running game.</li>
+    <li>Designed the approval gate around risk: file deletion and terminal commands outside the safe list always raise a card, while low-risk paths stay exempt so the gate does not train reflex approval.</li>
+    <li>Shipped packaged builds for Windows and macOS (arm64). 337 commits, ~1,550 tests (1,161 pytest on the backend, 407 Vitest on the frontend).</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Context Police — auditor for AI coding-agent memory</span>
+    <span class="item-when">Aug 2026 – present</span>
+  </div>
+  <div class="item-stack">Tauri, TypeScript, Python, SQLite, Git</div>
+  <ul>
+    <li>Built an auditor that catches agent memory notes going stale: contradiction detection across notes, and anchor drift measured against the git history.</li>
+    <li>Chose a design with no delete operation; a decayed note is marked superseded, which drops the cost of a false flag to zero and keeps the tool's own error rate measurable.</li>
+    <li>Moved the audit out of the live session into a clean context and framed it as a measurement task rather than a recall task. 211 commits.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">codex-delegate — Claude Code plugin</span>
+    <span class="item-when">Jul 2026 – present</span>
+  </div>
+  <div class="item-stack">Python, Codex CLI, Git worktree</div>
+  <ul>
+    <li>Built parallel Codex worker lanes; each worker runs in its own worktree pinned to a known commit while the architect writes the spec and verifies the result against it.</li>
+    <li>Made every finding carry a runnable proof; a finding that will not reproduce is not acted on.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Ristorante Stellato — full-stack reservation system</span>
+    <span class="item-when">Nov 2025 – Aug 2026</span>
+  </div>
+  <div class="item-stack">Next.js, React, TypeScript, MongoDB</div>
+  <ul>
+    <li>Built an interactive floor plan in Three.js with real-time availability checks.</li>
+    <li>Added a NextAuth v5 admin panel, TR/EN/IT localisation, PWA support and IP-based rate limiting; 53 tests. Live on Vercel.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Workday Loop — Unity 2D narrative game</span>
+    <span class="item-when">Jan – Apr 2026</span>
+  </div>
+  <div class="item-stack">Unity, C# · <span class="item-note">team project; my role: level design and narrative</span></div>
+  <ul>
+    <li>Designed the two-ending narrative structure and the level flow around player choice; published on itch.io.</li>
+  </ul>
+</div>
+
+<h2>Open Source</h2>
+<ul>
+  <li><b>CoplayDev/unity-mcp</b> — token economy improvements, <b>match_mode</b> search, <b>wait_for_compile</b>, and <b>batch_execute</b> chaining.</li>
+</ul>
+
+<h2>Technical Skills</h2>
+<div class="skills two">
+  <div>
+    <div><b>Languages:</b> Python, TypeScript, C#</div>
+    <div><b>AI / Agents:</b> Multi-agent orchestration, MCP server development, LLM API integration</div>
+    <div><b>Backend:</b> FastAPI, ASP.NET Core, REST APIs</div>
+  </div>
+  <div>
+    <div><b>Frontend:</b> React, Next.js, Tailwind CSS</div>
+    <div><b>Desktop:</b> Electron, Tauri</div>
+    <div><b>Databases and tools:</b> SQLite, MongoDB, PostgreSQL, Git, Docker, Unity</div>
+  </div>
+</div>
+
+<h2>Education</h2>
+<div class="item">
+  <div class="item-head">
+    <span class="item-title">Eskişehir Technical University — Computer Programming (associate degree)</span>
+    <span class="item-when">expected: Jun 2027</span>
+  </div>
+</div>
+
+<h2>Languages</h2>
+<div>Turkish (native) · English (upper-intermediate)</div>
+
+</body>
+</html>
