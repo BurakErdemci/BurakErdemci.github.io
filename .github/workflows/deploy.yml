@@ -34,12 +34,6 @@ jobs:
         working-directory: portfolio-react
         run: npm run build
 
-      - name: Copy root assets to dist
-        run: |
-          cp CNAME portfolio-react/dist/
-          cp Burak_Erdemci_CV.pdf portfolio-react/dist/
-          cp -r images portfolio-react/dist/
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
