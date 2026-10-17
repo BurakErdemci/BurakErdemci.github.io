@@ -574,12 +574,12 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
   .ms-bone { clip-path: polygon(0 0, 100% 0, 100% 34dvh, 0 44dvh); position: absolute; }
   .ms-red { clip-path: polygon(0 45dvh, 100% 35dvh, 100% 37dvh, 0 47dvh); }
   .ms-bg { position: absolute; inset: 0; }
-  .ms-charbox { left: auto; right: -12vw; top: 0; height: 46dvh; }
+  .ms-charbox { left: auto; right: -12vw; top: 48px; height: 37dvh; }
   .ms-head { position: relative; left: auto; top: auto; padding: 72px 16px 0; }
   .ms-title { font-size: 44px; }
   .ms-title .rl2.k1 { color: var(--blk); text-shadow: none; }
   .ms-sub { color: var(--blk); background: var(--wht); display: inline-block; padding: 2px 6px; }
-  .ms-list { position: relative; left: auto; top: auto; width: auto; margin: 24dvh 16px 0; }
+  .ms-list { position: relative; left: auto; top: auto; width: auto; margin: 27dvh 16px 0; }
   .ms-list li { margin-left: 0; }
   .mr { padding: 9px 12px 9px 46px; }
   .mr-n { left: -36px; }
