@@ -1,11 +1,3 @@
-export interface Project {
-  title: string
-  brief: string
-  tag: string
-  link: string
-  tech: string[]
-}
-
 export interface TimelineItem {
   date: string
   title: string
@@ -32,11 +24,6 @@ export interface LangContent {
   skillsLabel: string
   skillsTitle: string
   skills: Record<string, string[]>
-  projectsLabel: string
-  projectsTitle: string
-  projectImagesLabel: string
-  projectViewGithub: string
-  projects: Project[]
   timelineLabel: string
   timelineTitle: string
   timeline: TimelineItem[]
@@ -76,40 +63,6 @@ export const content: Record<'tr' | 'en', LangContent> = {
       "Game Dev": ["Unity (2D/3D)", "URP / 2D"],
       "Veritabanı": ["MySQL", "SQLite", "MongoDB"]
     },
-    projectsLabel: "Portfolyo",
-    projectsTitle: "Seçilmiş Projeler",
-    projectImagesLabel: "Görseller",
-    projectViewGithub: "GitHub'da Görüntüle",
-    projects: [
-      {
-        title: "Gamachine",
-        brief: "Unity geliştiricileri için AI ajanlarını yöneten masaüstü uygulaması.",
-        tag: "AI DEV TOOL — FLAGSHIP",
-        link: "https://github.com/BurakErdemci/gamachine",
-        tech: ["Electron", "Next.js", "Python", "FastAPI", "MCP", "SQLite", "AI/LLM"]
-      },
-      {
-        title: "codex-delegate",
-        brief: "Codex işçi hatlarına iş dağıtan, her bulguyu koşulabilir bir kanıta bağlayan Claude Code eklentisi.",
-        tag: "DEV TOOLING — AGENT ORCHESTRATION",
-        link: "https://github.com/BurakErdemci/codex-delegate",
-        tech: ["Python", "Claude Code Plugin", "Codex CLI", "Git Worktree"]
-      },
-      {
-        title: "Workday-Loop",
-        brief: "Unity 2D psikolojik gerilim oyunu. Ekip işi; rolüm level design ve anlatı tasarımı.",
-        tag: "GAME — PSYCHOLOGICAL THRILLER",
-        link: "https://burakerdemci.itch.io/workdayloop",
-        tech: ["Unity", "Level Design", "Narrative Design", "2D Game Design"]
-      },
-      {
-        title: "Ristorante Stellato",
-        brief: "Next.js 16 ve MongoDB ile geliştirilmiş full-stack lüks restoran ve rezervasyon sistemi.",
-        tag: "WEB — FULL-STACK SHOWCASE",
-        link: "https://ristorante-stellato-puum.vercel.app",
-        tech: ["Next.js 16", "React 18", "Tailwind CSS v4", "MongoDB", "Mongoose", "Framer Motion", "Zod", "Nodemailer"]
-      }
-    ],
     timelineLabel: "Yolculuk",
     timelineTitle: "Deneyim & Eğitim",
     timeline: [
@@ -178,40 +131,6 @@ export const content: Record<'tr' | 'en', LangContent> = {
       "Game Dev": ["Unity (2D/3D)", "URP / 2D"],
       "Database": ["MySQL", "SQLite", "MongoDB"]
     },
-    projectsLabel: "Portfolio",
-    projectsTitle: "Selected Projects",
-    projectImagesLabel: "Images",
-    projectViewGithub: "View on GitHub",
-    projects: [
-      {
-        title: "Gamachine",
-        brief: "Desktop app that orchestrates AI agents for Unity developers.",
-        tag: "AI DEV TOOL — FLAGSHIP",
-        link: "https://github.com/BurakErdemci/gamachine",
-        tech: ["Electron", "Next.js", "Python", "FastAPI", "MCP", "SQLite", "AI/LLM"]
-      },
-      {
-        title: "codex-delegate",
-        brief: "A Claude Code plugin that hands implementation to Codex worker lanes and makes every finding carry a runnable proof.",
-        tag: "DEV TOOLING — AGENT ORCHESTRATION",
-        link: "https://github.com/BurakErdemci/codex-delegate",
-        tech: ["Python", "Claude Code Plugin", "Codex CLI", "Git Worktree"]
-      },
-      {
-        title: "Workday-Loop",
-        brief: "A Unity 2D psychological thriller. Team project; my role was level design and narrative.",
-        tag: "GAME — PSYCHOLOGICAL THRILLER",
-        link: "https://burakerdemci.itch.io/workdayloop",
-        tech: ["Unity", "Level Design", "Narrative Design", "2D Game Design"]
-      },
-      {
-        title: "Ristorante Stellato",
-        brief: "Full-stack luxury restaurant and reservation system with Next.js 16 & MongoDB.",
-        tag: "WEB — FULL-STACK SHOWCASE",
-        link: "https://ristorante-stellato-puum.vercel.app",
-        tech: ["Next.js 16", "React 18", "Tailwind CSS v4", "MongoDB", "Mongoose", "Framer Motion", "Zod", "Nodemailer"]
-      }
-    ],
     timelineLabel: "Journey",
     timelineTitle: "Experience & Education",
     timeline: [

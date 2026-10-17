@@ -1,39 +1,22 @@
 import { useTheme } from '../context/ThemeContext';
-import { content } from '../data/content';
+import { COPY } from '../experience/copy';
 
 export function Projects() {
   const { lang } = useTheme();
-  const t = content[lang];
+  const t = COPY[lang];
 
   const localizedData = {
     tr: {
       sub: '// SEÇİLMİŞ ÇALIŞMALAR',
-      title: <>MİS<em>YONLAR</em></>,
-      ctaPlay: 'Oyna →',
-      ctaLive: 'Canlı Gör →',
-      ctaCode: 'Kodu Gör →',
-      ctaCase: 'Projeyi Gör →'
+      title: <>MİS<em>YONLAR</em></>
     },
     en: {
       sub: '// SELECTED WORKS',
-      title: <>MISS<em>IONS</em></>,
-      ctaPlay: 'Play It →',
-      ctaLive: 'View Live →',
-      ctaCode: 'View Code →',
-      ctaCase: 'View Case →'
+      title: <>MISS<em>IONS</em></>
     }
   };
 
   const labels = localizedData[lang];
-
-  // Helper to determine custom CTA button label
-  const getCtaLabel = (title: string) => {
-    const key = title.toLowerCase();
-    if (key.includes('workday')) return labels.ctaPlay;
-    if (key.includes('ristorante')) return labels.ctaLive;
-    if (key.includes('gamachine')) return labels.ctaCase;
-    return labels.ctaCode;
-  };
 
   return (
     <section className="sec missions halftone" id="missions">
@@ -43,32 +26,55 @@ export function Projects() {
         <span className="sec-sub rv">{labels.sub}</span>
       </div>
       <div className="mission-list">
-        {t.projects.map((project, idx) => {
+        {t.missions.list.map((mission, idx) => {
           const paddedNum = String(idx + 1).padStart(2, '0');
           return (
-            <a
-              key={project.title}
-              className="mission rv"
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-hover
-            >
+            <article key={mission.id} className="mission rv">
               <span className="m-num">{paddedNum}</span>
               <div className="m-body">
-                <div className="m-kind">{project.tag}</div>
-                <h3>{project.title}</h3>
-                <p>{project.brief}</p>
-                <div className="m-tags">
-                  {project.tech.map((tech) => (
-                    <span key={tech}>{tech}</span>
-                  ))}
-                </div>
+                <div className="m-kind">{mission.kind}</div>
+                <h3>{mission.title}</h3>
+                <p>{mission.text}</p>
+                {mission.status && <p className="m-status">{mission.status}</p>}
+                {mission.tech && (
+                  <div className="m-tags">
+                    {mission.tech.map((tech) => (
+                      <span key={tech}>{tech}</span>
+                    ))}
+                  </div>
+                )}
               </div>
-              <span className="m-cta">{getCtaLabel(project.title)}</span>
-            </a>
+              <div className="m-links">
+                {mission.links.map((link) => (
+                  <a key={link.href} className="m-cta" href={link.href} target="_blank" rel="noopener noreferrer" data-hover>
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </article>
           );
         })}
+      </div>
+      <div className="open-source">
+        <h3>{t.confidants.title}</h3>
+        <p>{t.confidants.intro}</p>
+        {t.confidants.repos.map((repo) => (
+          <article key={repo.repo} className="open-source-repo">
+            <h4>
+              <a href={repo.url} target="_blank" rel="noopener noreferrer" data-hover>{repo.repo}</a>
+              <span className="open-source-rank">{repo.rank}</span>
+            </h4>
+            <ul>
+              {repo.prs.map((pr) => (
+                <li key={pr.n}>
+                  <a href={pr.url} target="_blank" rel="noopener noreferrer" data-hover>
+                    {pr.n} · {pr.text.replace(/`([^`]+)`/g, '$1')}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </section>
   );

@@ -685,6 +685,75 @@ header.hidden {
   transform: rotate(-2deg) scale(1.07);
 }
 
+.m-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 16rem;
+}
+
+.m-links .m-cta {
+  display: inline-block;
+  white-space: normal;
+}
+
+.mission .m-body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.open-source {
+  margin-top: clamp(48px, 7vh, 84px);
+  padding: clamp(24px, 3.4vw, 44px);
+  background: var(--blk);
+  overflow-wrap: anywhere;
+}
+
+.open-source h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(28px, 3.2vw, 44px);
+}
+
+.open-source p, .open-source li {
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.open-source-repo {
+  margin-top: 28px;
+}
+
+.open-source-repo h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.open-source-rank {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--red);
+}
+
+.open-source ul {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.open-source a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.m-links a:focus-visible, .open-source a:focus-visible {
+  outline: 3px solid var(--wht);
+  outline-offset: 3px;
+}
+
 /* ---------- contact ---------- */
 .contact {
   background: var(--blk);
