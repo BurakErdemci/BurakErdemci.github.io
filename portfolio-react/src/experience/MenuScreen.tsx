@@ -29,7 +29,13 @@ export function MenuScreen({ lang, sel, setSel, entry, speed, onOpen }: Props) {
   // snap -> silhouette fills -> every item pops in the same frame -> jitter.
   useLayoutEffect(() => {
     const root = rootRef.current!;
-    const set = (p: string) => { root.dataset.phase = p; mark(`menu:${p}`); };
+    const set = (p: string) => {
+      root.dataset.phase = p;
+      mark(`menu:${p}`);
+      if (p === 'live' && (!document.activeElement || document.activeElement === document.body)) {
+        itemRefs.current[sel]?.focus({ preventScroll: true });
+      }
+    };
     // Next screens' art, so the submenu reveal is not held up by a decode.
     const idle = window.setTimeout(() => warm([isNarrow() ? '/char/submenu-m.webp' : '/char/submenu.webp', '/media/gamachine-still.webp', '/char/avatar.webp']), 700);
     const stop = () => window.clearTimeout(idle);
