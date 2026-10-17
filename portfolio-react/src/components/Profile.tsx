@@ -17,30 +17,30 @@ export function Profile() {
       num: '01',
       title: <>PRO<em>FİL</em></>,
       sub: '// SİSTEM MİMARİSİNİN ARKASINDAKİ İSİM',
-      p1: <>Ben Burak. Eskişehir'de yaşıyorum. Oyunlarla başladım, arkalarındaki sistemler beni daha çok tuttu. Bugün iki alanda çalışıyorum: <b>Unity ve C# ile oyun</b>, <b>Python ve TypeScript <InlinePointer /> ile yapay zeka ajanlarını çalıştıran araçlar</b>.</>,
-      p2: <>Mimariyi ben kurarım, sınırları ben çizerim, kodun büyük kısmını ajanlara yazdırırım. Çıkan işi aracın raporuna göre değil, dışarıda bıraktığı ize göre doğrularım: testi koştururum, dosyayı açarım, git geçmişini okurum. <b>Gamachine</b> yedi kodlama ajanını tek arayüzde topluyor; <b>Context Police</b> o ajanların hafızasını denetleyip bayatlamış notları buluyor.</>,
-      calloutQ: '"Doğrulamayı rapordan değil, izden yap."',
-      calloutA: '// ÇALIŞMA İLKEM',
+      p1: <>Ben Burak, Eskişehir'de yaşıyorum. Gemi makineleri okurken koda hiç dokunmamıştım. Bölümle yıldızım barışamayınca 2024'ün sonunda <b>Unity'yi açtım</b> ve bir daha kapatmadım. 2024'te gemi makinelerini bıraktım, 2025'te yatay geçişle Eskişehir'e geldim. Şimdi ESTÜ'de Bilgisayar Programcılığı son sınıftayım, Haziran 2027'de mezun oluyorum.</>,
+      p2: <>İki işim var. <b>Unity ve C# ile oyun</b> yapıyorum; <b>Python ve TypeScript <InlinePointer /> ile yapay zeka ajanlarının kullandığı araçları</b> yazıyorum. Mimariyi ben kuruyorum, kodu ajanlar yazıyor. Her işi ikinci bir ajan, ilkinin raporunu görmeden baştan denetliyor. Bulgu çıkarsa düzeltme de aynı denetimden geçiyor; sıfır bulgu gelmeden hiçbir şey yayına çıkmıyor.</>,
+      calloutQ: 'YAZ → KÖR DENETİM → DÜZELT → TEKRAR DENETLE',
+      calloutA: '// ÇALIŞMA DÜZENİM',
       stats: [
-        { n: '330+', l: "Gamachine'de commit" },
-        { n: '7', l: 'Tek arayüzde birleşen AI kodlama ajanı' },
-        { n: '3', l: 'Yayında açık kaynak geliştirici aracı' },
-        { n: '2', l: 'Masaüstü uygulaması — Electron ve Tauri' }
+        { n: '4', l: "Birleştirilen açık kaynak PR'ı" },
+        { n: '0', l: "Kâğıt Kart'taki asset dosyası" },
+        { n: '2', l: 'Alan: oyun ve ajan araçları' },
+        { n: '2027', l: 'Mezuniyet' }
       ]
     },
     en: {
       num: '01',
       title: <>PRO<em>FILE</em></>,
       sub: '// BEHIND THE SYSTEM ARCHITECTURE',
-      p1: <>I'm Burak, a developer based in Eskişehir. Games came first; the systems behind them held me longer. I work in two areas today: <b>games in Unity and C#</b>, and <b>tooling that keeps AI agents <InlinePointer /> dependable, in Python and TypeScript</b>.</>,
-      p2: <>I set the architecture and the constraints, then hand most of the typing to agents. I judge the result by the trace it leaves rather than the report it writes: I run the tests, open the files, read the git log. <b>Gamachine</b> brings seven coding agents into one interface; <b>Context Police</b> audits what those agents remember and finds the notes that went stale.</>,
-      calloutQ: '"Verify from the trace, not the report."',
+      p1: <>I'm Burak, based in Eskişehir. I studied marine engineering and had never written a line of code. The degree and I never got along, so at the end of 2024 I <b>opened Unity</b> and kept going. I left marine engineering in 2024 and transferred to Eskişehir in 2025. Now I'm in my final year of Computer Programming at ESTÜ, graduating in June 2027.</>,
+      p2: <>I work in two areas. I make <b>games with Unity and C#</b>, and I build <b>the tools AI agents use <InlinePointer /> with Python and TypeScript</b>. I design the architecture and agents write the code. A second agent audits every change without seeing the first one's report. If it finds something, the fix goes through the same audit, and nothing ships until a round comes back with zero findings.</>,
+      calloutQ: 'WRITE → BLIND AUDIT → FIX → AUDIT AGAIN',
       calloutA: '// HOW I WORK',
       stats: [
-        { n: '330+', l: 'Commits on Gamachine' },
-        { n: '7', l: 'AI coding agents in one interface' },
-        { n: '3', l: 'Open-source developer tools shipped' },
-        { n: '2', l: 'Desktop apps — Electron and Tauri' }
+        { n: '4', l: 'Merged open-source PRs' },
+        { n: '0', l: 'Asset files in Kâğıt Kart' },
+        { n: '2', l: 'Fields: games and agent tools' },
+        { n: '2027', l: 'Graduation' }
       ]
     }
   };

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://burakerdemci.com/sitemap.xml

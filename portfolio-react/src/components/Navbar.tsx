@@ -35,6 +35,7 @@ export function Navbar() {
             <a href="#arsenal" data-hover>{t.navSkills}</a>
             <a href="#missions" data-hover>{t.navProjects}</a>
             <a href="#contact" data-hover>{t.navContact}</a>
+            <a href="#/" className="lang-btn mono" data-hover>{lang === 'tr' ? '◂ OYUN MENÜSÜ' : '◂ GAME MENU'}</a>
             <button onClick={toggleLang} className="lang-btn mono" data-hover>
               {t.btnLang}
             </button>
@@ -55,6 +56,7 @@ export function Navbar() {
           <a href="#arsenal" onClick={toggleMenu}>{t.navSkills}</a>
           <a href="#missions" onClick={toggleMenu}>{t.navProjects}</a>
           <a href="#contact" onClick={toggleMenu}>{t.navContact}</a>
+          <a href="#/">{lang === 'tr' ? '◂ OYUN MENÜSÜ' : '◂ GAME MENU'}</a>
           <button
             onClick={() => {
               toggleLang();

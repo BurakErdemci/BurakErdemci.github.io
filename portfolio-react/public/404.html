@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>YAKALANDIN · BURAK ERDEMCI</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<!-- Self-contained on purpose: GitHub Pages serves this file for any unknown path,
+     so it must not depend on the React bundle. -->
+<style>
+  :root { --red: #E8001C; --red-d: #A50014; --blk: #0A0A0A; --wht: #F4F1EA; --cy: #19E3FF; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: var(--blk); color: var(--wht); }
+  body { overflow: hidden; font-family: 'Anton', Impact, sans-serif; }
+  .red { position: fixed; inset: 0; background:
+      radial-gradient(circle, rgba(10,10,10,.25) 1.1px, transparent 1.5px) 0 0 / 8px 8px,
+      linear-gradient(160deg, #ff1630, var(--red) 45%, var(--red-d));
+    clip-path: polygon(0 0, 58% 0, 42% 100%, 0 100%); }
+  .slash { position: fixed; inset: 0; background: var(--wht); clip-path: polygon(60% 0, 61% 0, 45% 100%, 44% 100%); }
+  .av { position: fixed; right: 6vw; bottom: 0; width: min(52vh, 40vw); transform: rotate(6deg); filter: drop-shadow(14px 14px 0 var(--red)); }
+  main { position: relative; z-index: 2; padding: 12vh 6vw 0; max-width: 64vw; }
+  .code { font: 500 13px 'IBM Plex Mono', monospace; letter-spacing: .2em; background: var(--blk); display: inline-block; padding: 6px 12px; transform: rotate(-2deg); }
+  h1 { margin-top: 3vh; font-size: min(15vw, 17vh); line-height: .95; font-weight: 400; display: flex; flex-wrap: wrap; gap: 0 .2em; }
+  h1 .w { display: inline-flex; }
+  h1 span span { display: inline-block; padding: 0 .04em; }
+  .a { color: var(--wht); text-shadow: .05em .05em 0 var(--blk); }
+  .b { background: var(--wht); color: var(--blk); padding: 0 .08em !important; margin: 0 .02em; }
+  .c { background: var(--blk); color: var(--red); padding: 0 .08em !important; margin: 0 .02em; }
+  .over { margin-top: 2vh; font-size: min(7vw, 8vh); letter-spacing: .06em; color: var(--blk); background: var(--wht); display: inline-block; padding: 4px 18px; transform: rotate(2deg); box-shadow: 6px 6px 0 var(--blk); }
+  p.msg { margin-top: 4vh; font: 500 14px/1.6 'IBM Plex Mono', monospace; letter-spacing: .08em; max-width: 34em; }
+  a.back { margin-top: 4vh; display: inline-block; font-size: 24px; letter-spacing: .07em; color: var(--wht); background: var(--blk); border: 2px solid var(--wht); padding: 14px 24px; box-shadow: 6px 6px 0 var(--wht); transform: rotate(-2deg); text-decoration: none; }
+  a.back:hover { background: var(--wht); color: var(--blk); box-shadow: 6px 6px 0 var(--blk); }
+  a.back:focus-visible { outline: 3px solid var(--cy); outline-offset: 5px; }
+  @media (max-width: 700px) {
+    .red { clip-path: polygon(0 0, 100% 0, 100% 62%, 0 78%); }
+    .slash { display: none; }
+    .av { width: 56vw; right: -6vw; }
+    main { max-width: none; padding-top: 10vh; }
+  }
+</style>
+</head>
+<body>
+  <div class="red" aria-hidden="true"></div>
+  <div class="slash" aria-hidden="true"></div>
+  <img class="av" src="/char/avatar.webp" alt="" width="512" height="512" />
+  <main>
+    <p class="code">// 404 · BU SAYFA YOK</p>
+    <h1 aria-label="Yakalandın">
+      <span class="w" aria-hidden="true"><span class="b">Y</span><span class="a">A</span><span class="c">K</span><span class="a">A</span><span class="b">L</span><span class="a">A</span><span class="a">N</span><span class="c">D</span><span class="a">I</span><span class="b">N</span></span>
+    </h1>
+    <p class="over" aria-hidden="true">GAME OVER</p>
+    <p class="msg">Aradığın sayfa burada değil. Menüye dön, görev oradan devam ediyor.<br /><span lang="en">This page does not exist. Head back to the menu.</span></p>
+    <a class="back" href="/">ANA MENÜYE DÖN</a>
+  </main>
+</body>
+</html>
