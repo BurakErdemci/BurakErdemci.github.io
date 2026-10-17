@@ -83,7 +83,11 @@ export function MissionsScreen({ lang, entry, speed, sel, setSel }: Props) {
     setSel(n);
     rowRefs.current[n]?.focus();
   };
+  // Listens on the whole screen: on entry focus sits on the heading (so screen readers announce it), and
+  // arrows must already work there. Links in the detail panel are left alone.
   const onKeyDown = (e: React.KeyboardEvent) => {
+    const el = e.target as HTMLElement;
+    if (el.id !== 'ms-title' && !el.closest('.ms-list')) return;
     if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
   };
@@ -91,7 +95,7 @@ export function MissionsScreen({ lang, entry, speed, sel, setSel }: Props) {
   const m = list[sel];
 
   return (
-    <section ref={rootRef} className="xp-screen xp-missions" data-phase="live" aria-labelledby="ms-title">
+    <section ref={rootRef} className="xp-screen xp-missions" data-phase="live" aria-labelledby="ms-title" onKeyDown={onKeyDown}>
       <div className="ms-bg" aria-hidden="true"><div className="ms-bone" /><div className="ms-red" /></div>
       <div className="ms-charbox" aria-hidden="true">
         <picture>
@@ -107,7 +111,7 @@ export function MissionsScreen({ lang, entry, speed, sel, setSel }: Props) {
         <p className="ms-sub">{t.missions.sub}</p>
       </header>
 
-      <ul className="ms-list" onKeyDown={onKeyDown}>
+      <ul className="ms-list">
         {list.map((it, i) => (
           <li key={it.id} style={{ '--i': i } as React.CSSProperties}>
             <button
