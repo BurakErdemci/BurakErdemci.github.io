@@ -146,8 +146,9 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
 .mn-list { list-style: none; }
 .mn-list li { margin: 0 0 1.1vh var(--x); transform: rotate(var(--r)); line-height: 1; }
 .mi {
-  /* sized by width AND height: seven items must fit between the name block and the caption strip */
-  position: relative; display: inline-block; font-size: clamp(26px, min(3.9vw, calc((100dvh - 330px) / 10.5)), 64px);
+  /* sized by width AND height: seven items must fit between the name block and the caption strip;
+     the 16px floor keeps item 7 clear of the strip down to 501 px tall windows (26px covered it below ~590) */
+  position: relative; display: inline-block; font-size: clamp(16px, min(3.9vw, calc((100dvh - 330px) / 10.5)), 64px);
   padding: .08em .2em; transform-origin: 10% 50%; scale: 1;
   transition: scale 110ms steps(3, end);
 }
