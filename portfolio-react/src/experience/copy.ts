@@ -132,7 +132,7 @@ export const COPY: Record<Lang, Copy> = {
           id: 'kagit', title: 'Kâğıt Kart', titleLang: 'tr', kind: 'TARAYICI OYUNU · THREE.JS', status: 'HAZİNE ELE GEÇİRİLDİ',
           text: 'Açılır bir kitabın sayfalarında geçen kart yarışı. Depoda tek bir resim, ses ya da model dosyası yok; sayfaları, harfleri ve müziği kod üretiyor. Deney diye başladım, en çok yıldız alan projem oldu.',
           links: [{ label: 'TARAYICIDA OYNA', href: 'https://burakerdemci.github.io/kagit-kart/' }, { label: 'KODU GÖR', href: REPO('kagit-kart') }],
-          media: { kind: 'shots', srcs: ['/media/kagit-1.webp', '/media/kagit-2.webp', '/media/kagit-3.webp'], label: '// OYUNDAN KARELER' },
+          media: { kind: 'loop', src: '/media/kagit-loop.webp', poster: '/media/kagit-still.webp', label: '// OYUNDAN', alt: 'Kâğıt Kart oynanışı: açılır kitap yarış menüsüne açılıyor, sonra kâğıt tilki Boğaz Gecesi pistinde kıvılcımlar saçarak drift atıyor', stillAlt: 'Kâğıt Kart: kâğıt tilki alacakaranlıkta Boğaz Gecesi pistinde yarışıyor' },
         },
         {
           id: 'codex', title: 'codex-delegate', titleLang: 'en', kind: 'GELİŞTİRİCİ ARACI · CLAUDE CODE EKLENTİSİ',
@@ -268,7 +268,7 @@ export const COPY: Record<Lang, Copy> = {
           id: 'kagit', title: 'Kâğıt Kart', titleLang: 'tr', kind: 'BROWSER GAME · THREE.JS', status: 'TREASURE SECURED',
           text: 'A kart racer inside a pop-up book. The repo holds no image, sound or model files; code generates every page, letter and note of music. I started it as an experiment and it became my most-starred project.',
           links: [{ label: 'PLAY IN BROWSER', href: 'https://burakerdemci.github.io/kagit-kart/' }, { label: 'VIEW CODE', href: REPO('kagit-kart') }],
-          media: { kind: 'shots', srcs: ['/media/kagit-1.webp', '/media/kagit-2.webp', '/media/kagit-3.webp'], label: '// IN-GAME FRAMES' },
+          media: { kind: 'loop', src: '/media/kagit-loop.webp', poster: '/media/kagit-still.webp', label: '// GAMEPLAY', alt: 'Kâğıt Kart gameplay: the pop-up book opens to the race menu, then the paper fox drifts through Bosphorus Night with sparks under its wheels', stillAlt: 'Kâğıt Kart: the paper fox racing through Bosphorus Night at dusk' },
         },
         {
           id: 'codex', title: 'codex-delegate', titleLang: 'en', kind: 'DEVELOPER TOOL · CLAUDE CODE PLUGIN',
