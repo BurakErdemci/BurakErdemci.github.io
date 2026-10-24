@@ -7,7 +7,7 @@ export type Entry = 'open' | 'return' | 'enter' | 'instant';
 
 // Desktop cascade: items step right as they go down, so their ends follow the
 // glint streak toward the glasses. Values in vw, zig-zag like a pasted note.
-const CASCADE = [1.2, 4.6, 2.4, 7.4, 5.0, 9.6];
+const CASCADE = [1.2, 4.6, 2.4, 7.4, 5.0, 9.6, 6.8];
 
 interface Props {
   lang: Lang;
@@ -78,7 +78,7 @@ export function MenuScreen({ lang, sel, setSel, entry, speed, onOpen }: Props) {
     else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); move(-1); }
     else if (e.key === 'Home') { e.preventDefault(); move(-sel); }
     else if (e.key === 'End') { e.preventDefault(); move(SECTION_ORDER.length - 1 - sel); }
-    else if (/^[1-6]$/.test(e.key)) { const n = +e.key - 1; setSel(n); itemRefs.current[n]?.focus(); }
+    else if (/^[1-9]$/.test(e.key) && +e.key <= SECTION_ORDER.length) { const n = +e.key - 1; setSel(n); itemRefs.current[n]?.focus(); }
   };
 
   const selId = SECTION_ORDER[sel];

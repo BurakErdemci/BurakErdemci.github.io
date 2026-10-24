@@ -1,20 +1,21 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { COPY, type Lang, type Mission } from './copy';
 import { Ransom } from './Ransom';
-import { glitch, mark, reducedMotion, schedule } from './motion';
+import { columnLayout, glitch, mark, reducedMotion, schedule } from './motion';
 import type { Entry } from './MenuScreen';
 
-interface Props { lang: Lang; entry: Entry; speed: number; sel: number; setSel: (i: number) => void }
+// One list + detail screen, two lists: the missions and the music videos (showtime).
+interface Props { id: 'missions' | 'showtime'; lang: Lang; entry: Entry; speed: number; sel: number; setSel: (i: number) => void }
 
-function Media({ m, lang }: { m: Mission; lang: Lang }) {
+function Media({ m }: { m: Mission }) {
   const media = m.media;
   if (media.kind === 'loop') {
-    // The 2.5 MB loop only exists in the DOM while Gamachine is selected, and
+    // A 1.5-2.6 MB loop only exists in the DOM while its entry is selected, and
     // reduced-motion visitors get the still instead of the animation.
     const still = reducedMotion();
     return (
       <figure className="md md-loop">
-        <img src={still ? media.poster : media.src} alt={lang === 'tr' ? 'Gamachine v4 fragmanından görüntü' : 'Footage from the Gamachine v4 trailer'}
+        <img src={still ? media.poster : media.src} alt={still && media.stillAlt ? media.stillAlt : media.alt}
           width={960} height={540} loading="lazy" decoding="async"
           style={{ backgroundImage: `url(${media.poster})` }} />
         <figcaption>{media.label}</figcaption>
@@ -49,9 +50,10 @@ function Media({ m, lang }: { m: Mission; lang: Lang }) {
   );
 }
 
-export function MissionsScreen({ lang, entry, speed, sel, setSel }: Props) {
+export function MissionsScreen({ id, lang, entry, speed, sel, setSel }: Props) {
   const t = COPY[lang];
-  const list = t.missions.list;
+  const data = t[id];
+  const list = data.list;
   const rootRef = useRef<HTMLElement>(null);
   const rowRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const gRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -95,7 +97,7 @@ export function MissionsScreen({ lang, entry, speed, sel, setSel }: Props) {
   const m = list[sel];
 
   return (
-    <section ref={rootRef} className="xp-screen xp-missions" data-phase="live" aria-labelledby="ms-title" onKeyDown={onKeyDown}>
+    <section ref={rootRef} className={`xp-screen xp-missions xp-${id}`} data-phase="live" aria-labelledby="ms-title" onKeyDown={onKeyDown}>
       <div className="ms-bg" aria-hidden="true"><div className="ms-bone" /><div className="ms-red" /></div>
       <div className="ms-charbox" aria-hidden="true">
         <picture>
@@ -105,10 +107,10 @@ export function MissionsScreen({ lang, entry, speed, sel, setSel }: Props) {
       </div>
 
       <header className="ms-head">
-        <h2 id="ms-title" className="ms-title" tabIndex={-1} data-autofocus aria-label={t.missions.title}>
-          <Ransom text={t.missions.title} seed={11} />
+        <h2 id="ms-title" className="ms-title" tabIndex={-1} data-autofocus aria-label={data.title}>
+          <Ransom text={data.title} seed={id === 'missions' ? 11 : 13} />
         </h2>
-        <p className="ms-sub">{t.missions.sub}</p>
+        <p className="ms-sub">{data.sub}</p>
       </header>
 
       <ul className="ms-list">
@@ -125,15 +127,15 @@ export function MissionsScreen({ lang, entry, speed, sel, setSel }: Props) {
               onFocus={() => { if (i !== sel) setSel(i); }}
               onClick={() => {
                 if (i !== sel) setSel(i);
-                // On narrow screens the detail sits below the list; bring it into view.
-                if (window.innerWidth <= 900) document.getElementById('ms-detail')?.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+                // In the column layout the detail sits below the list; bring it into view.
+                if (columnLayout()) document.getElementById('ms-detail')?.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
               }}
             >
               <span className="mr-g" ref={(el) => { gRefs.current[i] = el; }}>
                 <span className="mr-bar" aria-hidden="true" />
                 <span className="g-streak" aria-hidden="true" />
                 <span className="mr-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                <span className="mr-t">{it.title}</span>
+                <span className="mr-t" lang={it.titleLang}>{it.title}</span>
                 <span className="mr-k">{it.kind}</span>
                 {it.status && <span className="mr-s">{it.status}</span>}
               </span>
@@ -142,13 +144,13 @@ export function MissionsScreen({ lang, entry, speed, sel, setSel }: Props) {
         ))}
       </ul>
 
-      <article id="ms-detail" className="ms-detail" key={`${m.id}-${detailKey}-${lang}`} aria-label={t.missions.detailLabel} aria-live="polite">
+      <article id="ms-detail" className="ms-detail" key={`${m.id}-${detailKey}-${lang}`} aria-label={data.detailLabel} aria-live="polite">
         <p className="dt-kind">{m.kind}</p>
-        <h3 className="dt-title">{m.title}</h3>
+        <h3 className="dt-title" lang={m.titleLang}>{m.title}</h3>
         {m.status && <p className="dt-stamp">{m.status}</p>}
-        <Media m={m} lang={lang} />
+        <Media m={m} />
         <p className="dt-text">{m.text}</p>
-        {m.tech && <ul className="dt-tech" aria-label="Tech">{m.tech.map((x) => <li key={x}>{x}</li>)}</ul>}
+        {m.tech && <ul className="dt-tech" aria-label="Tech" lang="en">{m.tech.map((x) => <li key={x}>{x}</li>)}</ul>}
         <p className="dt-links">
           {m.links.map((l) => (
             <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="xbtn">{l.label} <span aria-hidden="true">↗</span></a>

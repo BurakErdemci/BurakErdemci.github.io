@@ -35,6 +35,7 @@ export function Experience() {
   const [entry, setEntry] = useState<Entry>(() => (reduced ? 'instant' : routeFromHash() ? 'enter' : 'open'));
   const [menuSel, setMenuSel] = useState(() => Math.max(0, SECTION_ORDER.indexOf(routeFromHash() ?? 'profile')));
   const [missionSel, setMissionSel] = useState(0);
+  const [showSel, setShowSel] = useState(0);
   const [announce, setAnnounce] = useState('');
 
   const stageRef = useRef<HTMLDivElement>(null);
@@ -174,9 +175,12 @@ export function Experience() {
           <MenuScreen lang={lang} sel={menuSel} setSel={setMenuSel} entry={entry} speed={speed} onOpen={openSection} />
         )}
         {screen === 'missions' && (
-          <MissionsScreen lang={lang} entry={entry} speed={speed} sel={missionSel} setSel={setMissionSel} />
+          <MissionsScreen key="missions" id="missions" lang={lang} entry={entry} speed={speed} sel={missionSel} setSel={setMissionSel} />
         )}
-        {inSection && screen !== 'missions' && (
+        {screen === 'showtime' && (
+          <MissionsScreen key="showtime" id="showtime" lang={lang} entry={entry} speed={speed} sel={showSel} setSel={setShowSel} />
+        )}
+        {inSection && screen !== 'missions' && screen !== 'showtime' && (
           <SectionScreen key={screen} id={screen} lang={lang} entry={entry} speed={speed} />
         )}
       </main>

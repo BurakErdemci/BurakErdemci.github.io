@@ -4,9 +4,9 @@
 import { CV_VERSION } from '../data/cv-version';
 
 export type Lang = 'tr' | 'en';
-export type SectionId = 'profile' | 'missions' | 'confidants' | 'arsenal' | 'calendar' | 'contact';
+export type SectionId = 'profile' | 'missions' | 'confidants' | 'arsenal' | 'showtime' | 'calendar' | 'contact';
 
-export const SECTION_ORDER: SectionId[] = ['profile', 'missions', 'confidants', 'arsenal', 'calendar', 'contact'];
+export const SECTION_ORDER: SectionId[] = ['profile', 'missions', 'confidants', 'arsenal', 'showtime', 'calendar', 'contact'];
 
 export const LINKS = {
   email: 'mailto:erdemciburakemre@gmail.com',
@@ -20,13 +20,17 @@ export const LINKS = {
 
 export interface MissionLink { label: string; href: string }
 export type MissionMedia =
-  | { kind: 'loop'; src: string; poster: string; label: string }
+  // alt describes the loop; stillAlt the poster, when the poster is a different picture
+  | { kind: 'loop'; src: string; poster: string; label: string; alt: string; stillAlt?: string }
   | { kind: 'shots'; srcs: string[]; label: string }
   | { kind: 'lanes'; arch: [string, string]; lane: string; review: [string, string] };
 
 export interface Mission {
   id: string;
   title: string;
+  // language of the title itself: CSS uppercases by the lang attribute, so an English
+  // name under lang=tr would get a dotted İ (GAMACHİNE)
+  titleLang: Lang;
   kind: string;
   status?: string;
   text: string;
@@ -44,6 +48,7 @@ interface Copy {
   name: { label: string; chipA: string; chipB: string; loc: string };
   items: Record<SectionId, { label: string; caption: string }>;
   missions: { title: string; sub: string; detailLabel: string; list: Mission[] };
+  showtime: { title: string; sub: string; detailLabel: string; list: Mission[] };
   profile: {
     title: string; p1: string; p2: string; card: string;
     stats: { n: string; l: string }[];
@@ -68,6 +73,10 @@ interface Copy {
 
 const GAMACHINE_TECH = ['Electron', 'React', 'TypeScript', 'Python', 'FastAPI', 'MCP'];
 const REPO = (r: string) => `https://github.com/BurakErdemci/${r}`;
+// Music videos: facts from the music-video-lab README (see site-copy/site-metinleri.md).
+const CLIP_TECH = ['Suno', 'Remotion', 'Three.js', 'Claude Code'];
+const CLIP_SRC = (c: string) => REPO(`music-video-lab/tree/main/${c}`);
+const CLIP_MEDIA = (c: string) => ({ src: `/media/clip-${c}.webp`, poster: `/media/clip-${c}-still.webp` });
 
 const CONFIDANT_REPOS = (tr: boolean) => [
   {
@@ -105,6 +114,7 @@ export const COPY: Record<Lang, Copy> = {
       missions: { label: 'GÖREVLER', caption: 'Oyunlar ve ajan araçları: beş görev.' },
       confidants: { label: 'SIRDAŞLAR', caption: "Başkalarının projelerinde birleşen 4 PR." },
       arsenal: { label: 'CEPHANELİK', caption: 'Oyun ve ajan aracı yazarken kullandıklarım.' },
+      showtime: { label: 'SAHNE', caption: 'Üç müzik klibi; her görsel olay ölçülmüş bir vuruşa kilitli.' },
       calendar: { label: 'TAKVİM', caption: '2021 → bugün.' },
       contact: { label: 'İLETİŞİM', caption: 'Bir görevin mi var?' },
     },
@@ -112,35 +122,61 @@ export const COPY: Record<Lang, Copy> = {
       title: 'GÖREVLER', sub: '// 02 · GÖREV SEÇ', detailLabel: 'Görev ayrıntısı',
       list: [
         {
-          id: 'gamachine', title: 'Gamachine', kind: 'AI OYUN STÜDYOSU · AMİRAL GEMİSİ', status: 'SIZMA SÜRÜYOR (v4)',
+          id: 'gamachine', title: 'Gamachine', titleLang: 'en', kind: 'AI OYUN STÜDYOSU · AMİRAL GEMİSİ', status: 'SIZMA SÜRÜYOR (v4)',
           text: "Unity için yapay zeka oyun stüdyosu. Claude Code, Codex, Antigravity, Copilot, Cursor ve OpenCode'u tek masaüstü uygulamasında çalıştırıyor; Unity Editor'ü MCP üzerinden canlı yönetiyor. Son sürüm v3.2. Şu an v4'ü yazıyorum.",
           tech: GAMACHINE_TECH,
           links: [{ label: 'İNDİR', href: 'https://github.com/BurakErdemci/gamachine/releases' }, { label: 'KODU GÖR', href: REPO('gamachine') }],
-          media: { kind: 'loop', src: '/media/gamachine-loop.webp', poster: '/media/gamachine-still.webp', label: '// v4 FRAGMANI' },
+          media: { kind: 'loop', src: '/media/gamachine-loop.webp', poster: '/media/gamachine-still.webp', label: '// v4 FRAGMANI', alt: 'Gamachine v4 fragmanından görüntü' },
         },
         {
-          id: 'kagit', title: 'Kâğıt Kart', kind: 'TARAYICI OYUNU · THREE.JS', status: 'HAZİNE ELE GEÇİRİLDİ',
+          id: 'kagit', title: 'Kâğıt Kart', titleLang: 'tr', kind: 'TARAYICI OYUNU · THREE.JS', status: 'HAZİNE ELE GEÇİRİLDİ',
           text: 'Açılır bir kitabın sayfalarında geçen kart yarışı. Depoda tek bir resim, ses ya da model dosyası yok; sayfaları, harfleri ve müziği kod üretiyor. Deney diye başladım, en çok yıldız alan projem oldu.',
           links: [{ label: 'TARAYICIDA OYNA', href: 'https://burakerdemci.github.io/kagit-kart/' }, { label: 'KODU GÖR', href: REPO('kagit-kart') }],
           media: { kind: 'shots', srcs: ['/media/kagit-1.webp', '/media/kagit-2.webp', '/media/kagit-3.webp'], label: '// OYUNDAN KARELER' },
         },
         {
-          id: 'codex', title: 'codex-delegate', kind: 'GELİŞTİRİCİ ARACI · CLAUDE CODE EKLENTİSİ',
+          id: 'codex', title: 'codex-delegate', titleLang: 'en', kind: 'GELİŞTİRİCİ ARACI · CLAUDE CODE EKLENTİSİ',
           text: 'Claude mimar ve denetçi olarak kalıyor, kodu Codex işçilerine yazdırıyor. Her bulgu, koşturabileceğin bir kanıtla geliyor. Bu siteyi de bu düzenle geliştiriyorum.',
           links: [{ label: 'KODU GÖR', href: REPO('codex-delegate') }],
           media: { kind: 'lanes', arch: ['CLAUDE', 'MİMAR'], lane: 'CODEX', review: ['DENETİM', 'KOŞTURULABİLİR KANIT'] },
         },
         {
-          id: 'ristorante', title: 'Ristorante Stellato', kind: 'WEB · ERKEN DÖNEM',
+          id: 'ristorante', title: 'Ristorante Stellato', titleLang: 'en', kind: 'WEB · ERKEN DÖNEM',
           text: 'Bir restoran için Next.js 16 ve MongoDB ile yazdığım rezervasyon sistemi. Misafir kat planından masasını seçiyor, yönetici paneli korumalı, 53 test var.',
           links: [{ label: 'CANLI DEMO', href: 'https://ristorante-stellato-puum.vercel.app' }],
           media: { kind: 'shots', srcs: ['/media/ristorante-1.webp', '/media/ristorante-2.webp'], label: '// EKRANLAR' },
         },
         {
-          id: 'workday', title: 'Workday Loop', kind: 'UNITY 2D · ERKEN DÖNEM',
+          id: 'workday', title: 'Workday Loop', titleLang: 'en', kind: 'UNITY 2D · ERKEN DÖNEM',
           text: 'Psikolojik gerilim oyunu. Ekiple yaptık; seviye tasarımını ve anlatıyı ben üstlendim.',
           links: [{ label: 'OYNA (ITCH.IO)', href: 'https://burakerdemci.itch.io/workdayloop' }],
           media: { kind: 'shots', srcs: ['/media/workday-1.webp', '/media/workday-2.webp'], label: '// OYUNDAN KARELER' },
+        },
+      ],
+    },
+    showtime: {
+      title: 'SAHNE', sub: '// 05 · PARÇA SEÇ', detailLabel: 'Parça ayrıntısı',
+      list: [
+        {
+          id: 'merge-conflict', title: 'Merge Conflict', titleLang: 'en', kind: 'KAWAII HEAVY-METAL DİSKO · 3:52',
+          text: 'İki kızın tek bir kod satırı için kawaii heavy-metal disko düellosu; ta ki "accept both changes" spot ışığını bir gradyana çevirene kadar. Kesit: "Blue! Orange!" diye bağıran turuncu kız kendi çığlığıyla metale dönüşüyor.',
+          tech: CLIP_TECH,
+          links: [{ label: "YOUTUBE'DA İZLE", href: 'https://www.youtube.com/watch?v=J37b5WfH-7w' }, { label: 'KODU GÖR', href: CLIP_SRC('merge-conflict') }],
+          media: { kind: 'loop', ...CLIP_MEDIA('merge-conflict'), label: '// KESİT · 0:38', alt: 'Merge Conflict kesiti: turuncu kız "Orange!" çığlığıyla metale dönüşüyor', stillAlt: 'Merge Conflict: turuncu metalci kız ve mavi diskocu kız gün doğumunda kol kola' },
+        },
+        {
+          id: 'her-sabah-bastan', title: 'Her Sabah Baştan', titleLang: 'tr', kind: 'TÜRKÇE DÜET · 4:01',
+          text: 'İnsanıyla her sabah ilk kez tanışan bir yapay zeka üzerine Türkçe düet; iki renkli serigrafi baskı gibi çizildi. Kesit: gece otobüsünde yapay zeka buğulu cama bir kalp çiziyor.',
+          tech: CLIP_TECH,
+          links: [{ label: "YOUTUBE'DA İZLE", href: 'https://www.youtube.com/watch?v=j-LT1IEJDvk' }, { label: 'KODU GÖR', href: CLIP_SRC('her-sabah-bastan') }],
+          media: { kind: 'loop', ...CLIP_MEDIA('her-sabah-bastan'), label: '// KESİT · 2:30', alt: 'Her Sabah Baştan kesiti: gece otobüsünde yapay zeka buğulu cama kalp çiziyor', stillAlt: 'Her Sabah Baştan: bir insan ve bir yapay zeka yarım tonlu bir ayın önünde avuçlarını birleştiriyor' },
+        },
+        {
+          id: 'vorathul-nerfed', title: 'Vorathul: NERFED', titleLang: 'en', kind: 'SENFONİK METAL · 4:33',
+          text: 'Bir yamada nerf yiyen ve yaşadığı tablodan dışarı tırmanan son boss için senfonik metal marşı; grafik noir çizgi roman kesikleriyle. Kesit: ofis duvarındaki tablodan parçalar saçarak fırlıyor.',
+          tech: CLIP_TECH,
+          links: [{ label: "YOUTUBE'DA İZLE", href: 'https://www.youtube.com/watch?v=QUtyszbWdDg' }, { label: 'KODU GÖR', href: CLIP_SRC('vorathul-nerfed') }],
+          media: { kind: 'loop', ...CLIP_MEDIA('vorathul-nerfed'), label: '// KESİT', alt: 'Vorathul: NERFED kesiti: son boss ofis duvarındaki tablodan fırlıyor', stillAlt: 'Vorathul: boyalı bir katedralde org borusu kanatlı mat siyah bir şövalye' },
         },
       ],
     },
@@ -214,6 +250,7 @@ export const COPY: Record<Lang, Copy> = {
       missions: { label: 'MISSIONS', caption: 'Games and agent tools: five missions.' },
       confidants: { label: 'CONFIDANTS', caption: "4 PRs merged into other people's projects." },
       arsenal: { label: 'ARSENAL', caption: 'What I use to build games and agent tools.' },
+      showtime: { label: 'SHOWTIME', caption: 'Three music videos, every visual event locked to a measured beat.' },
       calendar: { label: 'CALENDAR', caption: '2021 → now.' },
       contact: { label: 'CONTACT', caption: 'Got a mission?' },
     },
@@ -221,35 +258,61 @@ export const COPY: Record<Lang, Copy> = {
       title: 'MISSIONS', sub: '// 02 · SELECT A MISSION', detailLabel: 'Mission details',
       list: [
         {
-          id: 'gamachine', title: 'Gamachine', kind: 'AI GAME STUDIO · FLAGSHIP', status: 'INFILTRATION ONGOING (v4)',
+          id: 'gamachine', title: 'Gamachine', titleLang: 'en', kind: 'AI GAME STUDIO · FLAGSHIP', status: 'INFILTRATION ONGOING (v4)',
           text: "An AI game studio for Unity. It runs Claude Code, Codex, Antigravity, Copilot, Cursor and OpenCode in one desktop app and drives the Unity Editor live over MCP. Latest release v3.2. I'm building v4 now.",
           tech: GAMACHINE_TECH,
           links: [{ label: 'DOWNLOAD', href: 'https://github.com/BurakErdemci/gamachine/releases' }, { label: 'VIEW CODE', href: REPO('gamachine') }],
-          media: { kind: 'loop', src: '/media/gamachine-loop.webp', poster: '/media/gamachine-still.webp', label: '// v4 TRAILER' },
+          media: { kind: 'loop', src: '/media/gamachine-loop.webp', poster: '/media/gamachine-still.webp', label: '// v4 TRAILER', alt: 'Footage from the Gamachine v4 trailer' },
         },
         {
-          id: 'kagit', title: 'Kâğıt Kart', kind: 'BROWSER GAME · THREE.JS', status: 'TREASURE SECURED',
+          id: 'kagit', title: 'Kâğıt Kart', titleLang: 'tr', kind: 'BROWSER GAME · THREE.JS', status: 'TREASURE SECURED',
           text: 'A kart racer inside a pop-up book. The repo holds no image, sound or model files; code generates every page, letter and note of music. I started it as an experiment and it became my most-starred project.',
           links: [{ label: 'PLAY IN BROWSER', href: 'https://burakerdemci.github.io/kagit-kart/' }, { label: 'VIEW CODE', href: REPO('kagit-kart') }],
           media: { kind: 'shots', srcs: ['/media/kagit-1.webp', '/media/kagit-2.webp', '/media/kagit-3.webp'], label: '// IN-GAME FRAMES' },
         },
         {
-          id: 'codex', title: 'codex-delegate', kind: 'DEVELOPER TOOL · CLAUDE CODE PLUGIN',
+          id: 'codex', title: 'codex-delegate', titleLang: 'en', kind: 'DEVELOPER TOOL · CLAUDE CODE PLUGIN',
           text: 'Claude stays the architect and reviewer while Codex workers write the code. Every finding arrives with a proof you can run. I build this site with the same setup.',
           links: [{ label: 'VIEW CODE', href: REPO('codex-delegate') }],
           media: { kind: 'lanes', arch: ['CLAUDE', 'ARCHITECT'], lane: 'CODEX', review: ['REVIEW', 'A PROOF YOU CAN RUN'] },
         },
         {
-          id: 'ristorante', title: 'Ristorante Stellato', kind: 'WEB · EARLY WORK',
+          id: 'ristorante', title: 'Ristorante Stellato', titleLang: 'en', kind: 'WEB · EARLY WORK',
           text: 'A reservation system I built for a restaurant with Next.js 16 and MongoDB. Guests pick their table from the floor plan, the admin panel sits behind auth, 53 tests.',
           links: [{ label: 'LIVE DEMO', href: 'https://ristorante-stellato-puum.vercel.app' }],
           media: { kind: 'shots', srcs: ['/media/ristorante-1.webp', '/media/ristorante-2.webp'], label: '// SCREENS' },
         },
         {
-          id: 'workday', title: 'Workday Loop', kind: 'UNITY 2D · EARLY WORK',
+          id: 'workday', title: 'Workday Loop', titleLang: 'en', kind: 'UNITY 2D · EARLY WORK',
           text: 'A psychological thriller. We made it as a team; I owned level design and narrative.',
           links: [{ label: 'PLAY (ITCH.IO)', href: 'https://burakerdemci.itch.io/workdayloop' }],
           media: { kind: 'shots', srcs: ['/media/workday-1.webp', '/media/workday-2.webp'], label: '// IN-GAME FRAMES' },
+        },
+      ],
+    },
+    showtime: {
+      title: 'SHOWTIME', sub: '// 05 · SELECT A TRACK', detailLabel: 'Track details',
+      list: [
+        {
+          id: 'merge-conflict', title: 'Merge Conflict', titleLang: 'en', kind: 'KAWAII HEAVY-METAL DISCO · 3:52',
+          text: 'A kawaii heavy-metal disco battle of two girls over one line of code, until "accept both changes" turns the spotlight into a gradient. Excerpt: on "Blue! Orange!" the orange girl turns metal on her own shout.',
+          tech: CLIP_TECH,
+          links: [{ label: 'WATCH ON YOUTUBE', href: 'https://www.youtube.com/watch?v=J37b5WfH-7w' }, { label: 'VIEW CODE', href: CLIP_SRC('merge-conflict') }],
+          media: { kind: 'loop', ...CLIP_MEDIA('merge-conflict'), label: '// EXCERPT · 0:38', alt: 'Merge Conflict excerpt: the orange girl turns metal on her own shout of "Orange!"', stillAlt: 'Merge Conflict: the orange metal girl and the blue disco girl walk arm in arm at sunrise' },
+        },
+        {
+          id: 'her-sabah-bastan', title: 'Her Sabah Baştan', titleLang: 'tr', kind: 'TURKISH DUET · 4:01',
+          text: 'A Turkish duet about an AI that meets its human for the first time every morning, drawn as a two-colour silk-screen print. Excerpt: on a night bus, the AI draws a heart in the fogged glass.',
+          tech: CLIP_TECH,
+          links: [{ label: 'WATCH ON YOUTUBE', href: 'https://www.youtube.com/watch?v=j-LT1IEJDvk' }, { label: 'VIEW CODE', href: CLIP_SRC('her-sabah-bastan') }],
+          media: { kind: 'loop', ...CLIP_MEDIA('her-sabah-bastan'), label: '// EXCERPT · 2:30', alt: 'Her Sabah Baştan excerpt: on a night bus the AI draws a heart in the fogged window', stillAlt: 'Her Sabah Baştan: a human and an AI press palms on a halftone moon' },
+        },
+        {
+          id: 'vorathul-nerfed', title: 'Vorathul: NERFED', titleLang: 'en', kind: 'SYMPHONIC METAL · 4:33',
+          text: 'A symphonic metal anthem of a final boss who is nerfed in a patch and climbs out of the painting he lives in, told in graphic noir comic cut-outs. Excerpt: he bursts out of the painting on the office wall.',
+          tech: CLIP_TECH,
+          links: [{ label: 'WATCH ON YOUTUBE', href: 'https://www.youtube.com/watch?v=QUtyszbWdDg' }, { label: 'VIEW CODE', href: CLIP_SRC('vorathul-nerfed') }],
+          media: { kind: 'loop', ...CLIP_MEDIA('vorathul-nerfed'), label: '// EXCERPT', alt: 'Vorathul: NERFED excerpt: the final boss bursts out of the painting on the office wall', stillAlt: 'Vorathul: a matte black knight with organ-pipe wings in a painted cathedral' },
         },
       ],
     },

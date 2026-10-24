@@ -33,11 +33,11 @@ export function Projects() {
               <span className="m-num">{paddedNum}</span>
               <div className="m-body">
                 <div className="m-kind">{mission.kind}</div>
-                <h3>{mission.title}</h3>
+                <h3 lang={mission.titleLang}>{mission.title}</h3>
                 <p>{mission.text}</p>
                 {mission.status && <p className="m-status">{mission.status}</p>}
                 {mission.tech && (
-                  <div className="m-tags">
+                  <div className="m-tags" lang="en">
                     {mission.tech.map((tech) => (
                       <span key={tech}>{tech}</span>
                     ))}
@@ -61,7 +61,7 @@ export function Projects() {
         {t.confidants.repos.map((repo) => (
           <article key={repo.repo} className="open-source-repo">
             <h4>
-              <a href={repo.url} target="_blank" rel="noopener noreferrer" data-hover>{repo.repo}</a>
+              <a href={repo.url} target="_blank" rel="noopener noreferrer" data-hover lang="en">{repo.repo}</a>
               <span className="open-source-rank">{repo.rank}</span>
             </h4>
             <ul>
@@ -70,6 +70,26 @@ export function Projects() {
                   <a href={pr.url} target="_blank" rel="noopener noreferrer" data-hover>
                     {pr.n} · {pr.text.replace(/`([^`]+)`/g, '$1')}
                   </a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <div className="open-source">
+        <h3>{t.showtime.title}</h3>
+        <p>{t.items.showtime.caption}</p>
+        {t.showtime.list.map((clip) => (
+          <article key={clip.id} className="open-source-repo">
+            <h4>
+              <a href={clip.links[0].href} target="_blank" rel="noopener noreferrer" data-hover lang={clip.titleLang}>{clip.title}</a>
+              <span className="open-source-rank">{clip.kind}</span>
+            </h4>
+            <p>{clip.text}</p>
+            <ul>
+              {clip.links.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" data-hover>{link.label}</a>
                 </li>
               ))}
             </ul>

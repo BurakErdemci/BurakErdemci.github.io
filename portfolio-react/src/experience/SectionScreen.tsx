@@ -4,7 +4,7 @@ import { Ransom } from './Ransom';
 import { glitch, isNarrow, mark, reducedMotion, schedule } from './motion';
 import type { Entry } from './MenuScreen';
 
-type Sid = Exclude<SectionId, 'missions'>;
+type Sid = Exclude<SectionId, 'missions' | 'showtime'>;
 
 // Renders `code` spans from the copy file without pulling in a markdown parser.
 function Code({ text }: { text: string }) {
@@ -103,7 +103,7 @@ function Confidants({ lang, entry }: { lang: Lang; entry: Entry }) {
                   {Array.from({ length: 10 }, (_, i) => <i key={i} className={i < shown ? 'on' : ''} />)}
                 </span>
               </div>
-              <h3><a href={r.url} target="_blank" rel="noopener noreferrer">{r.repo} <span aria-hidden="true">↗</span></a></h3>
+              <h3 lang="en"><a href={r.url} target="_blank" rel="noopener noreferrer">{r.repo} <span aria-hidden="true">↗</span></a></h3>
               <ul className="cf-prs">
                 {r.prs.map((pr) => (
                   <li key={pr.n}>
@@ -152,7 +152,7 @@ function Arsenal({ lang }: { lang: Lang }) {
               <tr key={r.k}>
                 <th scope="row">{r.k}</th>
                 <td>
-                  <ul className="ar-tools">{r.tools.map((x) => <li key={x}>{x}</li>)}</ul>
+                  <ul className="ar-tools" lang="en">{r.tools.map((x) => <li key={x}>{x}</li>)}</ul>
                   <span className="ar-where">// {r.note}</span>
                 </td>
                 <td><span className={`ar-aff${r.main ? ' main' : ''}`}>{r.aff}</span></td>
