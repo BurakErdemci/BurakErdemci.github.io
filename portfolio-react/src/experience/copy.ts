@@ -144,7 +144,7 @@ export const COPY: Record<Lang, Copy> = {
           id: 'ristorante', title: 'Ristorante Stellato', titleLang: 'en', kind: 'WEB · ERKEN DÖNEM',
           text: 'Bir restoran için Next.js 16 ve MongoDB ile yazdığım rezervasyon sistemi. Misafir kat planından masasını seçiyor, yönetici paneli korumalı, 53 test var.',
           links: [{ label: 'CANLI DEMO', href: 'https://ristorante-stellato-puum.vercel.app' }],
-          media: { kind: 'shots', srcs: ['/media/ristorante-1.webp', '/media/ristorante-2.webp'], label: '// EKRANLAR' },
+          media: { kind: 'loop', src: '/media/ristorante-loop.webp', poster: '/media/ristorante-still.webp', label: '// CANLI DEMO', alt: 'Ristorante Stellato canlı demosunda gezinti: ana sayfa, menü ve şarap mahzeni, ardından canlı masa planının yanında rezervasyon için tarih ve saat seçimi', stillAlt: 'Ristorante Stellato rezervasyon formu: 28 Ekim 20:00 seçili, yanında canlı masa planı' },
         },
         {
           id: 'workday', title: 'Workday Loop', titleLang: 'en', kind: 'UNITY 2D · ERKEN DÖNEM',
@@ -280,7 +280,7 @@ export const COPY: Record<Lang, Copy> = {
           id: 'ristorante', title: 'Ristorante Stellato', titleLang: 'en', kind: 'WEB · EARLY WORK',
           text: 'A reservation system I built for a restaurant with Next.js 16 and MongoDB. Guests pick their table from the floor plan, the admin panel sits behind auth, 53 tests.',
           links: [{ label: 'LIVE DEMO', href: 'https://ristorante-stellato-puum.vercel.app' }],
-          media: { kind: 'shots', srcs: ['/media/ristorante-1.webp', '/media/ristorante-2.webp'], label: '// SCREENS' },
+          media: { kind: 'loop', src: '/media/ristorante-loop.webp', poster: '/media/ristorante-still.webp', label: '// LIVE DEMO', alt: 'A walk through the Ristorante Stellato live demo: the home page, the menu and the wine cellar, then picking a date and time for a reservation beside the live table map', stillAlt: 'The Ristorante Stellato reservation form with 28 October at 20:00 selected, beside the live table map' },
         },
         {
           id: 'workday', title: 'Workday Loop', titleLang: 'en', kind: 'UNITY 2D · EARLY WORK',
