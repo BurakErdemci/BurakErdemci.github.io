@@ -87,7 +87,8 @@ export const content: Record<'tr' | 'en', LangContent> = {
       {
         date: "Kasım 2024",
         title: "Yazılıma İlk Adım",
-        subtitle: "Oyun Geliştirme & Unity 3D",
+        // shown uppercased under lang=tr: the English name is written in capitals so it stays UNITY, not UNİTY
+        subtitle: "Oyun Geliştirme & UNITY 3D",
         text: "Yazılımla hiçbir bağımın olmadığı mühendislik yıllarımdan sonra oyun geliştirme merakımla Unity motorunu öğrenerek sektöre çok hızlı ve yoğun bir giriş yaptım. C# dilinin temelini oyun tasarlayarak atmam, nesne yönelimli programlama (OOP) ve sistem mimarisi konularını çok daha görsel ve yaratıcı bir yolla kavramamı sağladı."
       },
       {

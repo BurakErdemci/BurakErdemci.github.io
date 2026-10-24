@@ -32,10 +32,10 @@ export function Contact() {
       >
         erdemciburakemre@gmail.com
       </a>
-      <div className="socials rv">
-        <a href="https://github.com/BurakErdemci" target="_blank" rel="noopener noreferrer" data-hover>GitHub</a>
-        <a href="https://www.linkedin.com/in/burak-erdemci-a3994833b/" target="_blank" rel="noopener noreferrer" data-hover>LinkedIn</a>
-        <a href="https://burakerdemci.itch.io/" target="_blank" rel="noopener noreferrer" data-hover>itch.io</a>
+      <div className="socials rv">{/* brand names: English case rules, not Turkish (GİTHUB) */}
+        <a href="https://github.com/BurakErdemci" target="_blank" rel="noopener noreferrer" data-hover lang="en">GitHub</a>
+        <a href="https://www.linkedin.com/in/burak-erdemci-a3994833b/" target="_blank" rel="noopener noreferrer" data-hover lang="en">LinkedIn</a>
+        <a href="https://burakerdemci.itch.io/" target="_blank" rel="noopener noreferrer" data-hover lang="en">itch.io</a>
         <a href={data.cvHref} target="_blank" rel="noopener noreferrer" data-hover>{data.cv}</a>
       </div>
     </section>

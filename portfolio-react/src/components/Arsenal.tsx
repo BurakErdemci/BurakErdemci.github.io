@@ -14,7 +14,7 @@ export function Arsenal() {
             { name: 'Unity 6', hot: true },
             { name: 'C#', hot: true },
             { name: 'URP / 2D', hot: false },
-            { name: 'Oynanış Sistemleri', hot: false },
+            { name: 'Oynanış Sistemleri', hot: false, tr: true },
             { name: 'Game Jams', hot: false }
           ]
         },
@@ -45,7 +45,7 @@ export function Arsenal() {
         {
           title: 'AI Orkestrasyonu',
           tags: [
-            { name: 'Çok Ajanlı Sistemler', hot: true },
+            { name: 'Çok Ajanlı Sistemler', hot: true, tr: true },
             { name: 'Claude Code', hot: false },
             { name: 'LLM APIs', hot: false },
             { name: 'RAG / FAISS', hot: false },
@@ -123,7 +123,8 @@ export function Arsenal() {
             <span className="gt">{g.title}</span>
             <div className="ars-tags">
               {g.tags.map((t, tIdx) => (
-                <span key={tIdx} className={`tag ${t.hot ? 'hot' : ''}`}>
+                // tool names follow English case rules; the few Turkish labels are marked tr
+                <span key={tIdx} className={`tag ${t.hot ? 'hot' : ''}`} lang={'tr' in t && t.tr ? undefined : 'en'}>
                   {t.name}
                 </span>
               ))}
