@@ -14,15 +14,16 @@
 <style>
   :root { --red: #E8001C; --red-d: #A50014; --blk: #0A0A0A; --wht: #F4F1EA; --cy: #19E3FF; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; background: var(--blk); color: var(--wht); }
-  body { overflow: hidden; font-family: 'Anton', Impact, sans-serif; }
+  html, body { min-height: 100%; background: var(--blk); color: var(--wht); }
+  /* no overflow:hidden: on a short screen (phone landscape) the way back must stay reachable */
+  body { font-family: 'Anton', Impact, sans-serif; }
   .red { position: fixed; inset: 0; background:
       radial-gradient(circle, rgba(10,10,10,.25) 1.1px, transparent 1.5px) 0 0 / 8px 8px,
       linear-gradient(160deg, #ff1630, var(--red) 45%, var(--red-d));
     clip-path: polygon(0 0, 58% 0, 42% 100%, 0 100%); }
   .slash { position: fixed; inset: 0; background: var(--wht); clip-path: polygon(60% 0, 61% 0, 45% 100%, 44% 100%); }
   .av { position: fixed; right: 6vw; bottom: 0; width: min(52vh, 40vw); transform: rotate(6deg); filter: drop-shadow(14px 14px 0 var(--red)); }
-  main { position: relative; z-index: 2; padding: 12vh 6vw 0; max-width: 64vw; }
+  main { position: relative; z-index: 2; padding: 12vh 6vw 6vh; max-width: 64vw; }
   .code { font: 500 13px 'IBM Plex Mono', monospace; letter-spacing: .2em; background: var(--blk); display: inline-block; padding: 6px 12px; transform: rotate(-2deg); }
   h1 { margin-top: 3vh; font-size: min(15vw, 17vh); line-height: .95; font-weight: 400; display: flex; flex-wrap: wrap; gap: 0 .2em; }
   h1 .w { display: inline-flex; }
@@ -40,6 +41,11 @@
     .slash { display: none; }
     .av { width: 56vw; right: -6vw; }
     main { max-width: none; padding-top: 10vh; }
+  }
+  @media (max-height: 500px) {
+    main { padding-top: 7vh; }
+    h1 { margin-top: 2vh; }
+    .over, p.msg, a.back { margin-top: 2.5vh; }
   }
 </style>
 </head>

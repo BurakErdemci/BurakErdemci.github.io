@@ -146,8 +146,8 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
 .mn-list { list-style: none; }
 .mn-list li { margin: 0 0 1.1vh var(--x); transform: rotate(var(--r)); line-height: 1; }
 .mi {
-  /* sized by width AND height: six items must fit between the name block and the caption strip */
-  position: relative; display: inline-block; font-size: clamp(28px, min(4.3vw, calc((100dvh - 330px) / 9)), 70px);
+  /* sized by width AND height: seven items must fit between the name block and the caption strip */
+  position: relative; display: inline-block; font-size: clamp(26px, min(3.9vw, calc((100dvh - 330px) / 10.5)), 64px);
   padding: .08em .2em; transform-origin: 10% 50%; scale: 1;
   transition: scale 110ms steps(3, end);
 }
@@ -383,7 +383,7 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
 .cf-bond img { width: 64px; height: 64px; }
 .cf-bond b { font-family: 'Anton', sans-serif; font-weight: 400; font-size: clamp(26px, 2.6vw, 40px); letter-spacing: .04em; line-height: 1; }
 .cf-bond b em { font-style: normal; color: var(--red); }
-.cf-cards { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.6vw; margin-top: 24px; }
+.cf-cards { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.6vw; margin-top: 24px; }
 .cf-card { position: relative; background: var(--wht); color: var(--blk); border: 4px solid var(--blk); padding: 22px 24px 26px; min-height: 30vh; transform: rotate(var(--r)); box-shadow: 10px 10px 0 var(--blk); }
 .cf-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 .cf-rank { flex: none; display: grid; place-items: center; align-content: center; width: 86px; height: 86px; background: var(--red); color: var(--wht); border-radius: 50%; border: 4px solid var(--blk); box-shadow: 4px 4px 0 var(--blk); }
@@ -392,7 +392,7 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
 .cf-pips { flex: 1; display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
 .cf-pips i { height: 16px; background: rgba(10,10,10,.14); transform: skewX(-16deg); }
 .cf-pips i.on { background: var(--red); }
-.cf-card h3 a { font-family: 'Anton', sans-serif; font-weight: 400; font-size: clamp(22px, 2vw, 30px); line-height: 1.1; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.cf-card h3 a { overflow-wrap: anywhere; font-family: 'Anton', sans-serif; font-weight: 400; font-size: clamp(22px, 2vw, 30px); line-height: 1.1; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
 .cf-card h3 a:hover { color: var(--red); }
 .cf-prs { list-style: none; margin-top: 8px; }
 .cf-prs li { margin-top: 10px; }
@@ -536,23 +536,29 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
 .rn-v .rl2 { display: block; line-height: .96; margin: .015em 0; }
 .rn-v + .rn-v { margin-top: .9em; }
 
-/* ---------- mobile (390x844 target) ---------- */
-@media (max-width: 700px) {
-  .xp-hud { padding: 10px 12px; }
+/* ---------- column layout: phones, portrait tablets, short landscape screens ----------
+   Same query as columnLayout() in motion.ts. The fixed desktop composition needs about
+   900x560; below that every screen becomes one column that scrolls vertically inside
+   the screen, never sideways. */
+@media (max-width: 700px), (max-width: 900px) and (orientation: portrait), (max-height: 500px) {
+  /* the bar must stay one row down to 320 px in both languages (SADE GÖRÜNÜM is the long
+     label), so sizes and gaps shrink with the width instead of wrapping */
+  .xp-hud { padding: 10px clamp(8px, 2.6vw, 12px); gap: clamp(6px, 2vw, 10px); }
   /* scrolling screens slide under the bar; give it a ground so it stays legible */
-  .xp:is([data-screen="missions"], [data-screen="profile"], [data-screen="confidants"], [data-screen="arsenal"], [data-screen="calendar"], [data-screen="contact"]) .xp-hud { background: linear-gradient(var(--blk) 75%, rgba(10,10,10,0)); padding-bottom: 16px; }
-  .hud-right { gap: 8px; }
-  .hud-menu, .hud-skip { font-size: 15px; padding: 8px 11px; }
+  .xp:is([data-screen="missions"], [data-screen="showtime"], [data-screen="profile"], [data-screen="confidants"], [data-screen="arsenal"], [data-screen="calendar"], [data-screen="contact"]) .xp-hud { background: linear-gradient(var(--blk) 75%, rgba(10,10,10,0)); padding-bottom: 16px; }
+  .hud-right { gap: clamp(5px, 1.8vw, 8px); }
+  .hud-menu, .hud-skip { font-size: clamp(13px, 4vw, 15px); padding: 8px clamp(7px, 2.6vw, 11px); }
   .hud-menu kbd { display: none; }
   .hud-right { flex-wrap: wrap; justify-content: flex-end; row-gap: 10px; }
-  .tag-cv { font-size: 13px; padding: 7px 9px; }
-  .tag-plain { font-size: 15px; padding: 8px 12px 7px; }
-  .tag-lang button { font-size: 12px; padding: 6px 7px 5px; }
+  .tag-cv { font-size: clamp(11px, 3.4vw, 13px); padding: 7px clamp(6px, 2vw, 9px); }
+  .tag-plain { font-size: clamp(12px, 3.9vw, 15px); padding: 8px clamp(7px, 2.8vw, 12px) 7px; }
+  .tag-lang button { font-size: clamp(11px, 3.3vw, 12px); padding: 6px clamp(5px, 1.6vw, 7px) 5px; }
 
   .mn-red { clip-path: polygon(0 0, 80% 0, 56% 100%, 0 100%); }
   .mn-bone { clip-path: polygon(84% 0, 100% 0, 100% 100%, 60% 100%); }
   .mn-slash { clip-path: polygon(81.6% 0, 82.6% 0, 58.6% 100%, 57.6% 100%); }
-  .mn-charbox { left: auto; right: -30vw; top: auto; bottom: 0; height: 66dvh; }
+  /* bleeds off the right edge by 31% of its own width (the old -30vw at 390x844), at any aspect */
+  .mn-charbox { left: auto; right: 0; translate: 31% 0; top: auto; bottom: 0; height: 66dvh; }
   .mn-name { top: 60px; left: 16px; max-width: 70vw; }
   .mn-h1 { font-size: 22px; margin-bottom: 6px; }
   .mn-label { font-size: 9.5px; }
@@ -570,19 +576,29 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
   .mn-cap-t { font-size: 14px; }
   .mn-hint { display: none; }
 
-  .xp-missions, .xp-sec { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  /* overflow-y:auto alone turns overflow-x into auto as well, and a bleeding art box then
+     made the whole screen pan sideways on touch. The art boxes below stay inside the
+     screen; overflow-x:hidden only backs that up. */
+  .xp-missions, .xp-sec { overflow: hidden auto; -webkit-overflow-scrolling: touch; }
   .ms-bone { clip-path: polygon(0 0, 100% 0, 100% 34dvh, 0 44dvh); position: absolute; }
   .ms-red { clip-path: polygon(0 45dvh, 100% 35dvh, 100% 37dvh, 0 47dvh); }
   .ms-bg { position: absolute; inset: 0; }
-  .ms-charbox { left: auto; right: -12vw; top: 48px; height: 37dvh; }
+  /* the box ends at the screen edge and crops its own art, which sits 22% of its width
+     further right (the old right:-12vw look at 390x844, without extending the scroll area) */
+  .ms-charbox { left: auto; right: 0; top: 48px; height: 37dvh; overflow: hidden; }
+  .ms-charbox picture { display: block; height: 100%; translate: 22% 0; }
   .ms-head { position: relative; left: auto; top: auto; padding: 72px 16px 0; }
-  .ms-title { font-size: 44px; }
+  /* fit-content: the tilted block is only as wide as its letters, so it neither rises into
+     the top bar at wide widths nor draws a full-width focus ring */
+  .ms-title { font-size: 44px; width: fit-content; }
   .ms-title .rl2.k1 { color: var(--blk); text-shadow: none; }
   .ms-sub { color: var(--blk); background: var(--wht); display: inline-block; padding: 2px 6px; }
   .ms-list { position: relative; left: auto; top: auto; width: auto; margin: 27dvh 16px 0; }
-  .ms-list li { margin-left: 0; }
+  /* room for the selected row's 1.06 scale, so it never reaches past the screen edge */
+  .ms-list li { margin-left: 0; margin-right: 6%; }
   .mr { padding: 9px 12px 9px 46px; }
   .mr-n { left: -36px; }
+  .mr-g .g-streak { left: -46px; right: -12px; }
   .mr-t { font-size: 26px; }
   .ms-detail { position: relative; inset: auto; width: auto; margin: 18px 16px 40px; transform: none; padding: 20px 18px; scroll-margin-top: 60px; overflow: visible; }
   .dt-kind { padding-right: 0; }
@@ -591,14 +607,15 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
   .sx-slab { clip-path: polygon(0 0, 100% 0, 100% 16dvh, 0 22dvh); }
   .sx-num { font-size: 26dvh; bottom: auto; top: 50dvh; position: fixed; }
   .sx-head { position: relative; left: auto; top: auto; padding: 72px 16px 0; }
-  .sx-title { font-size: 42px; max-width: calc(100vw - 32px); }
+  .sx-title { font-size: 42px; max-width: calc(100vw - 32px); width: fit-content; }
   /* long titles break between words, never inside one */
   .sx-title .rn { display: inline; white-space: normal; }
   .sx-title .rn-w { display: inline-block; }
   .sx-title .rl2 { margin-bottom: .08em; }
   /* section screens become one scrolling column */
   .pf-grid, .cf2, .ar2, .cl2, .ct-phone2, .ct-foot2 { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: auto; translate: none; }
-  .pf-char { top: 52px; right: -16vw; height: 44dvh; opacity: .95; }
+  .pf-char { top: 52px; right: 0; height: 44dvh; opacity: .95; overflow: hidden; }
+  .pf-char picture { display: block; height: 100%; translate: 25% 0; }
   .pf-grid { grid-template-columns: 1fr; margin: 22dvh 14px 40px; gap: 14px; }
   .pf-stats { grid-template-columns: 1fr 1fr; }
   .pf-stats b { font-size: 42px; }
@@ -620,6 +637,17 @@ html[data-mode="experience"], html[data-mode="experience"] body { overflow: hidd
   .ct-av-big { display: none; }
   .ct-phone2 { margin: 6dvh 12px 18px; transform: none; min-height: 70dvh; }
   .ct-foot2 { margin: 0 12px 40px; display: inline-block; }
+}
+
+/* short landscape (phones on their side): the column menu has no room under the name
+   block, so the list starts lower with smaller items and the caption moves to the right */
+@media (max-height: 500px) and (orientation: landscape) {
+  .mn-nav { top: 124px; }
+  .mi { font-size: max(19px, calc((100dvh - 150px) / 10.5)); }
+  .mn-list li { margin-bottom: 1dvh; }
+  .mn-foot { left: auto; right: 12px; bottom: 10px; align-items: flex-end; }
+  .mn-cap { max-width: 48vw; }
+  .mn-links { padding-left: 0; }
 }
 
 /* ---------- reduced motion: instant swaps, no jitter, no intro ---------- */

@@ -81,3 +81,6 @@ export function warm(urls: string[]) {
   }
 }
 export const isNarrow = () => typeof window !== 'undefined' && window.innerWidth <= 700;
+// The one-column, vertically scrolling layout; keep in sync with the query in experience.css.
+export const columnLayout = () => typeof window !== 'undefined'
+  && window.matchMedia('(max-width: 700px), (max-width: 900px) and (orientation: portrait), (max-height: 500px)').matches;
